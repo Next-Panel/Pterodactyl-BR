@@ -19,16 +19,16 @@ jobs:
       matrix:
         node-version: [16]
     steps:
-      - name: Code Checkout
+      - name: Verificação de codigo
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Configurar Node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
 
-      - name: Install dependencies
+      - name: Instalar dependencias
         run: yarn install --frozen-lockfile
 
       - name: Build
