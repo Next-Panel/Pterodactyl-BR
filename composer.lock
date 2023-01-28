@@ -8659,16 +8659,16 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v5.1.10",
+            "version": "v5.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "8ceb38246028483750573c05dc4f9c17ddb65b7b"
+                "reference": "c9dbdbb1f0efd19bb80f1080ef63f1b9b1bc3b1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/8ceb38246028483750573c05dc4f9c17ddb65b7b",
-                "reference": "8ceb38246028483750573c05dc4f9c17ddb65b7b",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/c9dbdbb1f0efd19bb80f1080ef63f1b9b1bc3b1b",
+                "reference": "c9dbdbb1f0efd19bb80f1080ef63f1b9b1bc3b1b",
                 "shasum": ""
             },
             "require": {
@@ -8715,7 +8715,7 @@
             ],
             "support": {
                 "issues": "https://github.com/itsgoingd/clockwork/issues",
-                "source": "https://github.com/itsgoingd/clockwork/tree/v5.1.10"
+                "source": "https://github.com/itsgoingd/clockwork/tree/v5.1.12"
             },
             "funding": [
                 {
@@ -8723,7 +8723,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-19T21:46:50+00:00"
+            "time": "2022-12-13T00:04:12+00:00"
         },
         {
             "name": "laravel/sail",
