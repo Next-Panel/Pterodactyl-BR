@@ -3,14 +3,16 @@ name: Tests
 on:
   push:
     branches:
-      - "v*"
+      - 'develop'
+      - '1.0-develop'
   pull_request:
     branches:
-      - "v*"
+      - "develop"
+      - "1.0-develop"
 
 jobs:
   tests:
-    name: Tests
+    name: PHP
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
@@ -27,10 +29,10 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Code Checkout
+      - name: Check-out de código
         uses: actions/checkout@v3
 
-      - name: Get cache directory
+      - name: Obter diretório de cache
         id: composer-cache
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
@@ -43,7 +45,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-${{ matrix.php }}-
 
-      - name: Setup PHP
+      - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -51,19 +53,19 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Setup .env
+      - name: Configurar .env
         run: cp .env.ci .env
 
       - name: Install dependencies
         run: composer install --no-interaction --no-progress --no-suggest --prefer-dist
 
-      - name: Unit tests
+      - name: testes de unidade(Unit tests)
         run: vendor/bin/phpunit --bootstrap vendor/autoload.php tests/Unit
         if: ${{ always() }}
         env:
           DB_HOST: UNIT_NO_DB
 
-      - name: Integration tests
+      - name: Testes de integração(Integration tests)
         run: vendor/bin/phpunit tests/Integration
         env:
           DB_PORT: ${{ job.services.database.ports[3306] }}
