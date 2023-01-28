@@ -3,12 +3,12 @@ name: Build
 on:
   push:
     branches:
-      - "v*"
-      - "v1*"
+      - "develop"
+      - "1.0-develop"
   pull_request:
     branches:
-      - "v*"
-      - "v1*"
+      - "develop"
+      - "1.0-develop"
 
 jobs:
   ui:
@@ -19,17 +19,17 @@ jobs:
       matrix:
         node-version: [16]
     steps:
-      - name: Verificação de codigo
+      - name: Check-out de código
         uses: actions/checkout@v3
 
-      - name: Configurar Node
+      - name: Configuração de Node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
 
-      - name: Instalar dependencias
-        run: yarn install --frozen-lockfile
+      - name: Instalar dependências
+        run: yarn install --frozen-lockfile --ignore-engines
 
       - name: Build
         run: yarn build:production
