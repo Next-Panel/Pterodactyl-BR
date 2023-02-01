@@ -100,19 +100,19 @@ class Permission extends Model
      */
     protected static array $permissions = [
         'websocket' => [
-            'description' => 'Allows the user to connect to the server websocket, giving them access to view console output and realtime server stats.',
+            'description' => 'Permite que o usuário se conecte ao websocket do servidor, dando-lhes acesso para visualizar a saída do console e as estatísticas do servidor em tempo real.',
             'keys' => [
-                'connect' => 'Allows a user to connect to the websocket instance for a server to stream the console.',
+                'connect' => 'Permite que um usuário se conecte à instância do websocket para que um servidor transmita o console.',
             ],
         ],
 
         'control' => [
-            'description' => 'Permissions that control a user\'s ability to control the power state of a server, or send commands.',
+            'description' => 'Permissões que controlam a capacidade de um usuário de controlar o estado de energia de um servidor ou enviar comandos.',
             'keys' => [
-                'console' => 'Allows a user to send commands to the server instance via the console.',
-                'start' => 'Allows a user to start the server if it is stopped.',
-                'stop' => 'Allows a user to stop a server if it is running.',
-                'restart' => 'Allows a user to perform a server restart. This allows them to start the server if it is offline, but not put the server in a completely stopped state.',
+                'console' => 'Permite que um usuário envie comandos para a instância do servidor por meio do console.',
+                'start' => 'Permite que um usuário inicie o servidor se ele estiver parado.',
+                'stop' => 'Permite que um usuário pare um servidor se ele estiver em execução.',
+                'restart' => 'Permite que um usuário execute uma reinicialização do servidor. Isso permite que eles iniciem o servidor se ele estiver offline, mas não coloque o servidor em um estado completamente parado.',
             ],
         ],
 
