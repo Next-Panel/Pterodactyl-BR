@@ -38,7 +38,7 @@ trait RequiresDatabaseMigrations
         $this->getOutput()->writeln('<options=bold>
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |
 |                                                                              |
-|               Seu banco de dados não foi devidamente migrado!                  |
+|               Seu banco de dados não foi devidamente migrado!                |
 |                                                                              |
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |</>
 Você deve executar o seguinte comando para finalizar a migração de seu banco de dados:
