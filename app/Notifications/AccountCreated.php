@@ -39,7 +39,7 @@ class AccountCreated extends Notification implements ShouldQueue
             ->line('E-mail: ' . $this->user->email);
 
         if (!is_null($this->token)) {
-            return $message->action('Crie sua conta', url('/auth/password/reset/' . $this->token . '?email=' . urlencode($this->user->email)));
+            return $message->action('Configure sua conta', url('/auth/password/reset/' . $this->token . '?email=' . urlencode($this->user->email)));
         }
 
         return $message;
