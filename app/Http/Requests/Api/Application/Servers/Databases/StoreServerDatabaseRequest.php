@@ -56,9 +56,9 @@ class StoreServerDatabaseRequest extends ApplicationApiRequest
     public function attributes(): array
     {
         return [
-            'host' => 'Database Host Server ID',
-            'remote' => 'Remote Connection String',
-            'database' => 'Database Name',
+            'host' => 'ID do servidor host do banco de dados',
+            'remote' => 'String de Conexão Remota',
+            'database' => 'Nome do banco de dados',
         ];
     }
 
