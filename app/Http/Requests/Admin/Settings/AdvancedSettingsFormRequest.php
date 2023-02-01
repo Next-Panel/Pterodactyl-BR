@@ -37,14 +37,14 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
     public function attributes(): array
     {
         return [
-            'recaptcha:enabled' => 'reCAPTCHA Enabled',
-            'recaptcha:secret_key' => 'reCAPTCHA Secret Key',
-            'recaptcha:website_key' => 'reCAPTCHA Website Key',
-            'pterodactyl:guzzle:timeout' => 'HTTP Request Timeout',
-            'pterodactyl:guzzle:connect_timeout' => 'HTTP Connection Timeout',
-            'pterodactyl:client_features:allocations:enabled' => 'Auto Create Allocations Enabled',
-            'pterodactyl:client_features:allocations:range_start' => 'Starting Port',
-            'pterodactyl:client_features:allocations:range_end' => 'Ending Port',
+            'recaptcha:enabled' => 'reCAPTCHA Habilitada',
+            'recaptcha:secret_key' => 'reCAPTCHA Chave secreta',
+            'recaptcha:website_key' => 'reCAPTCHA Chave do site',
+            'pterodactyl:guzzle:timeout' => 'Tempo Limite da Solicitação Http',
+            'pterodactyl:guzzle:connect_timeout' => 'Tempo limite de conexão HTTP',
+            'pterodactyl:client_features:allocations:enabled' => 'Alocações de criação automática ativadas',
+            'pterodactyl:client_features:allocations:range_start' => 'Porta inicial',
+            'pterodactyl:client_features:allocations:range_end' => 'Porta final',
         ];
     }
 }
