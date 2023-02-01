@@ -149,7 +149,7 @@ class User extends Model implements
     protected $attributes = [
         'external_id' => null,
         'root_admin' => false,
-        'language' => 'en',
+        'language' => 'pt',
         'use_totp' => false,
         'totp_secret' => null,
     ];
@@ -203,7 +203,7 @@ class User extends Model implements
         Activity::event('auth:reset-password')
             ->withRequestMetadata()
             ->subject($this)
-            ->log('sending password reset email');
+            ->log('enviando e-mail de redefinição de senha');
 
         $this->notify(new ResetPasswordNotification($token));
     }
