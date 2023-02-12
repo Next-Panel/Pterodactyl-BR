@@ -7,7 +7,7 @@
     "exported_at": "2022-01-18T07:03:08-05:00",
     "name": "Custom Source Engine Game",
     "author": "support@pterodactyl.io",
-    "description": "This option allows modifying the startup arguments and other details to run a custom SRCDS based game on the panel.",
+    "description": "Esta opção permite modificar os argumentos de inicialização e outros detalhes para executar um jogo personalizado baseado em SRCDS no painel.",
     "features": [
         "steam_disk_space"
     ],
@@ -31,8 +31,8 @@
     },
     "variables": [
         {
-            "name": "Game ID",
-            "description": "The ID corresponding to the game to download and run using SRCDS.",
+            "name": "ID Do Jogo",
+            "description": "O ID correspondente ao jogo para baixar e rodar usando o SRCDS.",
             "env_variable": "SRCDS_APPID",
             "default_value": "",
             "user_viewable": true,
@@ -40,8 +40,8 @@
             "rules": "required|numeric|digits_between:1,6"
         },
         {
-            "name": "Game Name",
-            "description": "The name corresponding to the game to download and run using SRCDS.",
+            "name": "Nome do jogo",
+            "description": "O nome correspondente ao jogo para baixar e rodar usando o SRCDS.",
             "env_variable": "SRCDS_GAME",
             "default_value": "",
             "user_viewable": true,
@@ -49,8 +49,8 @@
             "rules": "required|alpha_dash|between:1,100"
         },
         {
-            "name": "Map",
-            "description": "The default map for the server.",
+            "name": "Mapa",
+            "description": "O mapa padrão para o servidor.",
             "env_variable": "SRCDS_MAP",
             "default_value": "",
             "user_viewable": true,
@@ -58,7 +58,7 @@
             "rules": "required|string|alpha_dash"
         },
         {
-            "name": "Steam Username",
+            "name": "Nome de usuário do Steam",
             "description": "",
             "env_variable": "STEAM_USER",
             "default_value": "",
@@ -67,7 +67,7 @@
             "rules": "nullable|string"
         },
         {
-            "name": "Steam Password",
+            "name": "Senha do Steam",
             "description": "",
             "env_variable": "STEAM_PASS",
             "default_value": "",
