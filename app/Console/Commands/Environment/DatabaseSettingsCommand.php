@@ -12,14 +12,14 @@ class DatabaseSettingsCommand extends Command
 {
     use EnvironmentWriterTrait;
 
-    protected $description = 'Defina as configurações do banco de dados para o painel.';
+    protected $description = 'Defina as configurações do Database para o painel.';
 
     protected $signature = 'p:environment:database
                             {--host= : O endereço de conexão para o servidor MySQL.}
                             {--port= : A porta de conexão para o servidor MySQL.}
-                            {--database= : O banco de dados a ser usado.}
+                            {--database= : O Database a ser usado.}
                             {--username= : Nome de usuário para usar ao conectar.}
-                            {--password= : Senha a ser usada para este banco de dados.}';
+                            {--password= : Senha a ser usada para este Database.}';
 
     protected array $variables = [];
 
@@ -38,7 +38,7 @@ class DatabaseSettingsCommand extends Command
      */
     public function handle(): int
     {
-        $this->output->note('É altamente recomendável não usar "localhost" como seu host de banco de dados, pois vimos problemas frequentes de conexão de soquete. Se você quiser usar uma conexão local, você deve usar "127.0.0.1".');
+        $this->output->note('É altamente recomendável não usar "localhost" como seu host de Database, pois vimos problemas frequentes de conexão de soquete. Se você quiser usar uma conexão local, você deve usar "127.0.0.1".');
         $this->variables['DB_HOST'] = $this->option('host') ?? $this->ask(
             'Host do Database',
             config('database.connections.mysql.host', '127.0.0.1')

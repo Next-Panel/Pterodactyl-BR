@@ -84,7 +84,7 @@ class UpdateServerBuildConfigurationRequest extends ServerWriteRequest
             'remove_allocations' => 'alocações para remover',
             'add_allocations.*' => 'alocação para adicionar',
             'remove_allocations.*' => 'alocação para remover',
-            'feature_limits.databases' => 'Limite do banco de dados',
+            'feature_limits.databases' => 'Limite do Database',
             'feature_limits.allocations' => 'Limite de Alocação',
             'feature_limits.backups' => 'Limite de backup',
         ];

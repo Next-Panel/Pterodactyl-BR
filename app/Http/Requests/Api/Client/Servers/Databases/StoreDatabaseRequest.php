@@ -46,7 +46,7 @@ class StoreDatabaseRequest extends ClientApiRequest implements ClientPermissions
     public function messages(): array
     {
         return [
-            'database.unique' => 'O nome do banco de dados que você selecionou já está em uso por este servidor.',
+            'database.unique' => 'O nome do Database que você selecionou já está em uso por este servidor.',
         ];
     }
 }

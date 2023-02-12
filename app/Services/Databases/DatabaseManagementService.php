@@ -86,7 +86,7 @@ class DatabaseManagementService
 
         // Protect against developer mistakes...
         if (empty($data['database']) || !preg_match(self::MATCH_NAME_REGEX, $data['database'])) {
-            throw new InvalidArgumentException('O nome do banco de dados passado para DatabaseManagementService::handle DEVE ser prefixado com "s{server_id}_".');
+            throw new InvalidArgumentException('O nome do Database passado para DatabaseManagementService::handle DEVE ser prefixado com "s{server_id}_".');
         }
 
         $data = array_merge($data, [
@@ -164,7 +164,7 @@ class DatabaseManagementService
             ->exists();
 
         if ($exists) {
-            throw new DuplicateDatabaseNameException('Já existe um banco de dados com esse nome para este servidor.');
+            throw new DuplicateDatabaseNameException('Já existe um Database com esse nome para este servidor.');
         }
 
         $database = (new Database())->forceFill($data);

@@ -81,7 +81,7 @@ class DatabaseController extends Controller
             }
         }
 
-        $this->alert->success('Criou com sucesso um novo host de banco de dados no sistema.')->flash();
+        $this->alert->success('Criou com sucesso um novo host de Database no sistema.')->flash();
 
         return redirect()->route('admin.databases.view', $host->id);
     }
@@ -97,7 +97,7 @@ class DatabaseController extends Controller
 
         try {
             $this->updateService->handle($host->id, $request->normalize());
-            $this->alert->success('O host do banco de dados foi atualizado com sucesso.')->flash();
+            $this->alert->success('O host do Database foi atualizado com sucesso.')->flash();
         } catch (Exception $exception) {
             // Catch any SQL related exceptions and display them back to the user, otherwise just
             // throw the exception like normal and move on with it.
@@ -123,7 +123,7 @@ class DatabaseController extends Controller
     public function delete(int $host): RedirectResponse
     {
         $this->deletionService->handle($host);
-        $this->alert->success('O host do banco de dados solicitado foi excluído do sistema.')->flash();
+        $this->alert->success('O host do Database solicitado foi excluído do sistema.')->flash();
 
         return redirect()->route('admin.databases');
     }

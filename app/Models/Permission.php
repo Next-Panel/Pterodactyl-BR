@@ -172,13 +172,13 @@ class Permission extends Model
         ],
 
         'database' => [
-            'description' => 'Permissões que controlam o acesso de um usuário ao gerenciamento de banco de dados para este servidor.',
+            'description' => 'Permissões que controlam o acesso de um usuário ao gerenciamento de Database para este servidor.',
             'keys' => [
-                'create' => 'Permite que um usuário crie um novo banco de dados para este servidor.',
-                'read' => 'Permite que um usuário visualize o banco de dados associado a este servidor.',
-                'update' => 'Permite que um usuário alterne a senha em uma instância de banco de dados. Se o usuário não tiver a permissão view_password, ele não verá a senha atualizada.',
-                'delete' => 'Permite que um usuário remova uma instância de banco de dados deste servidor.',
-                'view_password' => 'Permite que um usuário visualize a senha associada a uma instância de banco de dados para este servidor.',
+                'create' => 'Permite que um usuário crie um novo Database para este servidor.',
+                'read' => 'Permite que um usuário visualize o Database associado a este servidor.',
+                'update' => 'Permite que um usuário alterne a senha em uma instância de Database. Se o usuário não tiver a permissão view_password, ele não verá a senha atualizada.',
+                'delete' => 'Permite que um usuário remova uma instância de Database deste servidor.',
+                'view_password' => 'Permite que um usuário visualize a senha associada a uma instância de Database para este servidor.',
             ],
         ],
 
