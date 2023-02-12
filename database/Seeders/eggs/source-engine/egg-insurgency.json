@@ -7,7 +7,7 @@
     "exported_at": "2022-01-18T07:07:27-05:00",
     "name": "Insurgency",
     "author": "support@pterodactyl.io",
-    "description": "Take to the streets for intense close quarters combat, where a team's survival depends upon securing crucial strongholds and destroying enemy supply in this multiplayer and cooperative Source Engine based experience.",
+    "description": "Vá para as ruas para intensos combates de curta distância, onde a sobrevivência de uma equipe depende de proteger fortalezas cruciais e destruir o suprimento inimigo nesta experiência cooperativa e multijogador baseada no Source Engine.",
     "features": [
         "steam_disk_space"
     ],
@@ -31,8 +31,8 @@
     },
     "variables": [
         {
-            "name": "Game ID",
-            "description": "The ID corresponding to the game to download and run using SRCDS.",
+            "name": "ID do jogo",
+            "description": "O ID correspondente ao jogo para baixar e rodar usando o SRCDS.",
             "env_variable": "SRCDS_APPID",
             "default_value": "237410",
             "user_viewable": true,
@@ -40,8 +40,8 @@
             "rules": "required|regex:\/^(237410)$\/"
         },
         {
-            "name": "Default Map",
-            "description": "The default map to use when starting the server.",
+            "name": "Mapa Padrão",
+            "description": "O mapa padrão a ser usado ao iniciar o servidor.",
             "env_variable": "SRCDS_MAP",
             "default_value": "sinjar",
             "user_viewable": true,
