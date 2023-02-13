@@ -70,7 +70,7 @@ class SettingsServiceProvider extends ServiceProvider
                 return [$setting->key => $setting->value];
             })->toArray();
         } catch (QueryException $exception) {
-            $log->notice('Uma exceção de consulta(query) foi encontrada ao tentar carregar as configurações do Database: ' . $exception->getMessage());
+            $log->notice('A query exception was encountered while trying to load settings from the database: ' . $exception->getMessage());
 
             return;
         }
@@ -80,7 +80,7 @@ class SettingsServiceProvider extends ServiceProvider
             if (in_array($key, self::$encrypted)) {
                 try {
                     $value = $encrypter->decrypt($value);
-                } catch (DecryptException $exception) {
+                } catch (DecryptException) {
                 }
             }
 
