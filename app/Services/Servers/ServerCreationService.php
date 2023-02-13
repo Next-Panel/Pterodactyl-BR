@@ -62,13 +62,13 @@ class ServerCreationService
         // Auto-configure the node based on the selected allocation
         // if no node was defined.
         if (empty($data['node_id'])) {
-            Assert::false(empty($data['allocation_id']), 'Expected a non-empty allocation_id in server creation data.');
+            Assert::false(empty($data['allocation_id']), 'Esperava-se uma allocation_id não vazia nos dados de criação do servidor.');
 
             $data['node_id'] = Allocation::query()->findOrFail($data['allocation_id'])->node_id;
         }
 
         if (empty($data['nest_id'])) {
-            Assert::false(empty($data['egg_id']), 'Expected a non-empty egg_id in server creation data.');
+            Assert::false(empty($data['egg_id']), 'Esperava-se um egg_id não vazio nos dados de criação do servidor.');
 
             $data['nest_id'] = Egg::query()->findOrFail($data['egg_id'])->nest_id;
         }
