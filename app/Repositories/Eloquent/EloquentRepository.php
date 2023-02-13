@@ -5,7 +5,6 @@ namespace Pterodactyl\Repositories\Eloquent;
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Pterodactyl\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
@@ -76,7 +75,6 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
      */
     public function create(array $fields, bool $validate = true, bool $force = false): Model|bool
     {
-        /** @var \Pterodactyl\Models\Model $instance */
         $instance = $this->getBuilder()->newModelInstance();
         ($force) ? $instance->forceFill($fields) : $instance->fill($fields);
 
@@ -162,7 +160,6 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
     public function update(int $id, array $fields, bool $validate = true, bool $force = false): Model|bool
     {
         try {
-            /** @var \Pterodactyl\Models\Model $instance */
             $instance = $this->getBuilder()->where('id', $id)->firstOrFail();
         } catch (ModelNotFoundException) {
             throw new RecordNotFoundException();
@@ -195,7 +192,7 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
      */
     public function updateWhereIn(string $column, array $values, array $fields): int
     {
-        Assert::notEmpty($column, 'First argument passed to updateWhereIn must be a non-empty string.');
+        Assert::notEmpty($column, 'O primeiro argumento passado para updateWhereIn deve ser uma string não vazia.');
 
         return $this->getBuilder()->whereIn($column, $values)->update($fields);
     }
@@ -209,7 +206,7 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
     public function updateOrCreate(array $where, array $fields, bool $validate = true, bool $force = false): Model|bool
     {
         foreach ($where as $item) {
-            Assert::true(is_scalar($item) || is_null($item), 'First argument passed to updateOrCreate should be an array of scalar or null values, received an array value of %s.');
+            Assert::true(is_scalar($item) || is_null($item), 'O primeiro argumento passado para updateOrCreate deve ser uma matriz de valores escalares ou nulos, recebeu um valor de matriz de %s.');
         }
 
         try {
@@ -274,17 +271,7 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
             return sprintf('(%s)', $grammar->parameterize($record));
         })->implode(', ');
 
-        $driver = DB::getPdo()->getAttribute(\PDO::ATTR_DRIVER_NAME);
-        switch ($driver) {
-            case 'mysql':
-                $statement = "insert ignore into $table ($columns) values $parameters";
-                break;
-            case 'pgsql':
-                $statement = "insert into $table ($columns) values $parameters on conflict do nothing";
-                break;
-            default:
-                throw new \RuntimeException("Unsupported database driver \"$driver\" for insert ignore.");
-        }
+        $statement = "inserir ignorar em $table ($columns) valores $parameters";
 
         return $this->getBuilder()->getConnection()->statement($statement, $bindings);
     }
