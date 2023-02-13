@@ -7,7 +7,7 @@
     "exported_at": "2022-06-17T08:10:44+03:00",
     "name": "Bungeecord",
     "author": "support@pterodactyl.io",
-    "description": "For a long time, Minecraft server owners have had a dream that encompasses a free, easy, and reliable way to connect multiple Minecraft servers together. BungeeCord is the answer to said dream. Whether you are a small server wishing to string multiple game-modes together, or the owner of the ShotBow Network, BungeeCord is the ideal solution for you. With the help of BungeeCord, you will be able to unlock your community's full potential.",
+    "description": "Por muito tempo, os proprietários de servidores Minecraft tiveram um sonho que englobava uma maneira gratuita, fácil e confiável de conectar vários servidores Minecraft. BungeeCord é a resposta para esse sonho. Seja você um pequeno servidor que deseja conectar vários modos de jogo ou o proprietário da rede ShotBow, o BungeeCord é a solução ideal para você. Com a ajuda do BungeeCord, você poderá liberar todo o potencial da sua comunidade.",
     "features": [
         "eula",
         "java_version",
@@ -36,8 +36,8 @@
     },
     "variables": [
         {
-            "name": "Bungeecord Version",
-            "description": "The version of Bungeecord to download and use.",
+            "name": "Bungeecord Versão",
+            "description": "A versão do Bungeecord para baixar e usar.",
             "env_variable": "BUNGEE_VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -46,8 +46,8 @@
             "field_type": "text"
         },
         {
-            "name": "Bungeecord Jar File",
-            "description": "The name of the Jarfile to use when running Bungeecord.",
+            "name": "Bungeecord Arquivo Jar",
+            "description": "O nome do Jarfile a ser usado ao executar o Bungeecord.",
             "env_variable": "SERVER_JARFILE",
             "default_value": "bungeecord.jar",
             "user_viewable": true,
