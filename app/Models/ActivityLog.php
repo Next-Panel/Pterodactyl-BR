@@ -57,7 +57,7 @@ class ActivityLog extends Model
 
     /**
      * Tracks all the events we no longer wish to display to users. These are either legacy
-     * events or just events where we never ended up using the associated data.
+     * events or just events where we never ended up using the associated data. 
      */
     public const DISABLED_EVENTS = ['server:file.upload'];
 
@@ -124,7 +124,7 @@ class ActivityLog extends Model
     public function prunable()
     {
         if (is_null(config('activity.prune_days'))) {
-            throw new LogicException('Cannot prune activity logs: no "prune_days" configuration value is set.');
+            throw new LogicException('Não é possível remover logs de atividades: nenhum valor de configuração "prune_days" está definido.');
         }
 
         return static::where('timestamp', '<=', Carbon::now()->subDays(config('activity.prune_days')));
