@@ -50,7 +50,7 @@ class EggRepository extends EloquentRepository implements EggRepositoryInterface
      */
     public function getWithCopyAttributes($value, string $column = 'id'): Egg
     {
-        Assert::true(is_digit($value) || is_string($value), 'O primeiro argumento passado para getWithCopyAttributes deve ser um inteiro ou string, recebeu %s.');
+        Assert::true(is_digit($value) || is_string($value), 'First argument passed to getWithCopyAttributes must be an integer or string, received %s.');
 
         try {
             return $this->getBuilder()->with('scriptFrom', 'configFrom')->where($column, '=', $value)->firstOrFail($this->getColumns());

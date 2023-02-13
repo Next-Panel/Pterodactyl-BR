@@ -20,11 +20,11 @@ class ServerInstalled
         $server = $request->route()->parameter('server');
 
         if (!$server instanceof Server) {
-            throw new NotFoundHttpException('Nenhum recurso do servidor foi localizado nos parâmetros da solicitação.');
+            throw new NotFoundHttpException('No server resource was located in the request parameters.');
         }
 
         if (!$server->isInstalled()) {
-            throw new HttpException(Response::HTTP_FORBIDDEN, 'O acesso a este recurso não é permitido devido ao estado atual da instalação.');
+            throw new HttpException(Response::HTTP_FORBIDDEN, 'Access to this resource is not allowed due to the current installation state.');
         }
 
         return $next($request);

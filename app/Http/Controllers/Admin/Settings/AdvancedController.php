@@ -55,7 +55,7 @@ class AdvancedController extends Controller
         }
 
         $this->kernel->call('queue:restart');
-        $this->alert->success('As configurações avançadas foram atualizadas com sucesso e o trabalhador da iniciação foi reiniciado para aplicar essas alterações.')->flash();
+        $this->alert->success('Advanced settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
 
         return redirect()->route('admin.settings.advanced');
     }
