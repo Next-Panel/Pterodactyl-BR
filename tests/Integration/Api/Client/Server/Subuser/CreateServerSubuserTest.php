@@ -70,7 +70,7 @@ class CreateServerSubuserTest extends ClientApiIntegrationTestCase
 
         $response->assertForbidden();
         $response->assertJsonPath('errors.0.code', 'HttpForbiddenException');
-        $response->assertJsonPath('errors.0.detail', 'Não é possível atribuir permissões a um subusuário que sua conta não possui ativamente..');
+        $response->assertJsonPath('errors.0.detail', 'Não é possível atribuir permissões a um subusuário que sua conta não possui ativamente.');
     }
 
     /**

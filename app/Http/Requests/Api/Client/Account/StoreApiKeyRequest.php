@@ -35,11 +35,11 @@ class StoreApiKeyRequest extends ClientApiRequest
                 try {
                     $valid = Range::parse($ip)->valid();
                 } catch (\Exception $exception) {
-                    if ($exception->getMessage() !== 'Formato de endereço IP inválido') {
+                    if ($exception->getMessage() !== 'Invalid IP address format') {
                         throw $exception;
                     }
                 } finally {
-                    $validator->errors()->addIf(!$valid, "allowed_ips.{$index}", '"' . $ip . '" não é um endereço IP ou intervalo CIDR válido.');
+                    $validator->errors()->addIf(!$valid, "allowed_ips.{$index}", '"' . $ip . '" is not a valid IP address or CIDR range.');
                 }
             }
         });
