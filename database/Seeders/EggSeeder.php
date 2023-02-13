@@ -11,6 +11,10 @@ use Pterodactyl\Services\Eggs\Sharing\EggUpdateImporterService;
 
 class EggSeeder extends Seeder
 {
+    protected EggImporterService $importerService;
+
+    protected EggUpdateImporterService $updateImporterService;
+
     /**
      * @var string[]
      */
@@ -25,15 +29,15 @@ class EggSeeder extends Seeder
      * EggSeeder constructor.
      */
     public function __construct(
-        private EggImporterService $importerService,
-        private EggUpdateImporterService $updateImporterService
+        EggImporterService $importerService,
+        EggUpdateImporterService $updateImporterService
     ) {
+        $this->importerService = $importerService;
+        $this->updateImporterService = $updateImporterService;
     }
 
     /**
      * Run the egg seeder.
-     *
-     * @throws \JsonException
      */
     public function run()
     {
@@ -47,14 +51,12 @@ class EggSeeder extends Seeder
 
     /**
      * Loop through the list of egg files and import them.
-     *
-     * @throws \JsonException
      */
     protected function parseEggFiles(Nest $nest)
     {
         $files = new \DirectoryIterator(database_path('Seeders/eggs/' . kebab_case($nest->name)));
 
-        $this->command->alert('Updating Eggs for Nest: ' . $nest->name);
+        $this->command->alert('Atualizando Eggs para o Nest: ' . $nest->name);
         /** @var \DirectoryIterator $file */
         foreach ($files as $file) {
             if (!$file->isFile() || !$file->isReadable()) {
@@ -73,7 +75,7 @@ class EggSeeder extends Seeder
                 $this->updateImporterService->handle($egg, $file);
                 $this->command->info('Updated ' . $decoded['name']);
             } else {
-                $this->importerService->handleFile($nest->id, $file);
+                $this->importerService->handle($file, $nest->id);
                 $this->command->comment('Created ' . $decoded['name']);
             }
         }
