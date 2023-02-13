@@ -2,6 +2,7 @@
 
 namespace Pterodactyl\Services\Telemetry;
 
+use PDO;
 use Exception;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Arr;
@@ -16,7 +17,6 @@ use Pterodactyl\Models\Location;
 use Illuminate\Support\Facades\DB;
 use Pterodactyl\Models\Allocation;
 use Illuminate\Support\Facades\Http;
-use Pterodactyl\Services\Helpers\SoftwareVersionService;
 use Pterodactyl\Repositories\Eloquent\SettingsRepository;
 use Pterodactyl\Repositories\Wings\DaemonConfigurationRepository;
 
@@ -27,8 +27,7 @@ class TelemetryCollectionService
      */
     public function __construct(
         private DaemonConfigurationRepository $daemonConfigurationRepository,
-        private SettingsRepository $settingsRepository,
-        private SoftwareVersionService $softwareVersionService
+        private SettingsRepository $settingsRepository
     ) {
     }
 
@@ -110,7 +109,7 @@ class TelemetryCollectionService
             'id' => $uuid,
 
             'panel' => [
-                'version' => $this->softwareVersionService->getCurrentVersion(),
+                'version' => config('app.version'),
                 'phpVersion' => phpversion(),
 
                 'drivers' => [
@@ -124,7 +123,7 @@ class TelemetryCollectionService
 
                     'database' => [
                         'type' => config('database.default'),
-                        'version' => DB::getPdo()->getAttribute(\PDO::ATTR_SERVER_VERSION),
+                        'version' => DB::getPdo()->getAttribute(PDO::ATTR_SERVER_VERSION),
                     ],
                 ],
             ],

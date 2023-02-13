@@ -40,18 +40,18 @@ class BuildModificationService
                 try {
                     Allocation::query()->where('id', $data['allocation_id'])->where('server_id', $server->id)->firstOrFail();
                 } catch (ModelNotFoundException) {
-                    throw new DisplayException('The requested default allocation is not currently assigned to this server.');
+                    throw new DisplayException('A alocação padrão solicitada não está atualmente atribuída a este servidor.');
                 }
             }
 
             // If any of these values are passed through in the data array go ahead and set
             // them correctly on the server model.
-            $merge = Arr::only($data, ['oom_killer', 'memory', 'swap', 'io', 'cpu', 'threads', 'disk', 'allocation_id']);
+            $merge = Arr::only($data, ['oom_disabled', 'memory', 'swap', 'io', 'cpu', 'threads', 'disk', 'allocation_id']);
 
             $server->forceFill(array_merge($merge, [
+                'database_limit' => Arr::get($data, 'database_limit', 0) ?? null,
                 'allocation_limit' => Arr::get($data, 'allocation_limit', 0) ?? null,
                 'backup_limit' => Arr::get($data, 'backup_limit', 0) ?? 0,
-                'database_limit' => Arr::get($data, 'database_limit', 0) ?? null,
             ]))->saveOrFail();
 
             return $server->refresh();
@@ -88,13 +88,14 @@ class BuildModificationService
         // Handle the addition of allocations to this server. Only assign allocations that are not currently
         // assigned to a different server, and only allocations on the same node as the server.
         if (!empty($data['add_allocations'])) {
-            $query = $server->node->allocations()
+            $query = Allocation::query()
+                ->where('node_id', $server->node_id)
                 ->whereIn('id', $data['add_allocations'])
                 ->whereNull('server_id');
 
             // Keep track of all the allocations we're just now adding so that we can use the first
             // one to reset the default allocation to.
-            $freshlyAllocated = $query->first()->id ?? null;
+            $freshlyAllocated = $query->pluck('id')->first();
 
             $query->update(['server_id' => $server->id, 'notes' => null]);
         }
@@ -106,7 +107,7 @@ class BuildModificationService
                 // will throw an exception back.
                 if ($allocation === ($data['allocation_id'] ?? $server->allocation_id)) {
                     if (empty($freshlyAllocated)) {
-                        throw new DisplayException('You are attempting to delete the default allocation for this server but there is no fallback allocation to use.');
+                        throw new DisplayException('Você está tentando excluir a alocação padrão para este servidor, mas não há alocação alternativa para usar.');
                     }
 
                     // Update the default allocation to be the first allocation that we are creating.

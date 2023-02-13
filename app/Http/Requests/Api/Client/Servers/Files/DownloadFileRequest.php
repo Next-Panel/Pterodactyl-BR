@@ -13,6 +13,6 @@ class DownloadFileRequest extends ClientApiRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('file.read', $this->route()->parameter('server'));
+        return $this->user()->can('file.read', $this->parameter('server', Server::class));
     }
 }

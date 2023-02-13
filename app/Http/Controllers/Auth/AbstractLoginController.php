@@ -49,9 +49,7 @@ abstract class AbstractLoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @return never
-     *
-     * @throws DisplayException
+     * @throws \Pterodactyl\Exceptions\DisplayException
      */
     protected function sendFailedLoginResponse(Request $request, Authenticatable $user = null, string $message = null)
     {
@@ -85,7 +83,7 @@ abstract class AbstractLoginController extends Controller
             'data' => [
                 'complete' => true,
                 'intended' => $this->redirectPath(),
-                'user' => $user->toReactObject(),
+                'user' => $user->toVueObject(),
             ],
         ]);
     }

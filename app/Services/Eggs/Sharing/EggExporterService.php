@@ -45,6 +45,7 @@ class EggExporterService
             'config' => [
                 'files' => $egg->inherit_config_files,
                 'startup' => $egg->inherit_config_startup,
+                'logs' => $egg->inherit_config_logs,
                 'stop' => $egg->inherit_config_stop,
             ],
             'scripts' => [

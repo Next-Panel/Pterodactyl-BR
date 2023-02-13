@@ -3,7 +3,6 @@
 namespace Pterodactyl\Http\Controllers\Api\Remote\Servers;
 
 use Illuminate\Http\Request;
-use Pterodactyl\Models\Backup;
 use Pterodactyl\Models\Server;
 use Illuminate\Http\JsonResponse;
 use Pterodactyl\Facades\Activity;
@@ -99,11 +98,9 @@ class ServerDetailsController extends Controller
                     if ($subject = $activity->subjects->where('subject_type', 'backup')->first()) {
                         // Just create a new audit entry for this event and update the server state
                         // so that power actions, file management, and backups can resume as normal.
-                        /** @var Backup $actualSubject */
-                        $actualSubject = $subject->subject;
                         Activity::event('server:backup.restore-failed')
-                            ->subject($server, $actualSubject)
-                            ->property('name', $actualSubject->name)
+                            ->subject($server, $subject->subject)
+                            ->property('name', $subject->subject->name)
                             ->log();
                     }
                 }

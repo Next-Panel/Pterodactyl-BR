@@ -2,6 +2,7 @@
 
 namespace Pterodactyl\Services\Acl\Api;
 
+use ReflectionClass;
 use Pterodactyl\Models\ApiKey;
 
 class AdminAcl
@@ -62,7 +63,7 @@ class AdminAcl
      */
     public static function getResourceList(): array
     {
-        $reflect = new \ReflectionClass(__CLASS__);
+        $reflect = new ReflectionClass(__CLASS__);
 
         return collect($reflect->getConstants())->filter(function ($value, $key) {
             return substr($key, 0, 9) === 'RESOURCE_';

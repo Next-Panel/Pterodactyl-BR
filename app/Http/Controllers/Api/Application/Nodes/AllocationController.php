@@ -3,14 +3,13 @@
 namespace Pterodactyl\Http\Controllers\Api\Application\Nodes;
 
 use Pterodactyl\Models\Node;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Pterodactyl\Models\Allocation;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Pterodactyl\Services\Allocations\AssignmentService;
 use Pterodactyl\Services\Allocations\AllocationDeletionService;
-use Pterodactyl\Exceptions\Http\QueryValueOutOfRangeHttpException;
 use Pterodactyl\Transformers\Api\Application\AllocationTransformer;
 use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
 use Pterodactyl\Http\Requests\Api\Application\Allocations\GetAllocationsRequest;
@@ -34,27 +33,23 @@ class AllocationController extends ApplicationApiController
      */
     public function index(GetAllocationsRequest $request, Node $node): array
     {
-        $perPage = (int) $request->query('per_page', '10');
-        if ($perPage < 1 || $perPage > 100) {
-            throw new QueryValueOutOfRangeHttpException('per_page', 1, 100);
-        }
-
-        $allocations = QueryBuilder::for(Allocation::query()->where('node_id', '=', $node->id))
+        $allocations = QueryBuilder::for($node->allocations())
             ->allowedFilters([
-                'id', 'ip', 'port', 'alias',
-                AllowedFilter::callback('server_id', function (Builder $query, $value) {
-                    if ($value === '0') {
-                        $query->whereNull('server_id');
-                    } else {
-                        $query->where('server_id', '=', $value);
+                AllowedFilter::exact('ip'),
+                AllowedFilter::exact('port'),
+                'ip_alias',
+                AllowedFilter::callback('server_id', function (Builder $builder, $value) {
+                    if (empty($value) || is_bool($value) || !ctype_digit((string) $value)) {
+                        return $builder->whereNull('server_id');
                     }
+
+                    return $builder->where('server_id', $value);
                 }),
             ])
-            ->allowedSorts(['id', 'ip', 'port', 'server_id'])
-            ->paginate($perPage);
+            ->paginate($request->query('per_page') ?? 50);
 
         return $this->fractal->collection($allocations)
-            ->transformWith(AllocationTransformer::class)
+            ->transformWith($this->getTransformer(AllocationTransformer::class))
             ->toArray();
     }
 
@@ -67,11 +62,11 @@ class AllocationController extends ApplicationApiController
      * @throws \Pterodactyl\Exceptions\Service\Allocation\PortOutOfRangeException
      * @throws \Pterodactyl\Exceptions\Service\Allocation\TooManyPortsInRangeException
      */
-    public function store(StoreAllocationRequest $request, Node $node): Response
+    public function store(StoreAllocationRequest $request, Node $node): JsonResponse
     {
         $this->assignmentService->handle($node, $request->validated());
 
-        return $this->returnNoContent();
+        return new JsonResponse([], JsonResponse::HTTP_NO_CONTENT);
     }
 
     /**
@@ -79,10 +74,10 @@ class AllocationController extends ApplicationApiController
      *
      * @throws \Pterodactyl\Exceptions\Service\Allocation\ServerUsingAllocationException
      */
-    public function delete(DeleteAllocationRequest $request, Node $node, Allocation $allocation): Response
+    public function delete(DeleteAllocationRequest $request, Node $node, Allocation $allocation): JsonResponse
     {
         $this->deletionService->handle($allocation);
 
-        return $this->returnNoContent();
+        return new JsonResponse([], JsonResponse::HTTP_NO_CONTENT);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Pterodactyl\Http\Middleware;
 
+use Closure;
+use stdClass;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -22,7 +24,7 @@ class VerifyReCaptcha
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, \Closure $next): mixed
+    public function handle(Request $request, Closure $next): mixed
     {
         if (!$this->config->get('recaptcha.enabled')) {
             return $next($request);
@@ -53,13 +55,13 @@ class VerifyReCaptcha
             )
         );
 
-        throw new HttpException(Response::HTTP_BAD_REQUEST, 'Failed to validate reCAPTCHA data.');
+        throw new HttpException(Response::HTTP_BAD_REQUEST, 'Falha ao validar dados reCAPTCHA.');
     }
 
     /**
      * Determine if the response from the recaptcha servers was valid.
      */
-    private function isResponseVerified(\stdClass $result, Request $request): bool
+    private function isResponseVerified(stdClass $result, Request $request): bool
     {
         if (!$this->config->get('recaptcha.verify_domain')) {
             return false;

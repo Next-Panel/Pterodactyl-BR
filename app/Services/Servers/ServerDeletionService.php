@@ -2,6 +2,7 @@
 
 namespace Pterodactyl\Services\Servers;
 
+use Exception;
 use Illuminate\Http\Response;
 use Pterodactyl\Models\Server;
 use Illuminate\Support\Facades\Log;
@@ -60,7 +61,7 @@ class ServerDeletionService
             foreach ($server->databases as $database) {
                 try {
                     $this->databaseManagementService->delete($database);
-                } catch (\Exception $exception) {
+                } catch (Exception $exception) {
                     if (!$this->force) {
                         throw $exception;
                     }

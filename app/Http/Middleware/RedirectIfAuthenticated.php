@@ -2,6 +2,7 @@
 
 namespace Pterodactyl\Http\Middleware;
 
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthManager;
 
@@ -17,7 +18,7 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, \Closure $next, string $guard = null): mixed
+    public function handle(Request $request, Closure $next, string $guard = null): mixed
     {
         if ($this->authManager->guard($guard)->check()) {
             return redirect()->route('index');

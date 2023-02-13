@@ -10,12 +10,12 @@ class EmailSettingsCommand extends Command
 {
     use EnvironmentWriterTrait;
 
-    protected $description = 'Set or update the email sending configuration for the Panel.';
+    protected $description = 'Defina ou atualize a configuração de envio de e-mail para o Painel.';
 
     protected $signature = 'p:environment:mail
-                            {--driver= : The mail driver to use.}
-                            {--email= : Email address that messages from the Panel will originate from.}
-                            {--from= : The name emails from the Panel will appear to be from.}
+                            {--driver= : O driver de e-mail a ser usado.}
+                            {--email= : Endereço de e-mail de onde as mensagens do Painel serão originadas.}
+                            {--from= : Os e-mails de nome do painel parecerão ser de.}
                             {--encryption=}
                             {--host=}
                             {--port=}
@@ -43,11 +43,11 @@ class EmailSettingsCommand extends Command
         $this->variables['MAIL_DRIVER'] = $this->option('driver') ?? $this->choice(
             trans('command/messages.environment.mail.ask_driver'),
             [
-                'smtp' => 'SMTP Server',
-                'mail' => 'PHP\'s Internal Mail Function',
-                'mailgun' => 'Mailgun Transactional Email',
-                'mandrill' => 'Mandrill Transactional Email',
-                'postmark' => 'Postmark Transactional Email',
+                'smtp' => 'Servidor SMTP',
+                'mail' => 'Função de Email interno do PHP',
+                'mailgun' => 'E-mail transacional do Mailgun',
+                'mandrill' => 'E-mail transacional do Mandrill',
+                'postmark' => 'E-mail transacional do Postmark',
             ],
             $this->config->get('mail.default', 'smtp')
         );
@@ -69,7 +69,7 @@ class EmailSettingsCommand extends Command
 
         $this->writeToEnvironment($this->variables);
 
-        $this->line('Updating stored environment configuration file.');
+        $this->line('Atualizando o arquivo de configuração do environment(ENV=ambiente) armazenado.');
         $this->line('');
     }
 

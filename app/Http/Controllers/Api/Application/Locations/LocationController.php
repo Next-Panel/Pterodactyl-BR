@@ -10,7 +10,6 @@ use Pterodactyl\Services\Locations\LocationUpdateService;
 use Pterodactyl\Services\Locations\LocationCreationService;
 use Pterodactyl\Services\Locations\LocationDeletionService;
 use Pterodactyl\Transformers\Api\Application\LocationTransformer;
-use Pterodactyl\Exceptions\Http\QueryValueOutOfRangeHttpException;
 use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
 use Pterodactyl\Http\Requests\Api\Application\Locations\GetLocationRequest;
 use Pterodactyl\Http\Requests\Api\Application\Locations\GetLocationsRequest;
@@ -36,18 +35,13 @@ class LocationController extends ApplicationApiController
      */
     public function index(GetLocationsRequest $request): array
     {
-        $perPage = (int) $request->query('per_page', '10');
-        if ($perPage < 1 || $perPage > 100) {
-            throw new QueryValueOutOfRangeHttpException('per_page', 1, 100);
-        }
-
         $locations = QueryBuilder::for(Location::query())
             ->allowedFilters(['short', 'long'])
-            ->allowedSorts(['id', 'short', 'long'])
-            ->paginate($perPage);
+            ->allowedSorts(['id'])
+            ->paginate($request->query('per_page') ?? 50);
 
         return $this->fractal->collection($locations)
-            ->transformWith(LocationTransformer::class)
+            ->transformWith($this->getTransformer(LocationTransformer::class))
             ->toArray();
     }
 
@@ -57,7 +51,7 @@ class LocationController extends ApplicationApiController
     public function view(GetLocationRequest $request, Location $location): array
     {
         return $this->fractal->item($location)
-            ->transformWith(LocationTransformer::class)
+            ->transformWith($this->getTransformer(LocationTransformer::class))
             ->toArray();
     }
 
@@ -72,7 +66,12 @@ class LocationController extends ApplicationApiController
         $location = $this->creationService->handle($request->validated());
 
         return $this->fractal->item($location)
-            ->transformWith(LocationTransformer::class)
+            ->transformWith($this->getTransformer(LocationTransformer::class))
+            ->addMeta([
+                'resource' => route('api.application.locations.view', [
+                    'location' => $location->id,
+                ]),
+            ])
             ->respond(201);
     }
 
@@ -87,7 +86,7 @@ class LocationController extends ApplicationApiController
         $location = $this->updateService->handle($location, $request->validated());
 
         return $this->fractal->item($location)
-            ->transformWith(LocationTransformer::class)
+            ->transformWith($this->getTransformer(LocationTransformer::class))
             ->toArray();
     }
 
@@ -100,6 +99,6 @@ class LocationController extends ApplicationApiController
     {
         $this->deletionService->handle($location);
 
-        return $this->returnNoContent();
+        return response('', 204);
     }
 }

@@ -2,9 +2,10 @@
 
 namespace Pterodactyl\Http\Middleware;
 
+use Closure;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Pterodactyl\Models\User;
+use Prologue\Alerts\AlertsMessageBag;
 use Pterodactyl\Exceptions\Http\TwoFactorAuthRequiredException;
 
 class RequireTwoFactorAuthentication
@@ -19,6 +20,13 @@ class RequireTwoFactorAuthentication
     protected string $redirectRoute = '/account';
 
     /**
+     * RequireTwoFactorAuthentication constructor.
+     */
+    public function __construct(private AlertsMessageBag $alert)
+    {
+    }
+
+    /**
      * Check the user state on the incoming request to determine if they should be allowed to
      * proceed or not. This checks if the Panel is configured to require 2FA on an account in
      * order to perform actions. If so, we check the level at which it is required (all users
@@ -26,19 +34,14 @@ class RequireTwoFactorAuthentication
      *
      * @throws \Pterodactyl\Exceptions\Http\TwoFactorAuthRequiredException
      */
-    public function handle(Request $request, \Closure $next): mixed
+    public function handle(Request $request, Closure $next): mixed
     {
-        /** @var User $user */
+        /** @var \Pterodactyl\Models\User $user */
         $user = $request->user();
         $uri = rtrim($request->getRequestUri(), '/') . '/';
         $current = $request->route()->getName();
 
-        // Must be logged in
-        if (!$user instanceof User) {
-            return $next($request);
-        }
-
-        if (Str::startsWith($uri, ['/auth/']) || Str::startsWith($current, ['auth.', 'account.'])) {
+        if (!$user || Str::startsWith($uri, ['/auth/']) || Str::startsWith($current, ['auth.', 'account.'])) {
             return $next($request);
         }
 
@@ -57,6 +60,8 @@ class RequireTwoFactorAuthentication
         if ($request->isJson() || Str::startsWith($uri, '/api/')) {
             throw new TwoFactorAuthRequiredException();
         }
+
+        $this->alert->danger(trans('auth.2fa_must_be_enabled'))->flash();
 
         return redirect()->to($this->redirectRoute);
     }

@@ -26,14 +26,12 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
      * Handle a direct call to this notification from the server installed event. This is configured
      * in the event service provider.
      */
-    public function handle(Event|Installed $notification): void
+    public function handle(Event|Installed $event): void
     {
-        abort_unless($notification instanceof Installed, 500);
-        /* @var Installed $notification */
-        $notification->server->loadMissing('user');
+        $event->server->loadMissing('user');
 
-        $this->server = $notification->server;
-        $this->user = $notification->server->user;
+        $this->server = $event->server;
+        $this->user = $event->server->user;
 
         // Since we are calling this notification directly from an event listener we need to fire off the dispatcher
         // to send the email now. Don't use send() or you'll end up firing off two different events.
@@ -54,9 +52,9 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
     public function toMail(): MailMessage
     {
         return (new MailMessage())
-            ->greeting('Hello ' . $this->user->username . '.')
-            ->line('Your server has finished installing and is now ready for you to use.')
-            ->line('Server Name: ' . $this->server->name)
-            ->action('Login and Begin Using', route('index'));
+            ->greeting('Olá ' . $this->user->username . '.')
+            ->line('Seu servidor terminou de instalar e agora está pronto para você usar.')
+            ->line('Nome do servidor: ' . $this->server->name)
+            ->action('Acesse e comece a usar', route('index'));
     }
 }
