@@ -71,7 +71,7 @@ class StoreSSHKeyRequest extends ClientApiRequest
     public function getKeyFingerprint(): string
     {
         if (!$this->key) {
-            throw new Exception('The public key was not properly loaded for this request.');
+            throw new Exception('A chave pública não foi devidamente carregada para este pedido.');
         }
 
         return $this->key->getFingerprint('sha256');
