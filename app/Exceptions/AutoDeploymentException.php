@@ -2,6 +2,8 @@
 
 namespace Pterodactyl\Exceptions;
 
-class AutoDeploymentException extends \Exception
+use Exception;
+
+class AutoDeploymentException extends Exception
 {
 }

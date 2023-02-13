@@ -2,6 +2,8 @@
 
 namespace Pterodactyl\Exceptions;
 
-class AccountNotFoundException extends \Exception
+use Exception;
+
+class AccountNotFoundException extends Exception
 {
 }

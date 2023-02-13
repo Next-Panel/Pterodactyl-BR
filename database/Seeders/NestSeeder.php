@@ -56,7 +56,7 @@ class NestSeeder extends Seeder
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Minecraft',
-                'description' => 'Minecraft - o jogo clássico de Mojang. Com suporte para Vanilla MC, Spigot e muitos outros!',
+                'description' => 'Minecraft - the classic game from Mojang. With support for Vanilla MC, Spigot, and many others!',
             ], 'support@pterodactyl.io');
         }
     }
@@ -71,7 +71,7 @@ class NestSeeder extends Seeder
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Source Engine',
-                'description' => 'Inclui suporte para a maioria dos jogos de servidores dedicados da Source Engine.',
+                'description' => 'Includes support for most Source Dedicated Server games.',
             ], 'support@pterodactyl.io');
         }
     }
@@ -85,8 +85,8 @@ class NestSeeder extends Seeder
     {
         if (is_null($nest)) {
             $this->creationService->handle([
-                'name' => 'Servidores de Voip',
-                'description' => 'Servidores de voz como Mumble e Teamspeak 3.',
+                'name' => 'Voice Servers',
+                'description' => 'Voice servers such as Mumble and Teamspeak 3.',
             ], 'support@pterodactyl.io');
         }
     }
@@ -101,7 +101,7 @@ class NestSeeder extends Seeder
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Rust',
-                'description' => 'Rust - Um jogo onde você deve lutar para sobreviver.',
+                'description' => 'Rust - A game where you must fight to survive.',
             ], 'support@pterodactyl.io');
         }
     }
