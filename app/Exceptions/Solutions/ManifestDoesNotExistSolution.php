@@ -8,12 +8,12 @@ class ManifestDoesNotExistSolution implements Solution
 {
     public function getSolutionTitle(): string
     {
-        return "O arquivo manifest.json ainda não foi gerado";
+        return "The manifest.json file hasn't been generated yet";
     }
 
     public function getSolutionDescription(): string
     {
-        return 'Execute yarn run build:production para construir o frontend primeiro.';
+        return 'Run yarn run build:production to build the frontend first.';
     }
 
     public function getDocumentationLinks(): array

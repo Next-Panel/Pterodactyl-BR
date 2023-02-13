@@ -19,13 +19,13 @@ class EggParserService
     public function handle(UploadedFile $file): array
     {
         if ($file->getError() !== UPLOAD_ERR_OK || !$file->isFile()) {
-            throw new InvalidFileUploadException('O arquivo selecionado não é válido e não pode ser importado.');
+            throw new InvalidFileUploadException('The selected file is not valid and cannot be imported.');
         }
 
         /** @var array $parsed */
         $parsed = json_decode($file->openFile()->fread($file->getSize()), true, 512, JSON_THROW_ON_ERROR);
         if (!in_array(Arr::get($parsed, 'meta.version') ?? '', ['PTDL_v1', 'PTDL_v2'])) {
-            throw new InvalidFileUploadException('O arquivo JSON fornecido não está em um formato que possa ser reconhecido.');
+            throw new InvalidFileUploadException('The JSON file provided is not in a format that can be recognized.');
         }
 
         return $this->convertToV2($parsed);
