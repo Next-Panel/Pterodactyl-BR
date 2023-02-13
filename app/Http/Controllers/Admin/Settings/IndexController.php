@@ -53,7 +53,7 @@ class IndexController extends Controller
         }
 
         $this->kernel->call('queue:restart');
-        $this->alert->success('As configurações do painel foram atualizadas com sucesso e o trabalhador da iniciação foi reiniciado para aplicar essas alterações.')->flash();
+        $this->alert->success('Panel settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
 
         return redirect()->route('admin.settings');
     }

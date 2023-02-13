@@ -9,9 +9,9 @@ use Pterodactyl\Contracts\Repository\LocationRepositoryInterface;
 
 class DeleteLocationCommand extends Command
 {
-    protected $description = 'Exclui uma localização do Painel.';
+    protected $description = 'Deletes a location from the Panel.';
 
-    protected $signature = 'p:location:delete {--short= : O código curto da localização a ser excluída.}';
+    protected $signature = 'p:location:delete {--short= : The short code of the location to delete.}';
 
     protected Collection $locations;
 

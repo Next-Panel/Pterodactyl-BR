@@ -13,12 +13,12 @@ class KeyGenerateCommand extends BaseKeyGenerateCommand
     public function handle()
     {
         if (!empty(config('app.key')) && $this->input->isInteractive()) {
-            $this->output->warning('Parece que você já configurou uma chave de criptografia de aplicativo. Continuando com este processo, substitua essa chave e cause corrupção de dados para quaisquer dados criptografados existentes. NÃO CONTINUE A MENOS QUE SAIBA O QUE ESTÁ FAZENDO.');
-            if (!$this->confirm('Entendo as consequências de executar este comando e aceito toda a responsabilidade pela perda de dados criptografados.')) {
+            $this->output->warning('It appears you have already configured an application encryption key. Continuing with this process with overwrite that key and cause data corruption for any existing encrypted data. DO NOT CONTINUE UNLESS YOU KNOW WHAT YOU ARE DOING.');
+            if (!$this->confirm('I understand the consequences of performing this command and accept all responsibility for the loss of encrypted data.')) {
                 return;
             }
 
-            if (!$this->confirm('Tem certeza que deseja continuar? Alterar a chave de criptografia do aplicativo CAUSARÁ PERDA DE DADOS.')) {
+            if (!$this->confirm('Are you sure you wish to continue? Changing the application encryption key WILL CAUSE DATA LOSS.')) {
                 return;
             }
         }
