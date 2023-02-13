@@ -3,7 +3,6 @@
 namespace Pterodactyl\Console\Commands\Schedule;
 
 use Exception;
-use Throwable;
 use Illuminate\Console\Command;
 use Pterodactyl\Models\Schedule;
 use Illuminate\Support\Facades\Log;
@@ -14,7 +13,7 @@ class ProcessRunnableCommand extends Command
 {
     protected $signature = 'p:schedule:process';
 
-    protected $description = 'Processar cronogramas no Database e determinar quais estão prontos para execução.';
+    protected $description = 'Process schedules in the database and determine which are ready to run.';
 
     /**
      * Handle command execution.
@@ -30,7 +29,7 @@ class ProcessRunnableCommand extends Command
             ->get();
 
         if ($schedules->count() < 1) {
-            $this->line('Não há tarefas agendadas para servidores que precisam ser executadas.');
+            $this->line('There are no scheduled tasks for servers that need to be run.');
 
             return 0;
         }
@@ -68,7 +67,7 @@ class ProcessRunnableCommand extends Command
                 'schedule' => $schedule->name,
                 'hash' => $schedule->hashid,
             ]));
-        } catch (Throwable|Exception $exception) {
+        } catch (\Throwable|\Exception $exception) {
             Log::error($exception, ['schedule_id' => $schedule->id]);
 
             $this->error("An error was encountered while processing Schedule #$schedule->id: " . $exception->getMessage());

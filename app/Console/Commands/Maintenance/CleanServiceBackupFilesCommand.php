@@ -2,7 +2,6 @@
 
 namespace Pterodactyl\Console\Commands\Maintenance;
 
-use SplFileInfo;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -12,7 +11,7 @@ class CleanServiceBackupFilesCommand extends Command
 {
     public const BACKUP_THRESHOLD_MINUTES = 5;
 
-    protected $description = 'Limpe arquivos .bak órfãos(orphaned) criados ao modificar serviços.';
+    protected $description = 'Clean orphaned .bak files created when modifying services.';
 
     protected $signature = 'p:maintenance:clean-service-backups';
 
@@ -35,7 +34,7 @@ class CleanServiceBackupFilesCommand extends Command
     {
         $files = $this->disk->files('services/.bak');
 
-        collect($files)->each(function (SplFileInfo $file) {
+        collect($files)->each(function (\SplFileInfo $file) {
             $lastModified = Carbon::createFromTimestamp($this->disk->lastModified($file->getPath()));
             if ($lastModified->diffInMinutes(Carbon::now()) > self::BACKUP_THRESHOLD_MINUTES) {
                 $this->disk->delete($file->getPath());

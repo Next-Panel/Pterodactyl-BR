@@ -2,7 +2,6 @@
 
 namespace Pterodactyl\Http\Requests\Api\Client\Account;
 
-use Exception;
 use phpseclib3\Crypt\DSA;
 use phpseclib3\Crypt\RSA;
 use Pterodactyl\Models\UserSSHKey;
@@ -37,22 +36,22 @@ class StoreSSHKeyRequest extends ClientApiRequest
             try {
                 $this->key = PublicKeyLoader::loadPublicKey($this->input('public_key'));
             } catch (NoKeyLoadedException $exception) {
-                $this->validator->errors()->add('public_key', 'A chave pública fornecida não é válida.');
+                $this->validator->errors()->add('public_key', 'The public key provided is not valid.');
 
                 return;
             }
 
             if ($this->key instanceof DSA) {
-                $this->validator->errors()->add('public_key', 'Chaves DSA não são suportadas.');
+                $this->validator->errors()->add('public_key', 'DSA keys are not supported.');
             }
 
             if ($this->key instanceof RSA && $this->key->getLength() < 2048) {
-                $this->validator->errors()->add('public_key', 'As chaves RSA devem ter pelo menos 2.048 bytes de comprimento.');
+                $this->validator->errors()->add('public_key', 'RSA keys must be at least 2048 bytes in length.');
             }
 
             $fingerprint = $this->key->getFingerprint('sha256');
             if ($this->user()->sshKeys()->where('fingerprint', $fingerprint)->exists()) {
-                $this->validator->errors()->add('public_key', 'A chave pública fornecida já existe em sua conta.');
+                $this->validator->errors()->add('public_key', 'The public key provided already exists on your account.');
             }
         });
     }
@@ -71,7 +70,7 @@ class StoreSSHKeyRequest extends ClientApiRequest
     public function getKeyFingerprint(): string
     {
         if (!$this->key) {
-            throw new Exception('A chave pública não foi carregada corretamente para esta solicitação.');
+            throw new \Exception('The public key was not properly loaded for this request.');
         }
 
         return $this->key->getFingerprint('sha256');

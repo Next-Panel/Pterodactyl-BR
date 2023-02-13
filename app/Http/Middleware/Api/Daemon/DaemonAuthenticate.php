@@ -2,7 +2,6 @@
 
 namespace Pterodactyl\Http\Middleware\Api\Daemon;
 
-use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Pterodactyl\Repositories\Eloquent\NodeRepository;
@@ -32,20 +31,20 @@ class DaemonAuthenticate
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
-    public function handle(Request $request, Closure $next): mixed
+    public function handle(Request $request, \Closure $next): mixed
     {
         if (in_array($request->route()->getName(), $this->except)) {
             return $next($request);
         }
 
         if (is_null($bearer = $request->bearerToken())) {
-            throw new HttpException(401, 'O acesso a este endpoint deve incluir um cabeçalho de autorização.', null, ['WWW-Authenticate' => 'Bearer']);
+            throw new HttpException(401, 'Access to this endpoint must include an Authorization header.', null, ['WWW-Authenticate' => 'Bearer']);
         }
 
         $parts = explode('.', $bearer);
         // Ensure that all of the correct parts are provided in the header.
         if (count($parts) !== 2 || empty($parts[0]) || empty($parts[1])) {
-            throw new BadRequestHttpException('O cabeçalho de autorização fornecido não estava em um formato válido.');
+            throw new BadRequestHttpException('The Authorization header provided was not in a valid format.');
         }
 
         try {
@@ -63,6 +62,6 @@ class DaemonAuthenticate
             // Do nothing, we don't want to expose a node not existing at all.
         }
 
-        throw new AccessDeniedHttpException('Você não está autorizado a acessar este recurso.');
+        throw new AccessDeniedHttpException('You are not authorized to access this resource.');
     }
 }
