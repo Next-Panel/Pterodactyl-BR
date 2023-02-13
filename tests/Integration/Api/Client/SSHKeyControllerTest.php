@@ -83,7 +83,7 @@ class SSHKeyControllerTest extends ClientApiIntegrationTestCase
             'public_key' => $key->public_key,
         ])
             ->assertUnprocessable()
-            ->assertJsonPath('errors.0.detail', 'As chaves RSA devem ter pelo menos 2.048 bytes de comprimento.');
+            ->assertJsonPath('errors.0.detail', 'As chaves RSA devem ter pelo menos 2048 bytes de comprimento.');
 
         $this->assertEquals(0, $user->sshKeys()->count());
     }
