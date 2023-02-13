@@ -102,7 +102,7 @@ class FindAssignableAllocationServiceTest extends IntegrationTestCase
         }
 
         $this->expectException(NoAutoAllocationSpaceAvailableException::class);
-        $this->expectExceptionMessage('Cannot assign additional allocation: no more space available on node.');
+        $this->expectExceptionMessage('Não é possível atribuir alocação adicional: não há mais espaço disponível no node.');
 
         $this->getService()->handle($server);
     }
@@ -118,7 +118,7 @@ class FindAssignableAllocationServiceTest extends IntegrationTestCase
         Allocation::factory()->times(5)->create(['node_id' => $server->node_id]);
 
         $this->expectException(NoAutoAllocationSpaceAvailableException::class);
-        $this->expectExceptionMessage('Cannot assign additional allocation: no more space available on node.');
+        $this->expectExceptionMessage('Não é possível atribuir alocação adicional: não há mais espaço disponível no node.');
 
         $this->getService()->handle($server);
     }
@@ -128,7 +128,7 @@ class FindAssignableAllocationServiceTest extends IntegrationTestCase
         $server = $this->createServerModel();
 
         $this->expectException(NoAutoAllocationSpaceAvailableException::class);
-        $this->expectExceptionMessage('Cannot assign additional allocation: no more space available on node.');
+        $this->expectExceptionMessage('Não é possível atribuir alocação adicional: não há mais espaço disponível no node.');
 
         $this->getService()->handle($server);
     }
