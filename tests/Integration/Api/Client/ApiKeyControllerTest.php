@@ -134,7 +134,7 @@ class ApiKeyControllerTest extends ClientApiIntegrationTestCase
         ])
             ->assertUnprocessable()
             ->assertJsonPath('errors.0.meta.rule', 'required')
-            ->assertJsonPath('errors.0.detail', 'O description é um campo necessário');
+            ->assertJsonPath('errors.0.detail', 'O description é um campo necessário.');
 
         $this->postJson('/api/client/account/api-keys', [
             'description' => str_repeat('a', 501),
