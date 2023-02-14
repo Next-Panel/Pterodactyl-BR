@@ -56,7 +56,7 @@ class EggSeeder extends Seeder
     {
         $files = new \DirectoryIterator(database_path('Seeders/eggs/' . kebab_case($nest->name)));
 
-        $this->command->alert('Updating Eggs for Nest: ' . $nest->name);
+        $this->command->alert('Atualizando Eggs para o Nest: ' . $nest->name);
         /** @var \DirectoryIterator $file */
         foreach ($files as $file) {
             if (!$file->isFile() || !$file->isReadable()) {
