@@ -75,7 +75,8 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    /*'timezone' => env('APP_TIMEZONE', 'UTC'), Selado por que não funciona */
+    'timezone' => 'Brazil/Brasilia',
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +89,8 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'pt'),
+    /*'locale' => env('APP_LOCALE', 'pt_BR'), Selado por que não funciona */
+    'locale' => 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +103,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'pt',
+    'fallback_locale' => 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------
