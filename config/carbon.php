@@ -14,4 +14,9 @@ return [
     'timezone' => env('APP_TIMEZONE', 'Brazil/Brasilia'),
     'locale' => env('LINGUA_TIMEZONE', 'pt_BR'),
     'fallback_locale' => 'pt_BR',
+    
+    
+    'aliases' => Facade::defaultAliases()->merge([
+        'Carbon' => Carbon\Carbon::class,
+    ])->toArray(),
 ];
