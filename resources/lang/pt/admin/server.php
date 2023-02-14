@@ -9,7 +9,7 @@ return [
         'default_allocation_not_found' => 'A alocação padrão solicitada não foi encontrada nas alocações deste servidor.',
     ],
     'alerts' => [
-        'startup_changed' => 'A configuração de inicialização para este servidor foi atualizada. Se o ninho ou o ovo deste servidor for alterado, uma reinstalação estará ocorrendo agora.',
+        'startup_changed' => 'A configuração de inicialização para este servidor foi atualizada. Se o nest ou o egg deste servidor for alterado, uma reinstalação estará ocorrendo agora.',
         'server_deleted' => 'O servidor foi excluído com sucesso do sistema.',
         'server_created' => 'O servidor foi criado com sucesso no painel. Por favor, aguarde alguns minutos para que o daemon instale completamente este servidor.',
         'build_updated' => 'Os detalhes de construção para este servidor foram atualizados. Algumas mudanças podem exigir um reinício para ter efeito.',
@@ -19,9 +19,9 @@ return [
         'server_reinstalled' => 'Este servidor foi enfileirado para uma reinstalação que começa agora.',
         'details_updated' => 'Os detalhes do servidor foram atualizados com sucesso.',
         'docker_image_updated' => 'Mudou com sucesso a imagem padrão do Docker para usar para este servidor. Uma reinicialização é necessária para aplicar esta mudança.',
-        'node_required' => 'Você deve ter pelo menos um nó configurado antes de poder adicionar um servidor a este painel.',
-        'transfer_nodes_required' => 'Você deve ter pelo menos dois nós configurados antes de poder transferir servidores.',
+        'node_required' => 'Você deve ter pelo menos um node configurado antes de poder adicionar um servidor a este painel.',
+        'transfer_nodes_required' => 'Você deve ter pelo menos dois nodes configurados antes de poder transferir servidores.',
         'transfer_started' => 'A transferência do servidor foi iniciada.',
-        'transfer_not_viable' => 'O nó que você selecionou não tem o espaço em disco ou a memória necessária disponível para acomodar este servidor.',
+        'transfer_not_viable' => 'O node que você selecionou não tem o espaço em disco ou a memória necessária disponível para acomodar este servidor.',
     ],
 ];

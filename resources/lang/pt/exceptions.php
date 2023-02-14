@@ -14,10 +14,10 @@ return [
         'port_out_of_range' => 'Os portos em uma alocação devem ser maiores que 1024 e menores ou iguais a 65535.',
     ],
     'nest' => [
-        'delete_has_servers' => 'Um ninho com servidores ativos anexados a ele não pode ser excluído do Painel.',
+        'delete_has_servers' => 'Um nest com servidores ativos anexados a ele não pode ser excluído do Painel.',
         'egg' => [
-            'delete_has_servers' => 'Um Ovo com servidores ativos anexados a ele não pode ser excluído do Painel.',
-            'invalid_copy_id' => 'O Ovo selecionado para copiar um roteiro não existe, ou está copiando um roteiro em si.',
+            'delete_has_servers' => 'Um Egg com servidores ativos anexados a ele não pode ser excluído do Painel.',
+            'invalid_copy_id' => 'O Egg selecionado para copiar um roteiro não existe, ou está copiando um roteiro em si.',
             'must_be_child' => 'A diretiva "Copiar configurações de" para este egg deve ser uma opção secundária para o nest selecionado.',
             'has_children' => 'Este egg é um pai para um ou mais eggs.Por Favor apagar estes eggs antes de apagar este egg.',
         ],
@@ -44,13 +44,13 @@ return [
         'chain_interval_too_long' => 'O tempo máximo de intervalo para uma tarefa encadeada é de 15 minutos.',
     ],
     'locations' => [
-        'has_nodes' => 'Não é possível excluir um local que tenha nós ativos anexados a ele.',
+        'has_nodes' => 'Não é possível excluir um local que tenha nodes ativos anexados a ele.',
     ],
     'users' => [
         'node_revocation_failed' => 'Falha em revogar chaves em <a href=":link">Node #:node</a>. :error',
     ],
     'deployment' => [
-        'no_viable_nodes' => 'Não foi possível encontrar nós que satisfizessem os requisitos especificados para a implantação automática.',
+        'no_viable_nodes' => 'Não foi possível encontrar nodes que satisfizessem os requisitos especificados para a implantação automática.',
         'no_viable_allocations' => 'Não foram encontradas alocações que satisfizessem os requisitos para a implantação automática.',
     ],
     'api' => [
