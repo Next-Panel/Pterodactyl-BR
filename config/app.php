@@ -223,6 +223,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => Prologue\Alerts\Facades\Alert::class,
+        'Carbon' => Carbon\Carbon::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
         'Theme' => Pterodactyl\Extensions\Facades\Theme::class,
 
