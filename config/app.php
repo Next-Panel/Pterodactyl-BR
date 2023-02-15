@@ -77,7 +77,6 @@ return [
 
     'timezone' => env('APP_TIMEZONE', 'Brazil/Brasilia'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

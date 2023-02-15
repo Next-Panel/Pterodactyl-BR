@@ -57,7 +57,7 @@ class ActivityLog extends Model
 
     /**
      * Tracks all the events we no longer wish to display to users. These are either legacy
-     * events or just events where we never ended up using the associated data. 
+     * events or just events where we never ended up using the associated data.
      */
     public const DISABLED_EVENTS = ['server:file.upload'];
 

@@ -8,7 +8,7 @@ class ManifestDoesNotExistSolution implements Solution
 {
     public function getSolutionTitle(): string
     {
-        return "O arquivo manifest.json ainda não foi gerado";
+        return 'O arquivo manifest.json ainda não foi gerado';
     }
 
     public function getSolutionDescription(): string
