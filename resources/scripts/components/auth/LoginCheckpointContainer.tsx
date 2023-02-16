@@ -57,7 +57,7 @@ const LoginCheckpointContainer = () => {
                     }}
                     css={tw`cursor-pointer text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                 >
-                    {!isMissingDevice ? "Perdi meu dispositivo" : 'Eu tenho meu dispositivo'}
+                    {!isMissingDevice ? 'Perdi meu dispositivo' : 'Eu tenho meu dispositivo'}
                 </span>
             </div>
             <div css={tw`mt-6 text-center`}>
