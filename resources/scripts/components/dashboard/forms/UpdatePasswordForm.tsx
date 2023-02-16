@@ -65,12 +65,7 @@ export default () => {
                     <React.Fragment>
                         <SpinnerOverlay size={'large'} visible={isSubmitting} />
                         <Form css={tw`m-0`}>
-                            <Field
-                                id={'current_password'}
-                                type={'password'}
-                                name={'current'}
-                                label={'Senha atual'}
-                            />
+                            <Field id={'current_password'} type={'password'} name={'current'} label={'Senha atual'} />
                             <div css={tw`mt-6`}>
                                 <Field
                                     id={'new_password'}
