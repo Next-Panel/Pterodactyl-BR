@@ -33,7 +33,7 @@ export default ({ name, fingerprint }: { name: string; fingerprint: string }) =>
                 onConfirmed={onClick}
                 onClose={() => setVisible(false)}
             >
-                Removing the <Code>{name}</Code> SSH key will invalidate its usage across the Panel.
+                Remover a chave SSH <Code>{name}</Code> invalidará seu uso no Painel.
             </Dialog.Confirm>
             <button css={tw`ml-4 p-2 text-sm`} onClick={() => setVisible(true)}>
                 <FontAwesomeIcon

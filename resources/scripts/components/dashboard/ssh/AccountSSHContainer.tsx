@@ -36,7 +36,7 @@ export default () => {
                     <SpinnerOverlay visible={!data && isValidating} />
                     {!data || !data.length ? (
                         <p css={tw`text-center text-sm`}>
-                            {!data ? 'Loading...' : 'No SSH Keys exist for this account.'}
+                            {!data ? 'Carregando...' : 'Não existem chaves SSH para esta conta.'}
                         </p>
                     ) : (
                         data.map((key, index) => (
@@ -49,8 +49,8 @@ export default () => {
                                     <p css={tw`text-sm break-words font-medium`}>{key.name}</p>
                                     <p css={tw`text-xs mt-1 font-mono truncate`}>SHA256:{key.fingerprint}</p>
                                     <p css={tw`text-xs mt-1 text-neutral-300 uppercase`}>
-                                        Added on:&nbsp;
-                                        {format(key.createdAt, "MMM' de 'yyyy', às 'HH:mm", { locale: ptBR })}
+                                        Adicionado em:&nbsp;
+                                        {format(key.createdAt, 'MMM de yyyy, "às" HH:mm', { locale: ptBR })}
                                     </p>
                                 </div>
                                 <DeleteSSHKeyButton name={key.name} fingerprint={key.fingerprint} />
