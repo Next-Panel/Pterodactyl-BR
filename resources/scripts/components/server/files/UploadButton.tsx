@@ -65,7 +65,7 @@ export default ({ className }: WithClassname) => {
         clearAndAddHttpError();
         const list = Array.from(files);
         if (list.some((file) => !file.size || (!file.type && file.size === 4096))) {
-            return addError('Folder uploads are not supported at this time.', 'Error');
+            return addError('Os uploads de pasta não são suportados neste momento.', 'Erro');
         }
 
         const uploads = list.map((file) => {
@@ -125,7 +125,7 @@ export default ({ className }: WithClassname) => {
                             >
                                 <CloudUploadIcon className={'w-10 h-10 flex-shrink-0'} />
                                 <p className={'font-header flex-1 text-lg text-neutral-100 text-center'}>
-                                    Drag and drop files to upload.
+                                    Arraste e solte arquivos para fazer upload.
                                 </p>
                             </div>
                         </div>
