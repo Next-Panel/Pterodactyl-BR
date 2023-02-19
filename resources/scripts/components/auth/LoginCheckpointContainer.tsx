@@ -27,7 +27,7 @@ const LoginCheckpointContainer = () => {
     const [isMissingDevice, setIsMissingDevice] = useState(false);
 
     return (
-        <LoginFormContainer title={'Device Checkpoint'} css={tw`w-full flex`}>
+        <LoginFormContainer title={'Ponto de verificação do dispositivo'} css={tw`w-full flex`}>
             <div css={tw`mt-6`}>
                 <Field
                     light
@@ -65,7 +65,7 @@ const LoginCheckpointContainer = () => {
                     to={'/auth/login'}
                     css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                 >
-                    Retornar para Login
+                    Voltar ao Login
                 </Link>
             </div>
         </LoginFormContainer>

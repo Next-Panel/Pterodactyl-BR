@@ -51,7 +51,9 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                     return;
                 }
 
-                history.replace('/auth/login/checkpoint', { token: response.confirmationToken });
+                history.replace('/auth/login/checkpoint', {
+                    token: response.confirmationToken,
+                });
             })
             .catch((error) => {
                 console.error(error);

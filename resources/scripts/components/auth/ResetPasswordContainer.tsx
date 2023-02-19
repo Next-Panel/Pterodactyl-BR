@@ -30,7 +30,11 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
 
     const submit = ({ password, passwordConfirmation }: Values, { setSubmitting }: FormikHelpers<Values>) => {
         clearFlashes();
-        performPasswordReset(email, { token: match.params.token, password, passwordConfirmation })
+        performPasswordReset(email, {
+            token: match.params.token,
+            password,
+            passwordConfirmation,
+        })
             .then(() => {
                 // @ts-expect-error this is valid
                 window.location = '/';
@@ -52,18 +56,18 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
             }}
             validationSchema={object().shape({
                 password: string()
-                    .required('Uma nova senha é necessária.')
-                    .min(8, 'Sua nova senha deve ter pelo menos 8 caracteres.'),
+                    .required('É necessária uma nova palavra-passe.')
+                    .min(8, 'A sua nova senha deve ter pelo menos 8 caracteres.'),
                 passwordConfirmation: string()
-                    .required('Sua nova senha não corresponde.')
+                    .required('A sua nova senha não corresponde.')
                     // @ts-expect-error this is valid
-                    .oneOf([ref('password'), null], 'Sua nova senha não corresponde.'),
+                    .oneOf([ref('password'), null], 'A sua nova senha não corresponde.'),
             })}
         >
             {({ isSubmitting }) => (
-                <LoginFormContainer title={'Redefinir senha'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Redefinir Senha'} css={tw`w-full flex`}>
                     <div>
-                        <label>Email</label>
+                        <label>E-mail</label>
                         <Input value={email} isLight disabled />
                     </div>
                     <div css={tw`mt-6`}>
@@ -72,15 +76,15 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                             label={'Nova Senha'}
                             name={'password'}
                             type={'password'}
-                            description={'As senhas devem ter pelo menos 8 caracteres.'}
+                            description={'As senha devem ter pelo menos 8 caracteres de comprimento.'}
                         />
                     </div>
                     <div css={tw`mt-6`}>
-                        <Field light label={'Confirme a nova senha'} name={'passwordConfirmation'} type={'password'} />
+                        <Field light label={'Confirmar Nova Senha'} name={'passwordConfirmation'} type={'password'} />
                     </div>
                     <div css={tw`mt-6`}>
-                        <Button size={'xlarge'} type={'submit'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            Reset Password
+                        <Button size={Button.Sizes.Large} css={tw`w-full`} type={'submit'} disabled={isSubmitting}>
+                            Resetar Senha
                         </Button>
                     </div>
                     <div css={tw`mt-6 text-center`}>
@@ -88,7 +92,7 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
-                            Retornar para Login
+                            Voltar ao login
                         </Link>
                     </div>
                 </LoginFormContainer>
