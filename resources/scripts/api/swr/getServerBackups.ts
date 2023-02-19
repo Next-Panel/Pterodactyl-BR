@@ -1,9 +1,9 @@
 import useSWR from 'swr';
-import http, { getPaginationSet, PaginatedResult } from '@/api/http';
-import { ServerBackup } from '@/api/server/types';
-import { rawDataToServerBackup } from '@/api/transformers';
 import { ServerContext } from '@/state/server';
+import { ServerBackup } from '@/api/server/types';
 import { createContext, useContext } from 'react';
+import { rawDataToServerBackup } from '@/api/transformers';
+import http, { getPaginationSet, PaginatedResult } from '@/api/http';
 
 interface ctx {
     page: number;
@@ -19,7 +19,9 @@ export default () => {
     const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
 
     return useSWR<BackupResponse>(['server:backups', uuid, page], async () => {
-        const { data } = await http.get(`/api/client/servers/${uuid}/backups`, { params: { page } });
+        const { data } = await http.get(`/api/client/servers/${uuid}/backups`, {
+            params: { page },
+        });
 
         return {
             items: (data.data || []).map(rawDataToServerBackup),
