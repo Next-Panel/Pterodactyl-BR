@@ -63,7 +63,7 @@ export default () => {
                             <div css={tw`mt-6 flex items-center justify-end`}>
                                 {databaseLimit > 0 && databases.length > 0 && (
                                     <p css={tw`text-sm text-neutral-300 mb-4 sm:mr-6 sm:mb-0`}>
-                                        {databases.length} of {databaseLimit} bancos de dados foram alocados para esse 
+                                        {databases.length} of {databaseLimit} bancos de dados foram alocados para esse
                                         servidor.
                                     </p>
                                 )}

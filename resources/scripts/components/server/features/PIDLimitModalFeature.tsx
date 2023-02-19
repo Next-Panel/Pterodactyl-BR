@@ -69,8 +69,10 @@ const PIDLimitModalFeature = () => {
                         esse assunto.
                     </p>
                     <p css={tw`mt-4`}>
-                        <b>Nota: as Wings devem ser reiniciadas para as alterações do arquivo de configuração para
-                        entrar em vigor</b>
+                        <b>
+                            Nota: as Wings devem ser reiniciadas para as alterações do arquivo de configuração para
+                            entrar em vigor
+                        </b>
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
@@ -90,7 +92,8 @@ const PIDLimitModalFeature = () => {
                     </p>
                     <p css={tw`mt-4`}>
                         <code css={tw`font-mono bg-neutral-900`}>
-                            pthread_create falhou, possivelmente fora da memória ou dos limites de processo/recurso alcançados
+                            pthread_create falhou, possivelmente fora da memória ou dos limites de processo/recurso
+                            alcançados
                         </code>
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>

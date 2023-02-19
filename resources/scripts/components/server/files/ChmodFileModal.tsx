@@ -59,7 +59,13 @@ const ChmodFileModal = ({ files, ...props }: OwnProps) => {
                     <Form css={tw`m-0`}>
                         <div css={tw`flex flex-wrap items-end`}>
                             <div css={tw`w-full sm:flex-1 sm:mr-4`}>
-                                <Field type={'string'} id={'file_mode'} name={'mode'} label={'Modo de arquivo'} autoFocus />
+                                <Field
+                                    type={'string'}
+                                    id={'file_mode'}
+                                    name={'mode'}
+                                    label={'Modo de arquivo'}
+                                    autoFocus
+                                />
                             </div>
                             <div css={tw`w-full sm:w-auto mt-4 sm:mt-0`}>
                                 <Button css={tw`w-full`}>Atualizar</Button>

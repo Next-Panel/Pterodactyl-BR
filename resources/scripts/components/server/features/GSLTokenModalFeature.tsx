@@ -80,7 +80,7 @@ const GSLTokenModalFeature = () => {
                         Parece que o seu Token de login do GameServer (TSL Token) é inválido ou expirou.
                     </p>
                     <p css={tw`mt-4`}>
-                        Você pode gerar um novo e digitá-lo abaixo ou deixar o campo em branco para remove-lo 
+                        Você pode gerar um novo e digitá-lo abaixo ou deixar o campo em branco para remove-lo
                         completamente.
                     </p>
                     <div css={tw`sm:flex items-center mt-4`}>

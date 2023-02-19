@@ -20,7 +20,10 @@ const SteamDiskSpaceFeature = () => {
     useEffect(() => {
         if (!connected || !instance || status === 'running') return;
 
-        const errors = ['Steamcmd precisa de 250 MB de espaço livre em disco para atualizar', '0x202 Após o trabalho de atualização'];
+        const errors = [
+            'Steamcmd precisa de 250 MB de espaço livre em disco para atualizar',
+            '0x202 Após o trabalho de atualização',
+        ];
 
         const listener = (line: string) => {
             if (errors.some((p) => line.toLowerCase().includes(p))) {
@@ -53,13 +56,14 @@ const SteamDiskSpaceFeature = () => {
                         <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>Fora do espaço de disco disponível...</h2>
                     </div>
                     <p css={tw`mt-4`}>
-                        Este servidor ficou sem espaço em disco disponível e não pode concluir a instalação ou atualizar 
+                        Este servidor ficou sem espaço em disco disponível e não pode concluir a instalação ou atualizar
                         o processo.
                     </p>
                     <p css={tw`mt-4`}>
                         Verifique se a máquina tem espaço de disco suficiente digitando{' '}
-                        <code css={tw`font-mono bg-neutral-900 rounded py-1 px-2`}>df -h</code> na hospedagem de máquinas 
-                        deste servidor. Exclua arquivos ou aumente o espaço do disco disponível para resolver o problema.
+                        <code css={tw`font-mono bg-neutral-900 rounded py-1 px-2`}>df -h</code> na hospedagem de
+                        máquinas deste servidor. Exclua arquivos ou aumente o espaço do disco disponível para resolver o
+                        problema.
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
@@ -73,8 +77,9 @@ const SteamDiskSpaceFeature = () => {
                         <h2 css={tw`text-2xl mb-4 text-neutral-100`}>Fora do espaço de disco disponível...</h2>
                     </div>
                     <p css={tw`mt-4`}>
-                        Este servidor ficou sem espaço em disco disponível e não pode concluir a instalação ou atualizar 
-                        o processo. Entre em contato com o(s) administrador(es) e informe -os sobre problemas de espaço em disco.
+                        Este servidor ficou sem espaço em disco disponível e não pode concluir a instalação ou atualizar
+                        o processo. Entre em contato com o(s) administrador(es) e informe -os sobre problemas de espaço
+                        em disco.
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
