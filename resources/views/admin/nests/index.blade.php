@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="alert alert-danger">
-            Eggs are a powerful feature of Pterodactyl Panel that allow for extreme flexibility and configuration. Please note that while powerful, modifying an egg wrongly can very easily brick your servers and cause more problems. Please avoid editing our default eggs — those provided by <code>support@pterodactyl.io</code> — unless you are absolutely sure of what you are doing.
+            Os Eggs são uma característica poderosa do Painel, que permite extrema flexibilidade e configuração. Observe que, embora poderoso, modificar um Egg de forma errada pode muito facilmente quebrar seus servidores e causar mais problemas. Por favor, evite editar nossos Eggs padrão - aqueles fornecidos por <code>support@pterodactyl.io</code> - a menos que você esteja absolutamente seguro do que está fazendo.
             
         </div>
     </div>

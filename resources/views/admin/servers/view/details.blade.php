@@ -44,7 +44,6 @@ Servidor — {{ $server->name }}: Detalhes
                     <div class="form-group">
                         <label for="description" class="control-label">Descrição do servidor</label>
                         <textarea name="description" rows="3" class="form-control">{{ old('description', $server->description) }}</textarea>
-                        <p class="text-muted small">A brief description of this server.</p>
                         <p class="text-muted small">Uma breve descrição deste servidor.</p>
                     </div>
                 </div>

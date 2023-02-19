@@ -52,7 +52,6 @@
                                 <label for="pPublicFalse"> Privado </label>
                             </div>
                         </div>
-                        <p class="text-muted small">By setting a node to <code>private</code> you will be denying the ability to auto-deploy to this node.
                         <p class="text-muted small">Ao definir um Node como<code>privado</code>, você estará negando a capacidade de implantar automaticamente nesse node.
                     </div>
                     <div class="form-group">
