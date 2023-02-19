@@ -75,7 +75,7 @@ export default () => {
                 <LoginFormContainer title={'Solicitar redefinição de senha'} css={tw`w-full flex`}>
                     <Field
                         light
-                        label={'E-mail'}
+                        label={'Email'}
                         description={
                             'Digite o endereço de e-mail da sua conta para receber instruções sobre como redefinir sua senha.'
                         }
@@ -84,7 +84,7 @@ export default () => {
                     />
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            Enviar Email
+                            Send Email
                         </Button>
                     </div>
                     {recaptchaEnabled && (
@@ -107,7 +107,7 @@ export default () => {
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                         >
-                            Voltar ao Login
+                            Retornar para Login
                         </Link>
                     </div>
                 </LoginFormContainer>
