@@ -107,14 +107,18 @@ export default () => {
                                 <p css={tw`mt-1 text-sm text-neutral-200`}>
                                     Última iniciação em:&nbsp;
                                     {schedule.lastRunAt ? (
-                                        format(schedule.lastRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
+                                        format(schedule.lastRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", {
+                                            locale: ptBR,
+                                        })
                                     ) : (
                                         <span css={tw`text-neutral-300`}>n/a</span>
                                     )}
                                     <span css={tw`ml-4 pl-4 border-l-4 border-neutral-600 py-px`}>
                                         Próxima iniciação em:&nbsp;
                                         {schedule.nextRunAt ? (
-                                            format(schedule.nextRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
+                                            format(schedule.nextRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", {
+                                                locale: ptBR,
+                                            })
                                         ) : (
                                             <span css={tw`text-neutral-300`}>n/a</span>
                                         )}
