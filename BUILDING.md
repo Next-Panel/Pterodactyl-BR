@@ -30,7 +30,7 @@ yarn run watch
 
 ### Hot Module Reloading
 For more advanced users, we also support 'Hot Module Reloading', allowing you to quickly see changes you're making
-to the Vue template files without having to reload the page you're on. To Get started with this, you just need
+to the Vue template files without having to reload the  page you're on. To Get started with this, you just need
 to run the command below.
 
 ```bash
