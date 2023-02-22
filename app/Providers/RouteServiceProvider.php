@@ -62,6 +62,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('/api/remote')
                 ->scopeBindings()
                 ->group(base_path('routes/api-remote.php'));
+
+            /**
+             * Register Module Route Provider
+             */
+            Route::middleware(['web', 'csrf'])->prefix('/auth')
+             ->namespace("$this->namespace\\Auth")
+            ->group(base_path('routes/register_module.php'));
         });
     }
 
