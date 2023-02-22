@@ -17,8 +17,8 @@ export default ({ schedule }: { schedule: Schedule }) => (
             <p css={tw`text-xs text-neutral-400`}>
                 Última execução em:{' '}
                 {schedule.lastRunAt
-                    ? format(schedule.lastRunAt, "MMM' de 'yyyy', às 'HH:mm", { locale: ptBR })
-                    : 'never'}
+                    ? format(schedule.lastRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
+                    : 'Nunca'}
             </p>
         </div>
         <div>

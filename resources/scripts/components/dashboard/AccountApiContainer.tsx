@@ -76,7 +76,9 @@ export default () => {
                                     <p css={tw`text-2xs text-neutral-300 uppercase`}>
                                         Última utilização:&nbsp;
                                         {key.lastUsedAt
-                                            ? format(key.lastUsedAt, "MMM' de 'yyyy', às 'HH:mm", { locale: ptBR })
+                                            ? format(key.lastUsedAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", {
+                                                  locale: ptBR,
+                                              })
                                             : 'Nunca'}
                                     </p>
                                 </div>
