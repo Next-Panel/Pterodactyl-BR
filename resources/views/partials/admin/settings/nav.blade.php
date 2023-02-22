@@ -9,6 +9,7 @@
                     <li @if($activeTab === 'basic')class="active"@endif><a href="{{ route('admin.settings') }}">Geral</a></li>
                     <li @if($activeTab === 'mail')class="active"@endif><a href="{{ route('admin.settings.mail') }}">E-mail</a></li>
                     <li @if($activeTab === 'advanced')class="active"@endif><a href="{{ route('admin.settings.advanced') }}">Avançado</a></li>
+                    <li @if($activeTab === 'contribuidores')class="active"@endif><a href="{{ route('admin.settings.contribuidores') }}">Contribuidores</a></li>
                 </ul>
             </div>
         </div>

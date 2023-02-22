@@ -68,6 +68,8 @@ Route::group(['prefix' => 'settings'], function () {
     Route::get('/', [Admin\Settings\IndexController::class, 'index'])->name('admin.settings');
     Route::get('/mail', [Admin\Settings\MailController::class, 'index'])->name('admin.settings.mail');
     Route::get('/advanced', [Admin\Settings\AdvancedController::class, 'index'])->name('admin.settings.advanced');
+    /* Contribuidores do Painel Brasil */
+    Route::get('/contribuidores', [Admin\Settings\ContribuidoresController::class, 'index'])->name('admin.settings.contribuidores');
 
     Route::post('/mail/test', [Admin\Settings\MailController::class, 'test'])->name('admin.settings.mail.test');
 
