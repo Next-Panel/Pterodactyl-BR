@@ -83,7 +83,7 @@ export default ({ backup, className }: Props) => {
             </div>
             <div css={tw`flex-1 md:flex-none md:w-48 mt-4 md:mt-0 md:ml-8 md:text-center`}>
                 <p title={format(backup.createdAt, 'ddd, MMMM de, yyyy HH:mm:ss')} css={tw`text-sm`}>
-                    {formatDistanceToNow(backup.createdAt, { includeSeconds: true, addSuffix: true, locale: ptBR })}
+                    {formatDistanceToNow(backup.createdAt, { addSuffix: true, locale: ptBR })}
                 </p>
                 <p css={tw`text-2xs text-neutral-500 uppercase mt-1`}>Criado</p>
             </div>
