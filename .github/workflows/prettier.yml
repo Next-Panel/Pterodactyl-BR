@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install npm v8
+        run: npm i -g npm@8
+        
       - name: Checkout
         uses: actions/checkout@v3
         with:
