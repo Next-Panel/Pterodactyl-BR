@@ -113,14 +113,6 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                             Esqueceu sua senha?
                         </Link>
                     </div>
-                    <div css={tw`mt-6 text-center`}>
-                        <a
-                            href={'/auth/register'}
-                            css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase`}
-                        >
-                            Não tem uma conta?
-                        </a>
-                    </div>
                 </LoginFormContainer>
             )}
         </Formik>

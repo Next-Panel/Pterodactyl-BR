@@ -1,5 +1,5 @@
 # Stage 0:
-# Build the assets that are needed for the frontend. This build stage is then discarded 
+# Build the assets that are needed for the frontend. This build stage is then discarded
 # since we won't need NodeJS anymore in the future. This Docker image ships a final production
 # level distribution of Pterodactyl.
 FROM --platform=$TARGETOS/$TARGETARCH mhart/alpine-node:14
