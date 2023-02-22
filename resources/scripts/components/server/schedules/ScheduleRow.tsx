@@ -18,7 +18,7 @@ export default ({ schedule }: { schedule: Schedule }) => (
                 Última execução em:{' '}
                 {schedule.lastRunAt
                     ? format(schedule.lastRunAt, "MMM' de 'yyyy', às 'HH:mm", { locale: ptBR })
-                    : 'never'}
+                    : 'Nunca'}
             </p>
         </div>
         <div>
