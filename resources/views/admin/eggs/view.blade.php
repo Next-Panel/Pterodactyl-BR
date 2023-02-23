@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>{{ $egg->name }}<small>{{ str_limit($egg->description, 50) }}</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.nests') }}">Nests</a></li>
         <li><a href="{{ route('admin.nests.view', $egg->nest->id) }}">{{ $egg->nest->name }}</a></li>
         <li class="active">{{ $egg->name }}</li>

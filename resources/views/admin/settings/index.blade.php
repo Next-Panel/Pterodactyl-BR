@@ -8,7 +8,7 @@
 @section('content-header')
     <h1>Configurações do Pterodactyl<small>Defina as configurações específicas do Pterodactyl para o Painel.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li class="active">Configurações</li>
     </ol>
 @endsection
@@ -42,7 +42,7 @@
                                             <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="0" @if ($level == 0) checked @endif> Não é obrigatório
                                         </label>
                                         <label class="btn btn-primary @if ($level == 1) active @endif">
-                                            <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="1" @if ($level == 1) checked @endif> Somente Admin
+                                            <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="1" @if ($level == 1) checked @endif> Somente Administrador
                                         </label>
                                         <label class="btn btn-primary @if ($level == 2) active @endif">
                                             <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="2" @if ($level == 2) checked @endif> Todos os usuários

@@ -7,7 +7,7 @@ Servidor — {{ $server->name }}: Inicialização
 @section('content-header')
     <h1>{{ $server->name }}<small>Comando de inicialização de controle, bem como variáveis.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
         <li class="active">Inicialização</li>
@@ -114,7 +114,7 @@ Selecione uma imagem do campo ou digite uma imagem personalizada no campo de tex
     {!! Theme::js('vendor/lodash/lodash.js') !!}
     <script>
     $(document).ready(function () {
-        $('#pEggId').select2({placeholder: 'Select a Nest Egg'}).on('change', function () {
+        $('#pEggId').select2({placeholder: 'Selecione um Egg do Nest'}).on('change', function () {
             var selectedEgg = _.isNull($(this).val()) ? $(this).find('option').first().val() : $(this).val();
             var parentChain = _.get(Pterodactyl.nests, $("#pNestId").val());
             var objectChain = _.get(parentChain, 'eggs.' + selectedEgg);
@@ -171,7 +171,7 @@ Selecione uma imagem do campo ou digite uma imagem personalizada no campo de tex
             });
         });
 
-        $('#pNestId').select2({placeholder: 'Select a Nest'}).on('change', function () {
+        $('#pNestId').select2({placeholder: 'Selecione um Nest'}).on('change', function () {
             $('#pEggId').html('').select2({
                 data: $.map(_.get(Pterodactyl.nests, $(this).val() + '.eggs', []), function (item) {
                     return {

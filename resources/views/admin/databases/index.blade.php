@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>Host de Database<small>Hospedagem de database nos quais os servidores podem ter bancos de dados criados.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li class="active">Lista dos Database</li>
     </ol>
 @endsection

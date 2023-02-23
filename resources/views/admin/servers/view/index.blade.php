@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>{{ $server->name }}<small>{{ str_limit($server->description) }}</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li class="active">{{ $server->name }}</li>
     </ol>

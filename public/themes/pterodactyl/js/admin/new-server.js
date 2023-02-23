@@ -19,27 +19,27 @@
 // SOFTWARE.
 $(document).ready(function() {
     $('#pNestId').select2({
-        placeholder: 'Select a Nest',
+        placeholder: 'Selecione um Nest',
     }).change();
 
     $('#pEggId').select2({
-        placeholder: 'Select a Nest Egg',
+        placeholder: 'Selecione um Egg do Nest',
     });
 
     $('#pPackId').select2({
-        placeholder: 'Select a Service Pack',
+        placeholder: 'Selecione um Pacote de Serviços',
     });
 
     $('#pNodeId').select2({
-        placeholder: 'Select a Node',
+        placeholder: 'Selecione um Node',
     }).change();
 
     $('#pAllocation').select2({
-        placeholder: 'Select a Default Allocation',
+        placeholder: 'Selecione uma Alocação Padrão',
     });
 
     $('#pAllocationAdditional').select2({
-        placeholder: 'Select Additional Allocations',
+        placeholder: 'Selecione Alocações Adicionais',
     });
 });
 
@@ -59,7 +59,7 @@ $('#pNodeId').on('change', function () {
         if (v.id == currentNode) {
             $('#pAllocation').html('').select2({
                 data: v.allocations,
-                placeholder: 'Select a Default Allocation',
+                placeholder: 'Selecione uma Alocação Padrão',
             });
 
             updateAdditionalAllocations();
@@ -93,7 +93,7 @@ $('#pEggId').on('change', function (event) {
     }
 
     if (!_.get(objectChain, 'startup', false)) {
-        $('#pStartup').val(_.get(parentChain, 'startup', 'ERROR: Startup Not Defined!'));
+        $('#pStartup').val(_.get(parentChain, 'startup', 'ERROR: Inicializador Não Definido!'));
     } else {
         $('#pStartup').val(_.get(objectChain, 'startup'));
     }
@@ -114,7 +114,7 @@ $('#pEggId').on('change', function (event) {
     $.each(_.get(objectChain, 'variables', []), function (i, item) {
         variableIds[item.env_variable] = 'var_ref_' + item.id;
 
-        let isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
+        let isRequired = (item.required === 1) ? '<span class="label label-danger">Requerido</span> ' : '';
         let dataAppend = ' \
             <div class="form-group col-sm-6"> \
                 <label for="var_ref_' + item.id + '" class="control-label">' + isRequired + item.name + '</label> \
@@ -154,7 +154,7 @@ function updateAdditionalAllocations() {
 
             $('#pAllocationAdditional').html('').select2({
                 data: allocations,
-                placeholder: 'Select Additional Allocations',
+                placeholder: 'Selecione Alocações Adicionais',
             });
         }
     });

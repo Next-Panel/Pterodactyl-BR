@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>{{ $host->name }}<small>Visualização de bancos de dados associados e detalhes para este database</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.databases') }}">Host de Database</a></li>
         <li class="active">{{ $host->name }}</li>
     </ol>

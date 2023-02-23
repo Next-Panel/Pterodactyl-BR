@@ -35,13 +35,13 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label">Site Key</label>
+                                <label class="control-label">Chave do Site</label>
                                 <div>
                                     <input type="text" required class="form-control" name="recaptcha:website_key" value="{{ old('recaptcha:website_key', config('recaptcha.website_key')) }}">
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label">Secret Key</label>
+                                <label class="control-label">Chave Secreta</label>
                                 <div>
                                     <input type="text" required class="form-control" name="recaptcha:secret_key" value="{{ old('recaptcha:secret_key', config('recaptcha.secret_key')) }}">
                                     <p class="text-muted small">Utilizado para a comunicação entre seu site e o Google. Não se esqueça de guardá-lo em segredo.</p>

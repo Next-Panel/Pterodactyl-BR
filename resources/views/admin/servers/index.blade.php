@@ -7,7 +7,7 @@ Lista de servidores
 @section('content-header')
     <h1>Servidores<small>Todos os servidores disponíveis no sistema.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li class="active">Servidores</li>
     </ol>
 @endsection

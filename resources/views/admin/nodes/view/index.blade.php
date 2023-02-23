@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>{{ $node->name }}<small>Uma visão geral rápida do seu node.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.nodes') }}">Nodes</a></li>
         <li class="active">{{ $node->name }}</li>
     </ol>

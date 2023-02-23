@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>Novo Node<small>Criar um novo Node local ou remoto para os servidores a serem instalados.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.nodes') }}">Nodes</a></li>
         <li class="active">Novo</li>
     </ol>

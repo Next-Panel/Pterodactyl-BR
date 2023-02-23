@@ -9,7 +9,7 @@
     <h1>Ajustes do E-mail
 <small>Configurar como o Pterodactyl deve lidar com o envio de E-mails.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li class="active">Definições</li>
     </ol>
 @endsection

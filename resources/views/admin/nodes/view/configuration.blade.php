@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>{{ $node->name }}<small>Seu arquivo de configuração do daemon.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.nodes') }}">Nodes</a></li>
         <li><a href="{{ route('admin.nodes.view', $node->id) }}">{{ $node->name }}</a></li>
         <li class="active">Configuração</li>

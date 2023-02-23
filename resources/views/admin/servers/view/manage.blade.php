@@ -7,7 +7,7 @@ Servidor  — {{ $server->name }}: Gerenciar
 @section('content-header')
     <h1>{{ $server->name }}<small>Ações adicionais para controlar este servidor.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
         <li class="active">Gerenciar</li>

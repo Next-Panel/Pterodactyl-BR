@@ -7,7 +7,7 @@ Novo servidor
 @section('content-header')
     <h1>Criar Servidor<small>Adicionar um novo servidor ao painel.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li class="active">Criar Servidor</li>
     </ol>

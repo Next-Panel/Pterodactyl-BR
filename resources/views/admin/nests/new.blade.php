@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>Novo Nest<small>Configurar um novo nest para ser implantado em todos os nodes.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.nests') }}">Nests</a></li>
         <li class="active">Novo</li>
     </ol>
