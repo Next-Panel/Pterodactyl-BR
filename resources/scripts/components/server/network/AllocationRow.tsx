@@ -77,7 +77,7 @@ const AllocationRow = ({ allocation }: Props) => {
                             <Code dark>{ip(allocation.ip)}</Code>
                         </CopyOnClick>
                     )}
-                    <Label>{allocation.alias ? 'Hostname' : 'IP Address'}</Label>
+                    <Label>{allocation.alias ? 'Hospedagem' : 'Endereço IP'}</Label>
                 </div>
                 <div className={'w-16 md:w-24 overflow-hidden'}>
                     <Code dark>{allocation.port}</Code>
@@ -106,7 +106,7 @@ const AllocationRow = ({ allocation }: Props) => {
                         </Can>
                         <Can action={'allocation.update'}>
                             <Button.Text size={Button.Sizes.Small} onClick={setPrimaryAllocation}>
-                                Faça o primário
+                                Tornar o primário
                             </Button.Text>
                         </Can>
                     </>

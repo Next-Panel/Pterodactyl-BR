@@ -38,7 +38,7 @@ export default () => {
     }, []);
 
     return (
-        <ServerContentBlock title={'Schedules'}>
+        <ServerContentBlock title={'Cronograma'}>
             <FlashMessageRender byKey={'schedules'} css={tw`mb-4`} />
             {!schedules.length && loading ? (
                 <Spinner size={'large'} centered />
@@ -46,7 +46,7 @@ export default () => {
                 <>
                     {schedules.length === 0 ? (
                         <p css={tw`text-sm text-center text-neutral-300`}>
-                            There are no schedules configured for this server.
+                            Não há cronogramas configurados para este servidor.
                         </p>
                     ) : (
                         schedules.map((schedule) => (
@@ -68,7 +68,7 @@ export default () => {
                         <div css={tw`mt-8 flex justify-end`}>
                             <EditScheduleModal visible={visible} onModalDismissed={() => setVisible(false)} />
                             <Button type={'button'} onClick={() => setVisible(true)}>
-                                Create schedule
+                                Criar Cronograma
                             </Button>
                         </div>
                     </Can>

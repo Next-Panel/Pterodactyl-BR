@@ -39,7 +39,7 @@ export default ({ schedule }: { schedule: Schedule }) => (
                     schedule.isActive && !schedule.isProcessing ? tw`bg-green-600` : tw`bg-neutral-400`,
                 ]}
             >
-                {schedule.isProcessing ? 'Processing' : schedule.isActive ? 'Active' : 'Inactive'}
+                {schedule.isProcessing ? 'Processando' : schedule.isActive ? 'Ativo' : 'Inativo'}
             </p>
         </div>
     </>

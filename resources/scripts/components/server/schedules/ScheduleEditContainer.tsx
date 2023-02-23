@@ -98,7 +98,7 @@ export default () => {
                                             css={tw`flex items-center rounded-full px-2 py-px text-xs ml-4 uppercase bg-neutral-600 text-white`}
                                         >
                                             <Spinner css={tw`w-3! h-3! mr-2`} />
-                                            Processing
+                                            Processando...
                                         </span>
                                     ) : (
                                         <ActivePill active={schedule.isActive} />
