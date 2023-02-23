@@ -90,7 +90,7 @@ export default ({ activity, children }: Props) => {
                         )}
                         <Tooltip
                             placement={'right'}
-                            content={format(activity.timestamp, "'dia' d 'de' MMMM yyyy', ás' HH:mm:ss")}
+                            content={format(activity.timestamp, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })}
                         >
                             <span>
                                 {formatDistanceToNowStrict(activity.timestamp, { addSuffix: true, locale: ptBR })}

@@ -40,13 +40,13 @@ const PaginationFooter = ({ pagination, className, onPageSelect }: Props) => {
     return (
         <div className={classNames('flex items-center justify-between my-2', className)}>
             <p className={'text-sm text-neutral-500'}>
-                Showing&nbsp;
+                Mostrando&nbsp;
                 <span className={'font-semibold text-neutral-400'}>
                     {Math.max(start, Math.min(pagination.total, 1))}
                 </span>
-                &nbsp;to&nbsp;
-                <span className={'font-semibold text-neutral-400'}>{end}</span> of&nbsp;
-                <span className={'font-semibold text-neutral-400'}>{pagination.total}</span> results.
+                &nbsp;até&nbsp;
+                <span className={'font-semibold text-neutral-400'}>{end}</span> de&nbsp;
+                <span className={'font-semibold text-neutral-400'}>{pagination.total}</span> resultados.
             </p>
             {pagination.totalPages > 1 && (
                 <div className={'flex space-x-1'}>
