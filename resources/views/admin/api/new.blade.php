@@ -7,7 +7,7 @@
 @section('content-header')
     <h1>Aplica&ccedil;&atilde;o API<small>Criar uma nova chave de Applica&ccedil;&atilde;o API.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admininstrador</a></li>
+        <li><a href="{{ route('admin.index') }}">Administração</a></li>
         <li><a href="{{ route('admin.api.index') }}">Applica&ccedil;&atilde;o API</a></li>
         <li class="active">Novas Credenciais</li>
     </ol>
