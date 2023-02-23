@@ -45,14 +45,15 @@ export default () => {
                 onClose={() => setModalVisible(false)}
                 onConfirmed={reinstall}
             >
-                Seu servidor será interrompido e alguns arquivos poderão ser excluídos ou modificados durante este processo, você tem certeza você deseja continuar?
+                Seu servidor será interrompido e alguns arquivos poderão ser excluídos ou modificados durante este
+                processo, você tem certeza você deseja continuar?
             </Dialog.Confirm>
             <p css={tw`text-sm`}>
-            A reinstalação de seu servidor irá pará-lo e, em seguida, executar novamente o script de instalação que inicialmente o definiu
-                up.&nbsp;
+                A reinstalação de seu servidor irá pará-lo e, em seguida, executar novamente o script de instalação que
+                inicialmente o definiu up.&nbsp;
                 <strong css={tw`font-medium`}>
-                Alguns arquivos podem ser excluídos ou modificados durante este processo, 
-                por favor fazer backup de seus dados antes continuar.
+                    Alguns arquivos podem ser excluídos ou modificados durante este processo, por favor fazer backup de
+                    seus dados antes continuar.
                 </strong>
             </p>
             <div css={tw`mt-6 text-right`}>

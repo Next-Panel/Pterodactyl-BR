@@ -105,8 +105,9 @@ const EditScheduleModal = ({ schedule }: Props) => {
                         <Field name={'dayOfWeek'} label={'Dia da Semana'} />
                     </div>
                     <p css={tw`text-neutral-400 text-xs mt-2`}>
-                        O sistema de cronograma suporta o uso da sintaxe Cronjob ao definir quando as tarefas devem começar em funcionamento. 
-                        Use os campos acima para especificar quando estas tarefas devem começar a ser executadas.
+                        O sistema de cronograma suporta o uso da sintaxe Cronjob ao definir quando as tarefas devem
+                        começar em funcionamento. Use os campos acima para especificar quando estas tarefas devem
+                        começar a ser executadas.
                     </p>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <Switch
@@ -125,7 +126,9 @@ const EditScheduleModal = ({ schedule }: Props) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'onlyWhenOnline'}
-                            description={'Executar este cronograma somente quando o servidor estiver em estado de funcionamento.'}
+                            description={
+                                'Executar este cronograma somente quando o servidor estiver em estado de funcionamento.'
+                            }
                             label={'Somente quando o servidor está online'}
                         />
                     </div>

@@ -43,7 +43,8 @@ export default ({ subuser }: { subuser: Subuser }) => {
                 onConfirmed={() => doDeletion()}
                 onModalDismissed={() => setShowConfirmation(false)}
             >
-                Você tem certeza de que deseja remover este subusuário? Eles terão todo o acesso a este servidor revogado. imediatamente.
+                Você tem certeza de que deseja remover este subusuário? Eles terão todo o acesso a este servidor
+                revogado. imediatamente.
             </ConfirmationModal>
             <button
                 type={'button'}
