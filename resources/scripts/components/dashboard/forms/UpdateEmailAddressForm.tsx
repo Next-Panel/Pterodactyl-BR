@@ -62,7 +62,7 @@ export default () => {
                                 id={'confirm_password'}
                                 type={'password'}
                                 name={'password'}
-                                label={'Confirm Password'}
+                                label={'Confirmar Senha'}
                             />
                         </div>
                         <div css={tw`mt-6`}>
