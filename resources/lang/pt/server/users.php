@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'permissions' => [
+        'websocket_*' => 'Permite o acesso ao websocket para este servidor.',
+        'control_console' => 'Permite que o usuário envie dados para o console do servidor.',
+        'control_start' => 'Permite que o usuário inicie a instância do servidor.',
+        'control_stop' => 'Permite que o usuário pare a instância do servidor.',
+        'control_restart' => 'Permite que o usuário reinicie a instância do servidor.',
+        'control_kill' => 'Permite que o usuário mate a instância do servidor.',
+        'user_create' => 'Permite que o usuário crie novas contas de usuário para o servidor.',
+        'user_read' => 'Permite que o usuário tenha permissão para visualizar os usuários associados a este servidor.',
+        'user_update' => 'Permite que o usuário modifique outros usuários associados a este servidor.',
+        'user_delete' => 'Permite que o usuário exclua outros usuários associados a este servidor.',
+        'file_create' => 'Permite a permissão do usuário para criar novos arquivos e diretórios.',
+        'file_read' => 'Permite que o usuário veja arquivos e pastas associados a esta instância do servidor, bem como visualizar seu conteúdo.',
+        'file_update' => 'Permite que o usuário atualize arquivos e pastas associados ao servidor.',
+        'file_delete' => 'Permite que o usuário exclua arquivos e diretórios.',
+        'file_archive' => 'Permite ao usuário criar arquivos de arquivos e descompactar os arquivos existentes.',
+        'file_sftp' => 'Permite que o usuário execute as ações do arquivo acima usando um cliente SFTP.',
+        'allocation_read' => 'Permite o acesso às páginas de gerenciamento de alocação do servidor.',
+        'allocation_update' => 'Permite que o usuário tenha permissão para fazer modificações nas alocações do servidor.',
+        'database_create' => 'Permite a permissão do usuário para criar um novo banco de dados para o servidor.',
+        'database_read' => 'Permite que o usuário tenha permissão para visualizar os bancos de dados do servidor.',
+        'database_update' => 'Permite que um usuário tenha permissão para fazer modificações em um banco de dados. Se o usuário não tiver também a permissão "Ver Senha", não poderá modificar a senha.',
+        'database_delete' => 'Permite que um usuário tenha permissão para excluir uma instância do banco de dados.',
+        'database_view_password' => 'Permite que um usuário tenha permissão para visualizar uma senha de banco de dados no sistema.',
+        'schedule_create' => 'Permite que um usuário crie um novo horário para o servidor.',
+        'schedule_read' => 'Permite que um usuário tenha permissão para visualizar os horários de um servidor.',
+        'schedule_update' => 'Permite que um usuário tenha permissão para fazer modificações em um horário de servidor existente.',
+        'schedule_delete' => 'Permite que um usuário exclua um horário para o servidor.',
+    ],
+];
