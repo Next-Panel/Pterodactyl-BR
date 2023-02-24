@@ -8,10 +8,10 @@ use Illuminate\Console\Command;
 class NodeConfigurationCommand extends Command
 {
     protected $signature = 'p:node:configuration
-                            {node : O ID ou UUID do node para retornar a configuração.}
-                            {--format=yaml : O formato de saída. As opções são "yaml" e "json".}';
+                            {node : The ID or UUID of the node to return the configuration for.}
+                            {--format=yaml : The output format. Options are "yaml" and "json".}';
 
-    protected $description = 'Exibe a configuração para o node especificado.';
+    protected $description = 'Displays the configuration for the specified node.';
 
     public function handle(): int
     {
@@ -19,14 +19,14 @@ class NodeConfigurationCommand extends Command
 
         /** @var \Pterodactyl\Models\Node $node */
         $node = Node::query()->where($column, $this->argument('node'))->firstOr(function () {
-            $this->error('O node selecionado não existe.');
+            $this->error('The selected node does not exist.');
 
             exit(1);
         });
 
         $format = $this->option('format');
         if (!in_array($format, ['yaml', 'yml', 'json'])) {
-            $this->error('Formato inválido especificado. As opções válidas são "yaml" e "json".');
+            $this->error('Invalid format specified. Valid options are "yaml" and "json".');
 
             return 1;
         }

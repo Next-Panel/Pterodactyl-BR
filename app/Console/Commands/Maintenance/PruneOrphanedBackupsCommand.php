@@ -10,7 +10,7 @@ class PruneOrphanedBackupsCommand extends Command
 {
     protected $signature = 'p:maintenance:prune-backups {--prune-age=}';
 
-    protected $description = 'Marca todos os backups que não foram concluídos nos últimos "n" minutos como com falha.';
+    protected $description = 'Marks all backups that have not completed in the last "n" minutes as being failed.';
 
     /**
      * PruneOrphanedBackupsCommand constructor.
@@ -24,7 +24,7 @@ class PruneOrphanedBackupsCommand extends Command
     {
         $since = $this->option('prune-age') ?? config('backups.prune_age', 360);
         if (!$since || !is_digit($since)) {
-            throw new \InvalidArgumentException('O "--prune-age" argumento deve ser um valor maior que 0.');
+            throw new \InvalidArgumentException('The "--prune-age" argument must be a value greater than 0.');
         }
 
         $query = $this->backupRepository->getBuilder()
@@ -33,12 +33,12 @@ class PruneOrphanedBackupsCommand extends Command
 
         $count = $query->count();
         if (!$count) {
-            $this->info('Não há backups órfãos para serem marcados como com falha.');
+            $this->info('There are no orphaned backups to be marked as failed.');
 
             return;
         }
 
-        $this->warn("Marcando $count backups que não foram marcados como concluídos nos últimos $since minutos como com falha.");
+        $this->warn("Marking $count backups that have not been marked as completed in the last $since minutes as failed.");
 
         $query->update([
             'is_successful' => false,
