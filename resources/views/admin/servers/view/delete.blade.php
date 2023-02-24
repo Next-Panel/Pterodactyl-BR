@@ -65,7 +65,7 @@ Servidor — {{ $server->name }}: Deletar
             type: 'warning',
             text: 'Você tem certeza de que quer excluir este servidor? Não há como voltar atrás, todos os dados serão imediatamente removidos.',
             showCancelButton: true,
-            confirmButtonText: 'Delete',
+            confirmButtonText: 'Deletar',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false
         }, function () {
@@ -80,7 +80,7 @@ Servidor — {{ $server->name }}: Deletar
             type: 'warning',
             text: 'Você tem certeza de que quer excluir este servidor? Não há como voltar atrás, todos os dados serão imediatamente removidos.',
             showCancelButton: true,
-            confirmButtonText: 'Delete',
+            confirmButtonText: 'Deletar',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false
         }, function () {

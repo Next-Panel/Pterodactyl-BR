@@ -187,7 +187,7 @@
     <script>
     $('#pConfigFrom').select2();
     $('#deleteButton').on('mouseenter', function (event) {
-        $(this).find('i').html(' Delete Egg');
+        $(this).find('i').html(' Deletar Egg');
     }).on('mouseleave', function (event) {
         $(this).find('i').html('');
     });

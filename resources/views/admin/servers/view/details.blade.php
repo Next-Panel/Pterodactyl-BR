@@ -50,7 +50,7 @@ Servidor — {{ $server->name }}: Detalhes
                 <div class="box-footer">
                     {!! csrf_field() !!}
                     {!! method_field('PATCH') !!}
-                    <input type="submit" class="btn btn-sm btn-primary" value="Update Details" />
+                    <input type="submit" class="btn btn-sm btn-primary" value="Atualizar Detalhes" />
                 </div>
             </form>
         </div>

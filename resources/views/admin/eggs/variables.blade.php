@@ -148,7 +148,7 @@
     <script>
         $('.pOptions').select2();
         $('[data-action="delete"]').on('mouseenter', function (event) {
-            $(this).find('i').html(' Delete Variable');
+            $(this).find('i').html(' Deletar Variável');
         }).on('mouseleave', function (event) {
             $(this).find('i').html('');
         });
