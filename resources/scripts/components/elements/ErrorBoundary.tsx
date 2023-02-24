@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component<{}, State> {
                     <Icon icon={faExclamationTriangle} css={tw`h-4 w-auto mr-2`} />
                     <p css={tw`text-sm text-neutral-100`}>
                         Um erro foi encontrado pela aplicação durante a apresentação da visão desta pagina. Tente
-                        refrescar a página.
+                        recarregar a página.
                     </p>
                 </div>
             </div>
