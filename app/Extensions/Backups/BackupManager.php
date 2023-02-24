@@ -69,7 +69,7 @@ class BackupManager
         $config = $this->getConfig($name);
 
         if (empty($config['adapter'])) {
-            throw new \InvalidArgumentException(""O disco de backup [$name] não tem um adaptador configurado.");
+            throw new \InvalidArgumentException("O disco de backup [$name] não tem um adaptador configurado.");
         }
 
         $adapter = $config['adapter'];
