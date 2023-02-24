@@ -23,7 +23,6 @@ use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-final class Handler extends ExceptionHandler
 {
     /**
      * The validation parser in Laravel formats custom rules using the class name
@@ -198,14 +197,14 @@ final class Handler extends ExceptionHandler
                 : strval($match ?? '500'),
             'detail' => $e instanceof HttpExceptionInterface || !is_null($match)
                 ? $e->getMessage()
-                : 'An unexpected error was encountered while processing this request, please try again.',
+                : 'Ocorreu um erro inesperado ao processar esta solicitação. Tente novamente.',
         ];
 
         if ($e instanceof ModelNotFoundException || $e->getPrevious() instanceof ModelNotFoundException) {
             // Show a nicer error message compared to the standard "No query results for model"
             // response that is normally returned. If we are in debug mode this will get overwritten
             // with a more specific error message to help narrow down things.
-            $error['detail'] = 'The requested resource could not be found on the server.';
+            $error['detail'] = 'O recurso solicitado não foi encontrado no servidor.';
         }
 
         if (config('app.debug')) {
