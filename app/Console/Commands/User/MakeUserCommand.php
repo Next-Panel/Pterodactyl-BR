@@ -7,7 +7,7 @@ use Pterodactyl\Services\Users\UserCreationService;
 
 class MakeUserCommand extends Command
 {
-    protected $description = 'Creates a user on the system via the CLI.';
+    protected $description = 'Cria um usuário no sistema via CLI.';
 
     protected $signature = 'p:user:make {--email=} {--username=} {--name-first=} {--name-last=} {--password=} {--admin=} {--no-password}';
 
@@ -37,7 +37,6 @@ class MakeUserCommand extends Command
             $password = $this->secret(trans('command/messages.user.ask_password'));
         }
 
-        $user = $this->creationService->handle(compact('email', 'username', 'password', 'root_admin'));
         $this->table(['Field', 'Value'], [
             ['UUID', $user->uuid],
             ['Email', $user->email],
