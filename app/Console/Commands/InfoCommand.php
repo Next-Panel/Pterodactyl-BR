@@ -15,7 +15,7 @@ class InfoCommand extends Command
     /**
      * VersionCommand constructor.
      */
-    public function __construct(private ConfigRepository $config, private SoftwareVersionService $versionService)
+    public function __construct(private ConfigRepository $config, private SoftwareVersionService $softwareVersionService)
     {
         parent::__construct();
     }
