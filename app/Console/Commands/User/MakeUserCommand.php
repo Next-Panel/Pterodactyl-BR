@@ -36,7 +36,8 @@ class MakeUserCommand extends Command
             $this->line(trans('command/messages.user.ask_password_tip'));
             $password = $this->secret(trans('command/messages.user.ask_password'));
         }
-
+        
+        $user = $this->creationService->handle(compact('email', 'username', 'password', 'root_admin'));
         $this->table(['Field', 'Value'], [
             ['UUID', $user->uuid],
             ['Email', $user->email],
