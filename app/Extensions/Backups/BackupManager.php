@@ -86,7 +86,7 @@ class BackupManager
             return $instance;
         }
 
-        throw new \InvalidArgumentException("Adapter [$adapter] is not supported.");
+        throw new \InvalidArgumentException("Adaptador [$adapter] não é suportado.");
     }
 
     /**
