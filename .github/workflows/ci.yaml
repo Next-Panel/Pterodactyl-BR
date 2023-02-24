@@ -54,7 +54,7 @@ jobs:
           coverage: none
 
       - name: Configurar .env
-        run: cp .env.ci .env
+        run: cp Sistema-Env .env
 
       - name: Install dependencies
         run: composer install --no-interaction --no-progress --no-suggest --prefer-dist
