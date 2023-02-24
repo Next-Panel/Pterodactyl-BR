@@ -34,7 +34,7 @@ Servidor  — {{ $server->name }}: Gerenciar
                             <button type="submit" class="btn btn-danger">Reinstalar servidor</button>
                         </form>
                     @else
-                        <button class="btn btn-danger disabled">O servidor deve ser instalado corretamente para reinstalar</button>
+                        <button class="btn btn-danger disabled">O Servidor não está instalado para reinstalar</button>
                     @endif
                 </div>
             </div>
