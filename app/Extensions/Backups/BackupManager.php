@@ -7,7 +7,6 @@ use Aws\S3\S3Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
-use InvalidArgumentException;
 use Illuminate\Foundation\Application;
 use League\Flysystem\FilesystemAdapter;
 use Pterodactyl\Extensions\Filesystem\S3Filesystem;
@@ -70,7 +69,7 @@ class BackupManager
         $config = $this->getConfig($name);
 
         if (empty($config['adapter'])) {
-            throw new InvalidArgumentException("O disco de backup [$name] não tem um adaptador configurado.");
+            throw new \InvalidArgumentException(""O disco de backup [$name] não tem um adaptador configurado.");
         }
 
         $adapter = $config['adapter'];
@@ -88,7 +87,7 @@ class BackupManager
             return $instance;
         }
 
-        throw new InvalidArgumentException("Adaptador [$adapter] não é suportado.");
+        throw new \InvalidArgumentException("Adaptador [$adapter] não é suportado.");
     }
 
     /**
@@ -164,7 +163,7 @@ class BackupManager
     /**
      * Register a custom adapter creator closure.
      */
-    public function extend(string $adapter, Closure $callback): self
+    public function extend(string $adapter, \Closure $callback): self
     {
         $this->customCreators[$adapter] = $callback;
 

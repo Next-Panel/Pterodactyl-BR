@@ -2,11 +2,9 @@
 
 namespace Pterodactyl\Http\Middleware\Api\Client\Server;
 
-use Closure;
 use Illuminate\Http\Request;
 use Pterodactyl\Models\Task;
 use Pterodactyl\Models\User;
-use InvalidArgumentException;
 use Pterodactyl\Models\Backup;
 use Pterodactyl\Models\Server;
 use Pterodactyl\Models\Subuser;
@@ -26,11 +24,11 @@ class ResourceBelongsToServer
      * server that is expected, and that we're not accessing a resource completely
      * unrelated to the server provided in the request.
      */
-    public function handle(Request $request, Closure $next): mixed
+    public function handle(Request $request, \Closure $next): mixed
     {
         $params = $request->route()->parameters();
         if (is_null($params) || !$params['server'] instanceof Server) {
-            throw new InvalidArgumentException('Este middleware não pode ser usado em um contexto que não tenha um servidor nos parâmetros.');
+            throw new \InvalidArgumentException('Este middleware não pode ser usado em um contexto que não tenha um servidor nos parâmetros.');
         }
 
         /** @var \Pterodactyl\Models\Server $server */
@@ -79,7 +77,7 @@ class ResourceBelongsToServer
                 default:
                     // Don't return a 404 here since we want to make sure no one relies
                     // on this middleware in a context in which it will not work. Fail safe.
-                    throw new InvalidArgumentException('Não há nenhum manipulador configurado para um recurso deste tipo: ' . get_class($model));
+                    throw new \InvalidArgumentException('Não há nenhum manipulador configurado para um recurso deste tipo: ' . get_class($model));
             }
         }
 

@@ -2,7 +2,6 @@
 
 namespace Pterodactyl\Http\Requests\Api\Client\Account;
 
-use Exception;
 use phpseclib3\Crypt\DSA;
 use phpseclib3\Crypt\RSA;
 use Pterodactyl\Models\UserSSHKey;
@@ -71,7 +70,7 @@ class StoreSSHKeyRequest extends ClientApiRequest
     public function getKeyFingerprint(): string
     {
         if (!$this->key) {
-            throw new Exception('A chave pública não foi devidamente carregada para este pedido.');
+            throw new \Exception('A chave pública não foi devidamente carregada para este pedido.');
         }
 
         return $this->key->getFingerprint('sha256');

@@ -2,7 +2,6 @@
 
 namespace Pterodactyl\Console\Commands\Environment;
 
-use DateTimeZone;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Kernel;
 use Pterodactyl\Traits\Commands\EnvironmentWriterTrait;
@@ -89,7 +88,7 @@ class AppSettingsCommand extends Command
         $this->output->comment('O fuso horário deve corresponder a um dos fusos horários suportados pelo PHP. Se você não tiver certeza, por favor, consulte https://php.net/manual/en/timezones.php.');
         $this->variables['APP_TIMEZONE'] = $this->option('timezone') ?? $this->anticipate(
             'Fuso horário do aplicativo',
-            DateTimeZone::listIdentifiers(),
+            \DateTimeZone::listIdentifiers(),
             config('app.timezone')
         );
 
