@@ -21,7 +21,7 @@ return [
         'ask_name_first' => 'Primeiro nome',
         'ask_name_last' => 'Sobrenome',
         'ask_password' => 'Senha',
-        'ask_password_tip' => 'Se você gostaria de criar uma conta com uma senha aleatória enviada por e-mail ao usuário, execute novamente este comando (CTRL+C) e passe a bandeira "sem senha".',
+        'ask_password_tip' => 'Se você gostaria de criar uma conta com uma senha aleatória enviada por e-mail ao usuário, execute novamente este comando (CTRL+C) e adicione "--no-password" no codigo.',
         'ask_password_help' => 'As senhas devem ter pelo menos 8 caracteres e conter pelo menos uma letra maiúscula e um número.',
         '2fa_help_text' => [
             'Este comando desativará a autenticação de 2 fatores para a conta de um usuário se ela estiver habilitada. Isto só deve ser usado como um comando de recuperação de conta se o usuário estiver bloqueado fora de sua conta.',
