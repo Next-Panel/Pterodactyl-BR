@@ -56,7 +56,7 @@ e há muitos outros jogos disponíveis fornecidos pela comunidade. Alguns desses
 * Discord ATLBot, e outros Node.js/Python discord bots
 * [e muito mais...](https://github.com/parkervcp/eggs)
 
-## Licença
+## Licença.
 
 Pterodactyl-Brasil é um York no qual decidimos traduzir o Pterodactyl para Português. De forma alguma os Tradutores são ou pertencem a Equipe do Pterodactyl, somos apenas um grupo cujo temos os mesmos objetivos.
 
