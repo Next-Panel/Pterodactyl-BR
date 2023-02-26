@@ -56,7 +56,7 @@
                                 <td>Limite da CPU</td>
                                 <td>
                                     @if($server->cpu === 0)
-                                        <code>Unlimited</code>
+                                        <code>Ilimitado</code>
                                     @else
                                         <code>{{ $server->cpu }}%</code>
                                     @endif
@@ -76,7 +76,7 @@
                                 <td>Memória</td>
                                 <td>
                                     @if($server->memory === 0)
-                                        <code>Unlimited</code>
+                                        <code>Ilimitado</code>
                                     @else
                                         <code>{{ $server->memory }}MiB</code>
                                     @endif
@@ -94,7 +94,7 @@
                                 <td>Espaço em disco</td>
                                 <td>
                                     @if($server->disk === 0)
-                                        <code>Unlimited</code>
+                                        <code>Ilimitado</code>
                                     @else
                                         <code>{{ $server->disk }}MiB</code>
                                     @endif
