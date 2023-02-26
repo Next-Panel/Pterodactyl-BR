@@ -82,11 +82,11 @@
                                     @endif
                                     /
                                     @if($server->swap === 0)
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space">Não definido</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Espaço do Swap">Não definido</code>
                                     @elseif($server->swap === -1)
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space">Ilimitado</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Espaço do Swap">Ilimitado</code>
                                     @else
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space"> {{ $server->swap }}MiB</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Espaço do Swap"> {{ $server->swap }}MiB</code>
                                     @endif
                                 </td>
                             </tr>
