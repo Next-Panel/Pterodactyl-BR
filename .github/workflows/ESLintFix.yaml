@@ -1,4 +1,4 @@
-name: EsLint Fix
+name: Fixers
 
 on:
   push:
@@ -28,6 +28,9 @@ jobs:
         
       - name: Install dependencies
         run: pnpm install
+
+      - name: Run Prettier fix
+        run: pnpm run prettier --fix
 
       - name: Run ESLint fix
         run: pnpm run lint --fix
