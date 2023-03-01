@@ -7,7 +7,7 @@
     "exported_at": "2022-06-17T08:11:30+03:00",
     "name": "Paper",
     "author": "parker@pterodactyl.io",
-    "description": "High performance Spigot fork that aims to fix gameplay and mechanics inconsistencies.",
+    "description": "York Spigot de alto desempenho que visa corrigir inconsistências de jogabilidade e mecânica.",
     "features": [
         "eula",
         "java_version",
@@ -36,8 +36,8 @@
     },
     "variables": [
         {
-            "name": "Minecraft Version",
-            "description": "The version of minecraft to download. \r\n\r\nLeave at latest to always get the latest version. Invalid versions will default to latest.",
+            "name": "Versão do Minecraft",
+            "description": "A versão do minecraft para download. \r\n\r\nDeixe o mais tardar para obter sempre a versão mais recente(latest). Versões inválidas serão padronizadas para as mais recentes(latest).",
             "env_variable": "MINECRAFT_VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -46,8 +46,8 @@
             "field_type": "text"
         },
         {
-            "name": "Server Jar File",
-            "description": "The name of the server jarfile to run the server with.",
+            "name": "Arquivo Jar do Servidor",
+            "description": "O nome do jarfile do servidor para executar o servidor com.",
             "env_variable": "SERVER_JARFILE",
             "default_value": "server.jar",
             "user_viewable": true,
@@ -56,8 +56,8 @@
             "field_type": "text"
         },
         {
-            "name": "Download Path",
-            "description": "A URL to use to download a server.jar rather than the ones in the install script. This is not user viewable.",
+            "name": "Pasta de Download",
+            "description": "Uma URL a ser usada para fazer download de um server.jar em vez daqueles no script de instalação. Isso não pode ser visualizado pelo usuário.",
             "env_variable": "DL_PATH",
             "default_value": "",
             "user_viewable": false,
@@ -66,8 +66,8 @@
             "field_type": "text"
         },
         {
-            "name": "Build Number",
-            "description": "The build number for the paper release.\r\n\r\nLeave at latest to always get the latest version. Invalid versions will default to latest.",
+            "name": "Número de Build",
+            "description": "O número da compilação para a versão impressa.\r\n\r\nDeixe o mais tardar para obter sempre a versão mais recente(latest). Versões inválidas serão padronizadas para as mais recentes(latest).",
             "env_variable": "BUILD_NUMBER",
             "default_value": "latest",
             "user_viewable": true,

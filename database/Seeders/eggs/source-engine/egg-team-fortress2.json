@@ -7,7 +7,7 @@
     "exported_at": "2022-01-30T14:09:22-05:00",
     "name": "Team Fortress 2",
     "author": "support@pterodactyl.io",
-    "description": "Team Fortress 2 is a team-based first-person shooter multiplayer video game developed and published by Valve Corporation. It is the sequel to the 1996 mod Team Fortress for Quake and its 1999 remake.",
+    "description": "Team Fortress 2 é um videogame multijogador de tiro em primeira pessoa baseado em equipe desenvolvido e publicado pela Valve Corporation. É a sequência do mod Team Fortress de 1996 para Quake e seu remake de 1999.",
     "features": [
         "gsl_token",
         "steam_disk_space"
@@ -32,8 +32,8 @@
     },
     "variables": [
         {
-            "name": "Game ID",
-            "description": "The ID corresponding to the game to download and run using SRCDS.",
+            "name": "ID do jogo",
+            "description": "O ID correspondente ao jogo para baixar e rodar usando o SRCDS.",
             "env_variable": "SRCDS_APPID",
             "default_value": "232250",
             "user_viewable": true,
@@ -41,8 +41,8 @@
             "rules": "required|regex:\/^(232250)$\/"
         },
         {
-            "name": "Default Map",
-            "description": "The default map to use when starting the server.",
+            "name": "Mapa Padrão",
+            "description": "O mapa padrão a ser usado ao iniciar o servidor.",
             "env_variable": "SRCDS_MAP",
             "default_value": "cp_dustbowl",
             "user_viewable": true,
@@ -51,7 +51,7 @@
         },
         {
             "name": "Steam",
-            "description": "The Steam Game Server Login Token to display servers publicly. Generate one at https:\/\/steamcommunity.com\/dev\/managegameservers",
+            "description": "O token de login do Steam Game Server para exibir os servidores publicamente. Gere um em https:\/\/steamcommunity.com\/dev\/managegameservers",
             "env_variable": "STEAM_ACC",
             "default_value": "",
             "user_viewable": true,

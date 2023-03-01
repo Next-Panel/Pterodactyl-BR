@@ -5,9 +5,9 @@
         "update_url": null
     },
     "exported_at": "2022-10-15T12:38:18+02:00",
-    "name": "Mumble Server",
+    "name": "Servidor Mumble",
     "author": "support@pterodactyl.io",
-    "description": "Mumble is an open source, low-latency, high quality voice chat software primarily intended for use while gaming.",
+    "description": "O Mumble é um software de bate-papo por voz de código aberto, baixa latência e alta qualidade, destinado principalmente ao uso durante os jogos.",
     "features": null,
     "docker_images": {
         "Mumble": "ghcr.io\/parkervcp\/yolks:voice_mumble"
@@ -29,8 +29,8 @@
     },
     "variables": [
         {
-            "name": "Maximum Users",
-            "description": "Maximum concurrent users on the mumble server.",
+            "name": "Máximo de usuários",
+            "description": "Máximo de usuários simultâneos no servidor mumble.",
             "env_variable": "MAX_USERS",
             "default_value": "100",
             "user_viewable": true,

@@ -7,7 +7,7 @@
     "exported_at": "2023-02-04T14:45:12-05:00",
     "name": "Rust",
     "author": "support@pterodactyl.io",
-    "description": "The only aim in Rust is to survive. To do this you will need to overcome struggles such as hunger, thirst and cold. Build a fire. Build a shelter. Kill animals for meat. Protect yourself from other players, and kill them for meat. Create alliances with other players and form a town. Do whatever it takes to survive.",
+    "description": "O único objetivo em Rust é sobreviver. Para fazer isso, você precisará superar lutas como fome, sede e frio. Faça uma fogueira. Construir um abrigo. Matar animais para obter carne. Proteja-se de outros jogadores e mate-os para comer. Crie alianças com outros jogadores e forme uma cidade. Faça o que for preciso para sobreviver.",
     "features": [
         "steam_disk_space"
     ],
@@ -31,8 +31,8 @@
     },
     "variables": [
         {
-            "name": "Server Name",
-            "description": "The name of your server in the public server list.",
+            "name": "Nome do Servidor",
+            "description": "O nome do seu servidor na lista de servidores públicos.",
             "env_variable": "HOSTNAME",
             "default_value": "A Rust Server",
             "user_viewable": true,
@@ -42,7 +42,7 @@
         },
         {
             "name": "OxideMod",
-            "description": "Set whether you want the server to use and auto update OxideMod or not. Valid options are \"1\" for true and \"0\" for false.",
+            "description": "Defina se deseja que o servidor use e atualize automaticamente o OxideMod ou não. As opções válidas são \"1\" para verdadeiro e \"0\" para falso.",
             "env_variable": "OXIDE",
             "default_value": "0",
             "user_viewable": true,
@@ -52,7 +52,7 @@
         },
         {
             "name": "Level",
-            "description": "The world file for Rust to use.",
+            "description": "O arquivo de mundo para Rust usar.",
             "env_variable": "LEVEL",
             "default_value": "Procedural Map",
             "user_viewable": true,
@@ -61,8 +61,8 @@
             "field_type": "text"
         },
         {
-            "name": "Description",
-            "description": "The description under your server title. Commonly used for rules & info. Use \\n for newlines.",
+            "name": "Descrição",
+            "description": "A descrição sob o título do seu servidor. Comumente usado para regras e informações. Use \\n para novas linhas.",
             "env_variable": "DESCRIPTION",
             "default_value": "Powered by Pterodactyl",
             "user_viewable": true,
@@ -72,7 +72,7 @@
         },
         {
             "name": "URL",
-            "description": "The URL for your server. This is what comes up when clicking the \"Visit Website\" button.",
+            "description": "A URL do seu servidor. Isso é o que aparece ao clicar no botão \"Visitar site\".",
             "env_variable": "SERVER_URL",
             "default_value": "http:\/\/pterodactyl.io",
             "user_viewable": true,
@@ -81,8 +81,8 @@
             "field_type": "text"
         },
         {
-            "name": "World Size",
-            "description": "The world size for a procedural map.",
+            "name": "Tamanho do Mundo",
+            "description": "O tamanho do mundo para um mapa processual.",
             "env_variable": "WORLD_SIZE",
             "default_value": "3000",
             "user_viewable": true,
@@ -91,8 +91,8 @@
             "field_type": "text"
         },
         {
-            "name": "World Seed",
-            "description": "The seed for a procedural map.",
+            "name": "Seed do Mundo",
+            "description": "A semente para um mapa processual.",
             "env_variable": "WORLD_SEED",
             "default_value": "",
             "user_viewable": true,
@@ -101,8 +101,8 @@
             "field_type": "text"
         },
         {
-            "name": "Max Players",
-            "description": "The maximum amount of players allowed in the server at once.",
+            "name": "Máximo de Jogadores",
+            "description": "A quantidade máxima de jogadores permitidos no servidor ao mesmo tempo.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "40",
             "user_viewable": true,
@@ -111,8 +111,8 @@
             "field_type": "text"
         },
         {
-            "name": "Server Image",
-            "description": "The header image for the top of your server listing.",
+            "name": "Imagem do Servidor",
+            "description": "A imagem de cabeçalho para o topo da sua listagem de servidores.",
             "env_variable": "SERVER_IMG",
             "default_value": "",
             "user_viewable": true,
@@ -121,8 +121,8 @@
             "field_type": "text"
         },
         {
-            "name": "RCON Port",
-            "description": "Port for RCON connections.",
+            "name": "Porta do RCON ",
+            "description": "Porta para conexões RCON.",
             "env_variable": "RCON_PORT",
             "default_value": "28016",
             "user_viewable": true,
@@ -131,8 +131,8 @@
             "field_type": "text"
         },
         {
-            "name": "RCON Password",
-            "description": "RCON access password.",
+            "name": "Senha do RCON",
+            "description": "senha de acesso RCON.",
             "env_variable": "RCON_PASS",
             "default_value": "",
             "user_viewable": true,
@@ -141,8 +141,8 @@
             "field_type": "text"
         },
         {
-            "name": "Save Interval",
-            "description": "Sets the server\u2019s auto-save interval in seconds.",
+            "name": "Salvar intervalo",
+            "description": "Define o intervalo de salvamento automático do servidor em segundos.",
             "env_variable": "SAVEINTERVAL",
             "default_value": "60",
             "user_viewable": true,
@@ -151,8 +151,8 @@
             "field_type": "text"
         },
         {
-            "name": "Additional Arguments",
-            "description": "Add additional startup parameters to the server.",
+            "name": "Argumentos Adicionais",
+            "description": "Adicionar parâmetros de inicialização adicionais ao servidor.",
             "env_variable": "ADDITIONAL_ARGS",
             "default_value": "",
             "user_viewable": true,
@@ -161,8 +161,8 @@
             "field_type": "text"
         },
         {
-            "name": "App Port",
-            "description": "Port for the Rust+ App. -1 to disable.",
+            "name": "Porta do aplicativo",
+            "description": "Porta para o aplicativo Rust+. -1 para desativar.",
             "env_variable": "APP_PORT",
             "default_value": "28082",
             "user_viewable": true,
@@ -171,8 +171,8 @@
             "field_type": "text"
         },
         {
-            "name": "Server Logo",
-            "description": "The circular server logo for the Rust+ app.",
+            "name": "Logo do Servidor",
+            "description": "O logotipo circular do servidor para o aplicativo Rust+.",
             "env_variable": "SERVER_LOGO",
             "default_value": "",
             "user_viewable": true,
@@ -181,8 +181,8 @@
             "field_type": "text"
         },
         {
-            "name": "Custom Map URL",
-            "description": "Overwrites the map with the one from the direct download URL. Invalid URLs will cause the server to crash.",
+            "name": "URL do mapa personalizado",
+            "description": "Substitui o mapa pelo do URL de download direto. URLs inválidos farão com que o servidor trave.",
             "env_variable": "MAP_URL",
             "default_value": "",
             "user_viewable": true,

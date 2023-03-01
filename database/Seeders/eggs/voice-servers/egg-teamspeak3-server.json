@@ -7,7 +7,7 @@
     "exported_at": "2021-06-15T17:24:18-04:00",
     "name": "Teamspeak3 Server",
     "author": "support@pterodactyl.io",
-    "description": "VoIP software designed with security in mind, featuring crystal clear voice quality, endless customization options, and scalabilty up to thousands of simultaneous users.",
+    "description": "Software VoIP projetado com segurança em mente, apresentando qualidade de voz cristalina, infinitas opções de personalização e escalabilidade de até milhares de usuários simultâneos.",
     "features": null,
     "images": [
         "ghcr.io\/pterodactyl\/yolks:debian"
@@ -29,8 +29,8 @@
     },
     "variables": [
         {
-            "name": "Server Version",
-            "description": "The version of Teamspeak 3 to use when running the server.",
+            "name": "Versão do Servidor",
+            "description": "A versão do Teamspeak 3 a ser usada ao executar o servidor.",
             "env_variable": "TS_VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -39,8 +39,8 @@
             "field_type": "text"
         },
         {
-            "name": "File Transfer Port",
-            "description": "The Teamspeak file transfer port",
+            "name": "Porta de transferência de arquivos",
+            "description": "A porta de transferência de arquivos do Teamspeak",
             "env_variable": "FILE_TRANSFER",
             "default_value": "30033",
             "user_viewable": true,
@@ -49,8 +49,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query Port",
-            "description": "The Teamspeak Query Port",
+            "name": "Porta Query",
+            "description": "A porta de consulta do Teamspeak",
             "env_variable": "QUERY_PORT",
             "default_value": "10011",
             "user_viewable": true,
@@ -59,8 +59,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query Protocols",
-            "description": "Comma separated list of protocols that can be used to connect to the ServerQuery | \r\nPossible values are raw, ssh and http | \r\nE.g.: raw,ssh,http",
+            "name": "Protocolos Query",
+            "description": "Lista separada por vírgulas de protocolos que podem ser usados para se conectar ao ServerQuery | \r\nOs valores possíveis são raw, ssh e http | \r\nEx.: raw,ssh,http",
             "env_variable": "QUERY_PROTOCOLS_VAR",
             "default_value": "raw,http,ssh",
             "user_viewable": true,
@@ -69,8 +69,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query SSH Port",
-            "description": "TCP Port opened for ServerQuery connections using SSH",
+            "name": "Porta SSH Query",
+            "description": "Porta TCP aberta para conexões ServerQuery usando SSH",
             "env_variable": "QUERY_SSH",
             "default_value": "10022",
             "user_viewable": true,
@@ -79,7 +79,7 @@
             "field_type": "text"
         },
         {
-            "name": "Query HTTP Port",
+            "name": "Porta HTTP Query",
             "description": "TCP Port opened for ServerQuery connections using http",
             "env_variable": "QUERY_HTTP",
             "default_value": "10080",

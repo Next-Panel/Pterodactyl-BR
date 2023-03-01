@@ -7,7 +7,7 @@
     "exported_at": "2022-01-18T07:01:38-05:00",
     "name": "Ark: Survival Evolved",
     "author": "dev@shepper.fr",
-    "description": "As a man or woman stranded, naked, freezing, and starving on the unforgiving shores of a mysterious island called ARK, use your skill and cunning to kill or tame and ride the plethora of leviathan dinosaurs and other primeval creatures roaming the land. Hunt, harvest resources, craft items, grow crops, research technologies, and build shelters to withstand the elements and store valuables, all while teaming up with (or preying upon) hundreds of other players to survive, dominate... and escape! \u2014 Gamepedia: ARK",
+    "description": "Como um homem ou uma mulher encalhado, nu, congelando e morrendo de fome nas praias implacáveis de uma ilha misteriosa chamada ARK, use sua habilidade e astúcia para matar ou domar e cavalgar a infinidade de dinossauros leviatãs e outras criaturas primitivas que vagam pela terra. Cace, colha recursos, crie itens, cultive colheitas, pesquise tecnologias e construa abrigos para resistir aos elementos e armazenar objetos de valor, tudo isso enquanto se une a (ou ataca) centenas de outros jogadores para sobreviver, dominar... e escapar! \u2014 Gamepedia: ARK",
     "features": [
         "steam_disk_space"
     ],
@@ -31,8 +31,8 @@
     },
     "variables": [
         {
-            "name": "Server Password",
-            "description": "If specified, players must provide this password to join the server.",
+            "name": "Senha do servidor",
+            "description": "Se especificado, os jogadores devem fornecer esta senha para entrar no servidor.",
             "env_variable": "ARK_PASSWORD",
             "default_value": "",
             "user_viewable": true,
@@ -40,8 +40,8 @@
             "rules": "nullable|alpha_dash|between:1,100"
         },
         {
-            "name": "Admin Password",
-            "description": "If specified, players must provide this password (via the in-game console) to gain access to administrator commands on the server.",
+            "name": "Senha do administrador",
+            "description": "Se especificado, os jogadores devem fornecer essa senha (através do console do jogo) para obter acesso aos comandos do administrador no servidor.",
             "env_variable": "ARK_ADMIN_PASSWORD",
             "default_value": "PleaseChangeMe",
             "user_viewable": true,
@@ -49,8 +49,8 @@
             "rules": "required|alpha_dash|between:1,100"
         },
         {
-            "name": "Server Map",
-            "description": "Available Maps: TheIsland, TheCenter, Ragnarok, ScorchedEarth_P, Aberration_P, Extinction, Valguero_P, Genesis, CrystalIsles, Gen2, LostIsland, Fjordur",
+            "name": "Mapa do Servidor",
+            "description": "Mapas disponíveis: TheIsland, TheCenter, Ragnarok, ScorchedEarth_P, Aberration_P, Extinction, Valguero_P, Genesis, CrystalIsles, Gen2, LostIsland, Fjordur",
             "env_variable": "SERVER_MAP",
             "default_value": "TheIsland",
             "user_viewable": true,
@@ -58,8 +58,8 @@
             "rules": "required|string|max:20"
         },
         {
-            "name": "Server Name",
-            "description": "ARK server name",
+            "name": "Nome do servidor",
+            "description": "nome do servidor ARK",
             "env_variable": "SESSION_NAME",
             "default_value": "A Pterodactyl Hosted ARK Server",
             "user_viewable": true,
@@ -67,8 +67,8 @@
             "rules": "required|string|max:128"
         },
         {
-            "name": "Rcon Port",
-            "description": "ARK rcon port used by rcon tools.",
+            "name": "Porta Rcon",
+            "description": "Porta rcon ARK usada por ferramentas rcon.",
             "env_variable": "RCON_PORT",
             "default_value": "27020",
             "user_viewable": true,
@@ -76,8 +76,8 @@
             "rules": "required|numeric"
         },
         {
-            "name": "Query Port",
-            "description": "ARK query port used by steam server browser and ark client server browser.",
+            "name": "Port do Query",
+            "description": "Porta de consulta ARK usada pelo navegador do servidor Steam e pelo navegador do servidor cliente ARK.",
             "env_variable": "QUERY_PORT",
             "default_value": "27015",
             "user_viewable": true,
@@ -85,8 +85,8 @@
             "rules": "required|numeric"
         },
         {
-            "name": "Auto-update server",
-            "description": "This is to enable auto-updating for servers.\r\n\r\nDefault is 0. Set to 1 to update",
+            "name": "Servidor de atualização automática",
+            "description": "Isso é para habilitar a atualização automática para servidores.\r\n\r\nO padrão é 0. Defina como 1 para atualizar",
             "env_variable": "AUTO_UPDATE",
             "default_value": "0",
             "user_viewable": true,
@@ -94,8 +94,8 @@
             "rules": "required|boolean"
         },
         {
-            "name": "Battle Eye",
-            "description": "Enable BattleEye\r\n\r\n0 to disable\r\n1 to enable\r\n\r\ndefault=\"1\"",
+            "name": "olho de batalha",
+            "description": "Ative BattleEye\r\n\r\n0 para desativar\r\n1 para ativar\r\n\r\ndefault=\"1\"",
             "env_variable": "BATTLE_EYE",
             "default_value": "1",
             "user_viewable": true,
@@ -103,8 +103,8 @@
             "rules": "required|boolean"
         },
         {
-            "name": "App ID",
-            "description": "ARK steam app id for auto updates. Leave blank to avoid auto update.",
+            "name": "ID do aplicativo",
+            "description": "ID do aplicativo ARK Steam para atualizações automáticas. Deixe em branco para evitar a atualização automática.",
             "env_variable": "SRCDS_APPID",
             "default_value": "376030",
             "user_viewable": true,
@@ -112,8 +112,8 @@
             "rules": "nullable|numeric"
         },
         {
-            "name": "Additional Arguments",
-            "description": "Specify additional launch parameters such as -crossplay. You must include a dash - and separate each parameter with space: -crossplay -exclusivejoin",
+            "name": "Argumentos Adicionais",
+            "description": "Especifique parâmetros de inicialização adicionais, como -crossplay. Você deve incluir um traço - e separar cada parâmetro com espaço: -crossplay -exclusivejoin",
             "env_variable": "ARGS",
             "default_value": "",
             "user_viewable": true,

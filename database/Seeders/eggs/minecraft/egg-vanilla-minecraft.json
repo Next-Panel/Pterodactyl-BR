@@ -7,7 +7,7 @@
     "exported_at": "2022-06-17T08:11:58+03:00",
     "name": "Vanilla Minecraft",
     "author": "support@pterodactyl.io",
-    "description": "Minecraft is a game about placing blocks and going on adventures. Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in Creative Mode with unlimited resources or mine deep in Survival Mode, crafting weapons and armor to fend off dangerous mobs. Do all this alone or with friends.",
+    "description": "Minecraft é um jogo sobre colocar blocos e partir em aventuras. Explore mundos gerados aleatoriamente e construa coisas incríveis, desde a mais simples das casas até o mais grandioso dos castelos. Jogue no Modo Criativo com recursos ilimitados ou explore profundamente no Modo Sobrevivência, criando armas e armaduras para afastar mobs perigosos. Faça tudo isso sozinho ou com amigos.",
     "features": [
         "eula",
         "java_version",
@@ -36,8 +36,8 @@
     },
     "variables": [
         {
-            "name": "Server Jar File",
-            "description": "The name of the server jarfile to run the server with.",
+            "name": "Arquivo Jar do Servidor",
+            "description": "O nome do jarfile do servidor para executar o servidor com.",
             "env_variable": "SERVER_JARFILE",
             "default_value": "server.jar",
             "user_viewable": true,
@@ -46,8 +46,8 @@
             "field_type": "text"
         },
         {
-            "name": "Server Version",
-            "description": "The version of Minecraft Vanilla to install. Use \"latest\" to install the latest version, or use \"snapshot\" to install the latest snapshot. Go to Settings > Reinstall Server to apply.",
+            "name": "Versão do Servidor",
+            "description": "A versão do Minecraft Vanilla para instalar. Use \"latest\" para instalar a versão mais recente ou use \"snapshot\" para instalar o snapshot mais recente. Vá para Configurações > Reinstalar servidor para aplicar.",
             "env_variable": "VANILLA_VERSION",
             "default_value": "latest",
             "user_viewable": true,
