@@ -56,10 +56,10 @@ const DisableTOTPDialog = () => {
                 <Tooltip
                     delay={100}
                     disabled={password.length > 0}
-                    content={'You must enter your account password to continue.'}
+                    content={'Você deve inserir a senha da sua conta para continuar.'}
                 >
                     <Button.Danger type={'submit'} form={'disable-totp-form'} disabled={submitting || !password.length}>
-                        Disable
+                        Desabilitar
                     </Button.Danger>
                 </Tooltip>
             </Dialog.Footer>
@@ -68,6 +68,6 @@ const DisableTOTPDialog = () => {
 };
 
 export default asDialog({
-    title: 'Disable Two-Step Verification',
-    description: 'Disabling two-step verification will make your account less secure.',
+    title: 'Desativar a verificação em duas etapas',
+    description: 'Desativar a verificação em duas etapas tornará sua conta menos segura.',
 })(DisableTOTPDialog);

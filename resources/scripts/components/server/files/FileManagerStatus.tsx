@@ -59,17 +59,17 @@ const FileUploadList = () => {
             ))}
             <Dialog.Footer>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => clearFileUploads()}>
-                    Cancel Uploads
+                    Cancelar uploads
                 </Button.Danger>
-                <Button.Text onClick={close}>Close</Button.Text>
+                <Button.Text onClick={close}>Fechar</Button.Text>
             </Dialog.Footer>
         </div>
     );
 };
 
 const FileUploadListDialog = asDialog({
-    title: 'File Uploads',
-    description: 'The following files are being uploaded to your server.',
+    title: 'Uploads de arquivo',
+    description: 'Os seguintes arquivos estão sendo carregados para o seu servidor.',
 })(FileUploadList);
 
 export default () => {

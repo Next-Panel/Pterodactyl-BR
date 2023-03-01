@@ -24,7 +24,7 @@ class ProcessScheduleServiceTest extends IntegrationTestCase
         $schedule = Schedule::factory()->create(['server_id' => $server->id]);
 
         $this->expectException(DisplayException::class);
-        $this->expectExceptionMessage('Cannot process schedule for task execution: no tasks are registered.');
+        $this->expectExceptionMessage('Não é possível processar o agendamento para execução da tarefa: nenhuma tarefa está registrada.');
 
         $this->getService()->handle($schedule);
     }

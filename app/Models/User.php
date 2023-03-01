@@ -206,7 +206,7 @@ class User extends Model implements
         Activity::event('auth:reset-password')
             ->withRequestMetadata()
             ->subject($this)
-            ->log('sending password reset email');
+            ->log('enviando e-mail de redefinição de senha');
 
         $this->notify(new ResetPasswordNotification($token));
     }

@@ -30,7 +30,7 @@ class ProcessScheduleService
         $task = $schedule->tasks()->orderBy('sequence_id')->first();
 
         if (is_null($task)) {
-            throw new DisplayException('Cannot process schedule for task execution: no tasks are registered.');
+            throw new DisplayException('Não é possível processar o agendamento para execução da tarefa: nenhuma tarefa está registrada.');
         }
 
         /* @var \Pterodactyl\Models\Task $task */

@@ -33,7 +33,8 @@ class ErrorBoundary extends Component<Props, State> {
                     <Icon icon={faExclamationTriangle} css={tw`h-4 w-auto mr-2`} />
 
                     <p css={tw`text-sm text-neutral-100`}>
-                        An error was encountered by the application while rendering this view. Try refreshing the page.
+                        Um erro foi encontrado pela aplicação durante a apresentação da visão desta pagina. Tente
+                        recarregar a página.
                     </p>
                 </div>
             </div>

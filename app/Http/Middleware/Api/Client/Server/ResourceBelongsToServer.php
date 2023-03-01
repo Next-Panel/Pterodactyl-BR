@@ -28,12 +28,12 @@ class ResourceBelongsToServer
     {
         $params = $request->route()->parameters();
         if (!$params['server'] instanceof Server) {
-            throw new \InvalidArgumentException('This middleware cannot be used in a context that is missing a server in the parameters.');
+            throw new \InvalidArgumentException('Este middleware não pode ser usado em um contexto que não tenha um servidor nos parâmetros.');
         }
 
         /** @var Server $server */
         $server = $request->route()->parameter('server');
-        $exception = new NotFoundHttpException('The requested resource was not found for this server.');
+        $exception = new NotFoundHttpException('O recurso solicitado não foi encontrado para este servidor.');
         foreach ($params as $key => $model) {
             // Specifically skip the server, we're just trying to see if all of the
             // other resources are assigned to this server. Also skip anything that
@@ -79,7 +79,7 @@ class ResourceBelongsToServer
                 default:
                     // Don't return a 404 here since we want to make sure no one relies
                     // on this middleware in a context in which it will not work. Fail safe.
-                    throw new \InvalidArgumentException('There is no handler configured for a resource of this type: ' . get_class($model));
+                    throw new \InvalidArgumentException('Não há nenhum manipulador configurado para um recurso deste tipo: ' . get_class($model));
             }
         }
 

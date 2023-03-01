@@ -41,10 +41,10 @@ const JavaVersionModalFeature = () => {
         });
     }, [visible]);
 
-    useWebsocketEvent(SocketEvent.CONSOLE_OUTPUT, data => {
+    useWebsocketEvent(SocketEvent.CONSOLE_OUTPUT, (data) => {
         if (status === 'running') return;
 
-        if (MATCH_ERRORS.some(p => data.toLowerCase().includes(p.toLowerCase()))) {
+        if (MATCH_ERRORS.some((p) => data.toLowerCase().includes(p.toLowerCase()))) {
             setVisible(true);
         }
     });
@@ -76,11 +76,11 @@ const JavaVersionModalFeature = () => {
             showSpinnerOverlay={loading}
         >
             <FlashMessageRender key={'feature:javaVersion'} css={tw`mb-4`} />
-            <h2 css={tw`text-2xl mb-4 text-neutral-100`}>Unsupported Java Version</h2>
+            <h2 css={tw`text-2xl mb-4 text-neutral-100`}>Versão Java não suportada</h2>
             <p css={tw`mt-4`}>
-                This server is currently running an unsupported version of Java and cannot be started.
+                Atualmente, este servidor está executando uma versão não suportada do Java e não pode ser iniciada.
                 <Can action={'startup.docker-image'}>
-                    &nbsp;Please select a supported version from the list below to continue starting the server.
+                    &nbsp;Selecione uma versão suportada na lista abaixo para continuar iniciando o servidor.
                 </Can>
             </p>
             <Can action={'startup.docker-image'}>
@@ -102,11 +102,11 @@ const JavaVersionModalFeature = () => {
             </Can>
             <div css={tw`mt-8 flex flex-col sm:flex-row justify-end sm:space-x-4 space-y-4 sm:space-y-0`}>
                 <Button isSecondary onClick={() => setVisible(false)} css={tw`w-full sm:w-auto`}>
-                    Cancel
+                    Cancelar
                 </Button>
                 <Can action={'startup.docker-image'}>
                     <Button onClick={updateJava} css={tw`w-full sm:w-auto`}>
-                        Update Docker Image
+                        Atualizar a imagem do Docker
                     </Button>
                 </Can>
             </div>

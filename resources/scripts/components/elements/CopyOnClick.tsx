@@ -28,7 +28,7 @@ const CopyOnClick = ({ text, showInNotification = true, children }: CopyOnClickP
     }, [copied]);
 
     if (!isValidElement(children)) {
-        throw new Error('Component passed to <CopyOnClick/> must be a valid React element.');
+        throw new Error('O componente passado para <CopyOnClick/> deve ser um elemento de Reação válido.');
     }
 
     const child = !text
@@ -54,8 +54,8 @@ const CopyOnClick = ({ text, showInNotification = true, children }: CopyOnClickP
                             <div className="rounded-md bg-neutral-600/95 py-3 px-4 text-slate-200 shadow">
                                 <p>
                                     {showInNotification
-                                        ? `Copied "${String(text)}" to clipboard.`
-                                        : 'Copied text to clipboard.'}
+                                        ? `Copiado "${String(text)}" para o clipboard.`
+                                        : 'Texto copiado para O clipboard.'}
                                 </p>
                             </div>
                         </div>

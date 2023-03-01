@@ -31,7 +31,7 @@ export class Websocket extends EventEmitter {
                     const { event, args } = JSON.parse(e.data);
                     args ? this.emit(event, ...args) : this.emit(event);
                 } catch (ex) {
-                    console.warn('Failed to parse incoming websocket message.', ex);
+                    console.warn('Falha em analisar a mensagem de entrada do websocket.', ex);
                 }
             },
             onopen: () => {

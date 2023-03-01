@@ -18,8 +18,8 @@ class StoreLocationRequest extends ApplicationApiRequest
     public function attributes(): array
     {
         return [
-            'long' => 'Location Description',
-            'short' => 'Location Identifier',
+            'long' => 'Descrição da localização',
+            'short' => 'Identificador da localização',
         ];
     }
 }

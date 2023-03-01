@@ -54,7 +54,7 @@ class FindViableNodesServiceTest extends IntegrationTestCase
             $this->fail('This expectation should not be called.');
         } catch (\Exception $exception) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
-            $this->assertSame('An array of location IDs should be provided when calling setLocations.', $exception->getMessage());
+            $this->assertSame('Uma matriz de IDs de local deve ser fornecida ao chamar setLocations.', $exception->getMessage());
         }
 
         try {
@@ -62,7 +62,7 @@ class FindViableNodesServiceTest extends IntegrationTestCase
             $this->fail('This expectation should not be called.');
         } catch (\Exception $exception) {
             $this->assertInstanceOf(\InvalidArgumentException::class, $exception);
-            $this->assertSame('An array of location IDs should be provided when calling setLocations.', $exception->getMessage());
+            $this->assertSame('Uma matriz de IDs de local deve ser fornecida ao chamar setLocations.', $exception->getMessage());
         }
     }
 

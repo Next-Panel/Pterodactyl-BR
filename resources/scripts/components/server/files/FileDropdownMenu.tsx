@@ -133,12 +133,12 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
             <Dialog.Confirm
                 open={showConfirmation}
                 onClose={() => setShowConfirmation(false)}
-                title={`Delete ${file.isFile ? 'File' : 'Directory'}`}
-                confirm={'Delete'}
+                title={`Deletar o ${file.isFile ? 'Arquivo' : 'Diretório'}`}
+                confirm={'Deletar'}
                 onConfirmed={doDeletion}
             >
-                You will not be able to recover the contents of&nbsp;
-                <span className={'font-semibold text-slate-50'}>{file.name}</span> once deleted.
+                Você não será capaz de recuperar o conteúdo de&nbsp;
+                <span className={'font-semibold text-gray-50'}>{file.name}</span> Uma vez excluído.
             </Dialog.Confirm>
             <DropdownMenu
                 ref={onClickRef}
@@ -168,27 +168,27 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
                 )}
             >
                 <Can action={'file.update'}>
-                    <Row onClick={() => setModal('rename')} icon={faPencilAlt} title={'Rename'} />
-                    <Row onClick={() => setModal('move')} icon={faLevelUpAlt} title={'Move'} />
-                    <Row onClick={() => setModal('chmod')} icon={faFileCode} title={'Permissions'} />
+                    <Row onClick={() => setModal('rename')} icon={faPencilAlt} title={'Renomear'} />
+                    <Row onClick={() => setModal('move')} icon={faLevelUpAlt} title={'Mover'} />
+                    <Row onClick={() => setModal('chmod')} icon={faFileCode} title={'Permissões'} />
                 </Can>
                 {file.isFile && (
                     <Can action={'file.create'}>
-                        <Row onClick={doCopy} icon={faCopy} title={'Copy'} />
+                        <Row onClick={doCopy} icon={faCopy} title={'Copiar'} />
                     </Can>
                 )}
                 {file.isArchiveType() ? (
                     <Can action={'file.create'}>
-                        <Row onClick={doUnarchive} icon={faBoxOpen} title={'Unarchive'} />
+                        <Row onClick={doUnarchive} icon={faBoxOpen} title={'Descompactar'} />
                     </Can>
                 ) : (
                     <Can action={'file.archive'}>
-                        <Row onClick={doArchive} icon={faFileArchive} title={'Archive'} />
+                        <Row onClick={doArchive} icon={faFileArchive} title={'Compactar'} />
                     </Can>
                 )}
-                {file.isFile && <Row onClick={doDownload} icon={faFileDownload} title={'Download'} />}
+                {file.isFile && <Row onClick={doDownload} icon={faFileDownload} title={'Baixar'} />}
                 <Can action={'file.delete'}>
-                    <Row onClick={() => setShowConfirmation(true)} icon={faTrashAlt} title={'Delete'} $danger />
+                    <Row onClick={() => setShowConfirmation(true)} icon={faTrashAlt} title={'Deletar'} $danger />
                 </Can>
             </DropdownMenu>
         </>

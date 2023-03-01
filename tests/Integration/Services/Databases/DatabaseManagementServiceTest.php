@@ -77,7 +77,7 @@ class DatabaseManagementServiceTest extends IntegrationTestCase
         $server = $this->createServerModel();
 
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The database name passed to DatabaseManagementService::handle MUST be prefixed with "s{server_id}_".');
+        $this->expectExceptionMessage('O nome do Database passado para DatabaseManagementService::handle DEVE ser prefixado com "s{server_id}_".');
 
         $this->getService()->create($server, $data);
     }
@@ -99,7 +99,7 @@ class DatabaseManagementServiceTest extends IntegrationTestCase
         ]);
 
         $this->expectException(DuplicateDatabaseNameException::class);
-        $this->expectExceptionMessage('A database with that name already exists for this server.');
+        $this->expectExceptionMessage('Já existe um Database com esse nome para este servidor.');
 
         // Try to create a database with the same name as a database on a different host. We expect
         // this to fail since we don't account for the specific host when checking uniqueness.

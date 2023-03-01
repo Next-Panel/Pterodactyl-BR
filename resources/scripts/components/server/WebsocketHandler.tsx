@@ -57,7 +57,7 @@ function WebsocketHandler() {
                 updateToken(uuid, socket);
             } else {
                 setError(
-                    'There was an error validating the credentials provided for the websocket. Please refresh the page.',
+                    'Houve um erro na validação das credenciais fornecidas para o websocket. Por favor, atualize a página.'
                 );
             }
         });
@@ -115,7 +115,7 @@ function WebsocketHandler() {
                         <>
                             <Spinner size={'small'} />
                             <p css={tw`ml-2 text-sm text-red-100`}>
-                                We&apos;re having some trouble connecting to your server, please wait...
+                                Estamos tendo alguns problemas de conexão com seu servidor, por favor, espere...
                             </p>
                         </>
                     ) : (

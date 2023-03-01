@@ -17,7 +17,7 @@ class EggParserService
     public function handle(array $parsed): array
     {
         if (!in_array(Arr::get($parsed, 'meta.version') ?? '', ['PTDL_v1', 'PTDL_v2'])) {
-            throw new InvalidFileUploadException('The JSON file provided is not in a format that can be recognized.');
+            throw new InvalidFileUploadException('O arquivo JSON fornecido não está em um formato que possa ser reconhecido.');
         }
 
         return $this->convertToV2($parsed);

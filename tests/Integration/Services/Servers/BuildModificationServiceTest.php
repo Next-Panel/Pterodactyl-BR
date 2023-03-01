@@ -90,7 +90,7 @@ class BuildModificationServiceTest extends IntegrationTestCase
         $allocations[0]->update(['server_id' => $server->id]);
 
         $this->expectException(DisplayException::class);
-        $this->expectExceptionMessage('You are attempting to delete the default allocation for this server but there is no fallback allocation to use.');
+        $this->expectExceptionMessage('Você está tentando excluir a alocação padrão para este servidor, mas não há alocação alternativa para usar.');
 
         $this->getService()->handle($server, [
             'add_allocations' => [],

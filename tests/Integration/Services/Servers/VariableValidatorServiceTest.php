@@ -43,8 +43,8 @@ class VariableValidatorServiceTest extends IntegrationTestCase
             $this->assertCount(2, $errors);
             $this->assertArrayHasKey('environment.BUNGEE_VERSION', $errors);
             $this->assertArrayHasKey('environment.SERVER_JARFILE', $errors);
-            $this->assertSame('The Bungeecord Version variable may only contain letters and numbers.', $errors['environment.BUNGEE_VERSION'][0]);
-            $this->assertSame('The Bungeecord Jar File variable field is required.', $errors['environment.SERVER_JARFILE'][0]);
+            $this->assertSame('O Bungeecord Versão variável pode conter apenas letras e números.', $errors['environment.BUNGEE_VERSION'][0]);
+            $this->assertSame('O Bungeecord Arquivo Jar variável é um campo necessário.', $errors['environment.SERVER_JARFILE'][0]);
         }
 
         $response = $this->getService()->handle($egg->id, [

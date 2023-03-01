@@ -36,22 +36,22 @@ class StoreSSHKeyRequest extends ClientApiRequest
             try {
                 $this->key = PublicKeyLoader::loadPublicKey($this->input('public_key'));
             } catch (NoKeyLoadedException $exception) {
-                $this->validator->errors()->add('public_key', 'The public key provided is not valid.');
+                $this->validator->errors()->add('public_key', 'A chave pública fornecida não é válida.');
 
                 return;
             }
 
             if ($this->key instanceof DSA) {
-                $this->validator->errors()->add('public_key', 'DSA keys are not supported.');
+                $this->validator->errors()->add('public_key', 'Chaves DSA não são suportadas.');
             }
 
             if ($this->key instanceof RSA && $this->key->getLength() < 2048) {
-                $this->validator->errors()->add('public_key', 'RSA keys must be at least 2048 bytes in length.');
+                $this->validator->errors()->add('public_key', 'As chaves RSA devem ter pelo menos 2048 bytes de comprimento.');
             }
 
             $fingerprint = $this->key->getFingerprint('sha256');
             if ($this->user()->sshKeys()->where('fingerprint', $fingerprint)->exists()) {
-                $this->validator->errors()->add('public_key', 'The public key provided already exists on your account.');
+                $this->validator->errors()->add('public_key', 'A chave pública fornecida já existe em sua conta.');
             }
         });
     }
@@ -70,7 +70,7 @@ class StoreSSHKeyRequest extends ClientApiRequest
     public function getKeyFingerprint(): string
     {
         if (!$this->key) {
-            throw new \Exception('The public key was not properly loaded for this request.');
+            throw new \Exception('A chave pública não foi devidamente carregada para este pedido.');
         }
 
         return $this->key->getFingerprint('sha256');

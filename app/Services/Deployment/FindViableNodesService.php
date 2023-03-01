@@ -19,7 +19,7 @@ class FindViableNodesService
      */
     public function setLocations(array $locations): self
     {
-        Assert::allIntegerish($locations, 'An array of location IDs should be provided when calling setLocations.');
+        Assert::allIntegerish($locations, 'Uma matriz de IDs de local deve ser fornecida ao chamar setLocations.');
 
         $this->locations = $locations;
 

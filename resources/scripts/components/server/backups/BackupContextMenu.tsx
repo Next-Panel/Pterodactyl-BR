@@ -124,23 +124,23 @@ export default ({ backup }: Props) => {
             <Dialog.Confirm
                 open={modal === 'unlock'}
                 onClose={() => setModal('')}
-                title={`Unlock "${backup.name}"`}
+                title={`Desbloquear "${backup.name}"`}
                 onConfirmed={onLockToggle}
             >
-                This backup will no longer be protected from automated or accidental deletions.
+                Esse backup não será mais protegido contra exclusões automatizadas ou acidentais.
             </Dialog.Confirm>
             <Dialog.Confirm
                 open={modal === 'restore'}
                 onClose={() => setModal('')}
-                confirm={'Restore'}
-                title={`Restore "${backup.name}"`}
+                confirm={'Restorar'}
+                title={`Restorar "${backup.name}"`}
                 onConfirmed={() => doRestorationAction()}
             >
                 <p>
-                    Your server will be stopped. You will not be able to control the power state, access the file
-                    manager, or create additional backups until completed.
+                    Seu servidor será interrompido. Você não será capaz de controlar o estado de energia, acessar o
+                    arquivo ou crie backups adicionais até que seja concluído.
                 </p>
-                <p css={tw`mt-4 -mb-2 bg-slate-700 p-3 rounded`}>
+                <p css={tw`mt-4 -mb-2 bg-gray-700 p-3 rounded`}>
                     <label htmlFor={'restore_truncate'} css={tw`text-base flex items-center cursor-pointer`}>
                         <Input
                             type={'checkbox'}
@@ -150,18 +150,18 @@ export default ({ backup }: Props) => {
                             checked={truncate}
                             onChange={() => setTruncate(s => !s)}
                         />
-                        Delete all files before restoring backup.
+                        Exclua todos os arquivos antes de restaurar o backup.
                     </label>
                 </p>
             </Dialog.Confirm>
             <Dialog.Confirm
-                title={`Delete "${backup.name}"`}
-                confirm={'Continue'}
+                title={`Deletar "${backup.name}"`}
+                confirm={'Continuar'}
                 open={modal === 'delete'}
                 onClose={() => setModal('')}
                 onConfirmed={doDeletion}
             >
-                This is a permanent operation. The backup cannot be recovered once deleted.
+                Esta é uma operação permanente. O backup não pode ser recuperado uma vez excluído.
             </Dialog.Confirm>
             <SpinnerOverlay visible={loading} fixed />
             {backup.isSuccessful ? (
@@ -185,7 +185,7 @@ export default ({ backup }: Props) => {
                         <Can action={'backup.restore'}>
                             <DropdownButtonRow onClick={() => setModal('restore')}>
                                 <FontAwesomeIcon fixedWidth icon={faBoxOpen} css={tw`text-xs`} />
-                                <span css={tw`ml-2`}>Restore</span>
+                                <span css={tw`ml-2`}>Restorar</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.delete'}>
@@ -196,12 +196,12 @@ export default ({ backup }: Props) => {
                                         icon={backup.isLocked ? faUnlock : faLock}
                                         css={tw`text-xs mr-2`}
                                     />
-                                    {backup.isLocked ? 'Unlock' : 'Lock'}
+                                    {backup.isLocked ? 'Desbloqueado' : 'Bloqueado'}
                                 </DropdownButtonRow>
                                 {!backup.isLocked && (
                                     <DropdownButtonRow danger onClick={() => setModal('delete')}>
                                         <FontAwesomeIcon fixedWidth icon={faTrashAlt} css={tw`text-xs`} />
-                                        <span css={tw`ml-2`}>Delete</span>
+                                        <span css={tw`ml-2`}>Deletar</span>
                                     </DropdownButtonRow>
                                 )}
                             </>

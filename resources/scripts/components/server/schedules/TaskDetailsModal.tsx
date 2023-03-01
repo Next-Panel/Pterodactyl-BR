@@ -36,15 +36,15 @@ const schema = object().shape({
     action: string().required().oneOf(['command', 'power', 'backup']),
     payload: string().when('action', {
         is: (v: string) => v !== 'backup',
-        then: string().required('A task payload must be provided.'),
+        then: string().required('Uma payload de tarefa deve ser fornecida.'),
         otherwise: string(),
     }),
     continueOnFailure: boolean(),
     timeOffset: number()
-        .typeError('The time offset must be a valid number between 0 and 900.')
-        .required('A time offset value must be provided.')
-        .min(0, 'The time offset must be at least 0 seconds.')
-        .max(900, 'The time offset must be less than 900 seconds.'),
+        .typeError('O tempo de espera deve ser um número válido entre 0 e 900.')
+        .required('Deve ser fornecido um valor de tempo de espera.')
+        .min(0, 'O tempo de espera deve ser de pelo menos 0 segundos.')
+        .max(900, 'O tempo de espera deve ser inferior a 900 segundos.'),
 });
 
 const ActionListener = () => {
@@ -83,7 +83,8 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
         if (backupLimit === 0 && values.action === 'backup') {
             setSubmitting(false);
             addError({
-                message: "A backup task cannot be created when the server's backup limit is set to 0.",
+                message:
+                    'Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido para 0.',
                 key: 'schedule:task',
             });
         } else {
@@ -119,25 +120,25 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
             {({ isSubmitting, values }) => (
                 <Form css={tw`m-0`}>
                     <FlashMessageRender byKey={'schedule:task'} css={tw`mb-4`} />
-                    <h2 css={tw`text-2xl mb-6`}>{task ? 'Edit Task' : 'Create Task'}</h2>
+                    <h2 css={tw`text-2xl mb-6`}>{task ? 'Editar Tarefa' : 'Criar Tarefa'}</h2>
                     <div css={tw`flex`}>
                         <div css={tw`mr-2 w-1/3`}>
                             <Label>Action</Label>
                             <ActionListener />
                             <FormikFieldWrapper name={'action'}>
                                 <FormikField as={Select} name={'action'}>
-                                    <option value={'command'}>Send command</option>
-                                    <option value={'power'}>Send power action</option>
-                                    <option value={'backup'}>Create backup</option>
+                                    <option value={'command'}>Enviar Comando</option>
+                                    <option value={'power'}>Enviar ação de energia</option>
+                                    <option value={'backup'}>Criar backup</option>
                                 </FormikField>
                             </FormikFieldWrapper>
                         </div>
                         <div css={tw`flex-1 ml-6`}>
                             <Field
                                 name={'timeOffset'}
-                                label={'Time offset (in seconds)'}
+                                label={'O tempo de espera (em segundos)'}
                                 description={
-                                    'The amount of time to wait after the previous task executes before running this one. If this is the first task on a schedule this will not be applied.'
+                                    'O tempo de espera após a tarefa anterior é executado antes de executar esta tarefa. Se esta for a primeira tarefa em um cronograma, isto não será aplicado..'
                                 }
                             />
                         </div>

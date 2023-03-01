@@ -75,8 +75,8 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 </p>
             </CopyOnClick>
             <p id={'totp-code-description'} className={'mt-6'}>
-                Scan the QR code above using the two-step authentication app of your choice. Then, enter the 6-digit
-                code generated into the field below.
+                Digitalize o código QR acima usando o aplicativo de autenticação de duas etapas de sua escolha. Em
+                seguida, insira os 6 dígitos código gerado no campo abaixo.
             </p>
             <Input.Text
                 aria-labelledby={'totp-code-description'}
@@ -90,8 +90,8 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 autoComplete={'one-time-code'}
                 pattern={'\\d{6}'}
             />
-            <label htmlFor={'totp-password'} className={'mt-3 block'}>
-                Account Password
+            <label htmlFor={'totp-password'} className={'block mt-3'}>
+                Senha da conta
             </label>
             <Input.Text
                 variant={Input.Text.Variants.Loose}
@@ -106,8 +106,8 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                     disabled={password.length > 0 && value.length === 6}
                     content={
                         !token
-                            ? 'Waiting for QR code to load...'
-                            : 'You must enter the 6-digit code and your password to continue.'
+                            ? 'Aguardando o carregamento do código QR...'
+                            : 'Você deve digitar o código de 6 dígitos e sua senha para continuar.'
                     }
                     delay={100}
                 >
@@ -116,7 +116,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                         type={'submit'}
                         form={'enable-totp-form'}
                     >
-                        Enable
+                        Habilitar
                     </Button>
                 </Tooltip>
             </Dialog.Footer>
@@ -125,7 +125,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
 };
 
 export default asDialog({
-    title: 'Enable Two-Step Verification',
+    title: 'Habilitar a verificação em duas etapas',
     description:
-        "Help protect your account from unauthorized access. You'll be prompted for a verification code each time you sign in.",
+        'Ajude a proteger sua conta contra acesso não autorizado. Você será solicitado a fornecer um código de verificação sempre que entrar.',
 })(ConfigureTwoFactorForm);

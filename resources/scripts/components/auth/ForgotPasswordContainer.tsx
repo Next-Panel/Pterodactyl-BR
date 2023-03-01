@@ -39,7 +39,7 @@ function ForgotPasswordContainer() {
                 console.error(error);
 
                 setSubmitting(false);
-                addFlash({ type: 'error', title: 'Error', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: 'Erro', message: httpErrorToHuman(error) });
             });
 
             return;
@@ -48,11 +48,11 @@ function ForgotPasswordContainer() {
         requestPasswordResetEmail(email, token)
             .then(response => {
                 resetForm();
-                addFlash({ type: 'success', title: 'Success', message: response });
+                addFlash({ type: 'success', title: 'Sucesso', message: response });
             })
             .catch(error => {
                 console.error(error);
-                addFlash({ type: 'error', title: 'Error', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: 'Erro', message: httpErrorToHuman(error) });
             })
             .then(() => {
                 setToken('');
@@ -70,17 +70,17 @@ function ForgotPasswordContainer() {
             initialValues={{ email: '' }}
             validationSchema={object().shape({
                 email: string()
-                    .email('A valid email address must be provided to continue.')
-                    .required('A valid email address must be provided to continue.'),
+                    .email('Um endereço de e-mail válido deve ser fornecido para continuar.')
+                    .required('Um endereço de e-mail válido deve ser fornecido para continuar.'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Request Password Reset'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Solicitar redefinição de senha'} css={tw`w-full flex`}>
                     <Field
                         light
                         label={'Email'}
                         description={
-                            'Enter your account email address to receive instructions on resetting your password.'
+                            'Digite o endereço de e-mail da sua conta para receber instruções sobre como redefinir sua senha.'
                         }
                         name={'email'}
                         type={'email'}
@@ -110,7 +110,7 @@ function ForgotPasswordContainer() {
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                         >
-                            Return to Login
+                            Retornar para Login
                         </Link>
                     </div>
                 </LoginFormContainer>

@@ -28,7 +28,7 @@ class LocationDeletionService
     {
         $location = ($location instanceof Location) ? $location->id : $location;
 
-        Assert::integerish($location, 'First argument passed to handle must be numeric or an instance of ' . Location::class . ', received %s.');
+        Assert::integerish($location, 'O primeiro argumento passado para o identificador deve ser numérico ou uma instância de ' . Location::class . ', recebeu %s.');
 
         $count = $this->nodeRepository->findCountWhere([['location_id', '=', $location]]);
         if ($count > 0) {

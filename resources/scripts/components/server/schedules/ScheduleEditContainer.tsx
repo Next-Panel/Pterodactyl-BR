@@ -15,6 +15,7 @@ import { Button } from '@/components/elements/button/index';
 import ScheduleTaskRow from '@/components/server/schedules/ScheduleTaskRow';
 import isEqual from 'react-fast-compare';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import ScheduleCronRow from '@/components/server/schedules/ScheduleCronRow';
 import RunScheduleButton from '@/components/server/schedules/RunScheduleButton';
 
@@ -93,23 +94,27 @@ export default () => {
                                             css={tw`flex items-center rounded-full px-2 py-px text-xs ml-4 uppercase bg-neutral-600 text-white`}
                                         >
                                             <Spinner css={tw`w-3! h-3! mr-2`} />
-                                            Processing
+                                            Processando...
                                         </span>
                                     ) : (
                                         <ActivePill active={schedule.isActive} />
                                     )}
                                 </h3>
                                 <p css={tw`mt-1 text-sm text-neutral-200`}>
-                                    Last run at:&nbsp;
+                                    Última iniciação em:&nbsp;
                                     {schedule.lastRunAt ? (
-                                        format(schedule.lastRunAt, "MMM do 'at' h:mma")
+                                        format(schedule.lastRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", {
+                                            locale: ptBR,
+                                        })
                                     ) : (
                                         <span css={tw`text-neutral-300`}>n/a</span>
                                     )}
                                     <span css={tw`ml-4 pl-4 border-l-4 border-neutral-600 py-px`}>
-                                        Next run at:&nbsp;
+                                        Próxima iniciação em:&nbsp;
                                         {schedule.nextRunAt ? (
-                                            format(schedule.nextRunAt, "MMM do 'at' h:mma")
+                                            format(schedule.nextRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", {
+                                                locale: ptBR,
+                                            })
                                         ) : (
                                             <span css={tw`text-neutral-300`}>n/a</span>
                                         )}
@@ -119,18 +124,18 @@ export default () => {
                             <div css={tw`flex sm:block mt-3 sm:mt-0`}>
                                 <Can action={'schedule.update'}>
                                     <Button.Text className={'mr-4 flex-1'} onClick={toggleEditModal}>
-                                        Edit
+                                        Editar
                                     </Button.Text>
                                     <NewTaskButton schedule={schedule} />
                                 </Can>
                             </div>
                         </div>
                         <div css={tw`hidden sm:grid grid-cols-5 md:grid-cols-5 gap-4 mb-4 mt-4`}>
-                            <CronBox title={'Minute'} value={schedule.cron.minute} />
-                            <CronBox title={'Hour'} value={schedule.cron.hour} />
-                            <CronBox title={'Day (Month)'} value={schedule.cron.dayOfMonth} />
-                            <CronBox title={'Month'} value={schedule.cron.month} />
-                            <CronBox title={'Day (Week)'} value={schedule.cron.dayOfWeek} />
+                            <CronBox title={'Minuto'} value={schedule.cron.minute} />
+                            <CronBox title={'Hora'} value={schedule.cron.hour} />
+                            <CronBox title={'Dia (Mês)'} value={schedule.cron.dayOfMonth} />
+                            <CronBox title={'Mês'} value={schedule.cron.month} />
+                            <CronBox title={'Dia (Semana)'} value={schedule.cron.dayOfWeek} />
                         </div>
                         <div css={tw`bg-neutral-700 rounded-b`}>
                             {schedule.tasks.length > 0

@@ -86,7 +86,7 @@ export default () => {
         switch (status) {
             // Sent by either the source or target node if a failure occurs.
             case 'failure':
-                terminal.writeln(TERMINAL_PRELUDE + 'Transfer has failed.\u001b[0m');
+                terminal.writeln(TERMINAL_PRELUDE + 'A transferência falhou.\u001b[0m');
                 return;
         }
     };
@@ -97,7 +97,7 @@ export default () => {
         );
 
     const handlePowerChangeEvent = (state: string) =>
-        terminal.writeln(TERMINAL_PRELUDE + 'Server marked as ' + state + '...\u001b[0m');
+        terminal.writeln(TERMINAL_PRELUDE + 'Servidor marcado como ' + state + '...\u001b[0m');
 
     const handleCommandKeyDown = (e: ReactKeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'ArrowUp') {
@@ -223,8 +223,8 @@ export default () => {
                     <input
                         className={classNames('peer', styles.command_input)}
                         type={'text'}
-                        placeholder={'Type a command...'}
-                        aria-label={'Console command input.'}
+                        placeholder={'Digite um comando...'}
+                        aria-label={'Entrada de comando do console.'}
                         disabled={!instance || !connected}
                         onKeyDown={handleCommandKeyDown}
                         autoCorrect={'off'}

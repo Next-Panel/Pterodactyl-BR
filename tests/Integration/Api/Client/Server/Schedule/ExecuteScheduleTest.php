@@ -31,7 +31,7 @@ class ExecuteScheduleTest extends ClientApiIntegrationTestCase
         $response = $this->actingAs($user)->postJson($this->link($schedule, '/execute'));
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
         $response->assertJsonPath('errors.0.code', 'DisplayException');
-        $response->assertJsonPath('errors.0.detail', 'Cannot process schedule for task execution: no tasks are registered.');
+        $response->assertJsonPath('errors.0.detail', 'Não é possível processar o agendamento para execução da tarefa: nenhuma tarefa está registrada.');
 
         /** @var \Pterodactyl\Models\Task $task */
         $task = Task::factory()->create([

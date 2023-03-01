@@ -29,13 +29,13 @@ interface Props {
 const getActionDetails = (action: string): [string, any] => {
     switch (action) {
         case 'command':
-            return ['Send Command', faCode];
+            return ['Enviar Comando', faCode];
         case 'power':
-            return ['Send Power Action', faToggleOn];
+            return ['Enviar ação de energia', faToggleOn];
         case 'backup':
-            return ['Create Backup', faFileArchive];
+            return ['Criar Backup', faFileArchive];
         default:
-            return ['Unknown Action', faCode];
+            return ['Ação Desconhecida', faCode];
     }
 };
 
@@ -76,13 +76,13 @@ export default ({ schedule, task }: Props) => {
                 onModalDismissed={() => setIsEditing(false)}
             />
             <ConfirmationModal
-                title={'Confirm task deletion'}
-                buttonText={'Delete Task'}
+                title={'Confirmar deletamento de tarefa'}
+                buttonText={'Deletar Tarefa'}
                 onConfirmed={onConfirmDeletion}
                 visible={visible}
                 onModalDismissed={() => setVisible(false)}
             >
-                Are you sure you want to delete this task? This action cannot be undone.
+                Você tem certeza de que quer deletar esta tarefa? Esta ação não pode ser desfeita.
             </ConfirmationModal>
             <FontAwesomeIcon icon={icon} css={tw`text-lg text-white hidden md:block`} />
             <div css={tw`flex-none sm:flex-1 w-full sm:w-auto overflow-x-auto`}>
@@ -90,7 +90,7 @@ export default ({ schedule, task }: Props) => {
                 {task.payload && (
                     <div css={tw`md:ml-6 mt-2`}>
                         {task.action === 'backup' && (
-                            <p css={tw`text-xs uppercase text-neutral-400 mb-1`}>Ignoring files & folders:</p>
+                            <p css={tw`text-xs uppercase text-neutral-400 mb-1`}>Ignorando arquivos e pastas:</p>
                         )}
                         <div
                             css={tw`font-mono bg-neutral-800 rounded py-1 px-2 text-sm w-auto inline-block whitespace-pre-wrap break-all`}
@@ -105,7 +105,7 @@ export default ({ schedule, task }: Props) => {
                     <div css={tw`mr-6`}>
                         <div css={tw`flex items-center px-2 py-1 bg-yellow-500 text-yellow-800 text-sm rounded-full`}>
                             <Icon icon={faArrowCircleDown} css={tw`w-3 h-3 mr-2`} />
-                            Continues on Failure
+                            Continuar em caso de falha
                         </div>
                     </div>
                 )}
@@ -113,14 +113,14 @@ export default ({ schedule, task }: Props) => {
                     <div css={tw`mr-6`}>
                         <div css={tw`flex items-center px-2 py-1 bg-neutral-500 text-sm rounded-full`}>
                             <Icon icon={faClock} css={tw`w-3 h-3 mr-2`} />
-                            {task.timeOffset}s later
+                            {task.timeOffset}s depois
                         </div>
                     </div>
                 )}
                 <Can action={'schedule.update'}>
                     <button
                         type={'button'}
-                        aria-label={'Edit scheduled task'}
+                        aria-label={'Editar tarefa do programada'}
                         css={tw`block text-sm p-2 text-neutral-500 hover:text-neutral-100 transition-colors duration-150 mr-4 ml-auto sm:ml-0`}
                         onClick={() => setIsEditing(true)}
                     >
@@ -130,7 +130,7 @@ export default ({ schedule, task }: Props) => {
                 <Can action={'schedule.update'}>
                     <button
                         type={'button'}
-                        aria-label={'Delete scheduled task'}
+                        aria-label={'Deletar tarefa programada'}
                         css={tw`block text-sm p-2 text-neutral-500 hover:text-red-600 transition-colors duration-150`}
                         onClick={() => setVisible(true)}
                     >

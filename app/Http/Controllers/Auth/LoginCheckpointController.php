@@ -16,7 +16,7 @@ use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginCheckpointController extends AbstractLoginController
 {
-    private const TOKEN_EXPIRED_MESSAGE = 'The authentication token provided has expired, please refresh the page and try again.';
+    private const TOKEN_EXPIRED_MESSAGE = 'O token de autenticação fornecido expirou, atualize a página e tente novamente.';
 
     /**
      * LoginCheckpointController constructor.
@@ -79,7 +79,7 @@ class LoginCheckpointController extends AbstractLoginController
             }
         }
 
-        $this->sendFailedLoginResponse($request, $user, !empty($recoveryToken) ? 'The recovery token provided is not valid.' : null);
+        $this->sendFailedLoginResponse($request, $user, !empty($recoveryToken) ? 'O token de recuperação fornecido não é válido.' : null);
     }
 
     /**
