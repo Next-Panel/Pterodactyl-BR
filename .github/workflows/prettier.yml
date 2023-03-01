@@ -4,8 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - 1.0-develop
-      - Beta-Test
+      - develop
 
 jobs:
   prettier:
