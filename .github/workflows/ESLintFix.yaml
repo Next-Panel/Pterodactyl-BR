@@ -1,0 +1,24 @@
+name: EsLint Fix
+
+on:
+  push:
+    branches:
+      - "develop"
+      - "1.0-develop"
+  pull_request:
+    branches:
+      - "develop"
+      - "1.0-develop"
+
+jobs:
+  eslint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run ESLint fix
+        run: pnpm run lint:fix
