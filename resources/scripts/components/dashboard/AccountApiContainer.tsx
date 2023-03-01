@@ -46,9 +46,8 @@ export default () => {
         <PageContentBlock title={'API da Conta'}>
             <FlashMessageRender byKey={'account'} />
             <div css={tw`md:flex flex-nowrap my-10`}>
-                    <CreateApiKeyForm onKeyCreated={key => setKeys(s => [...s!, key])} />
-                <ContentBox title={'Criar chave API'} css={tw`flex-none w-full md:w-1/2`}>
-                </ContentBox>
+                <CreateApiKeyForm onKeyCreated={key => setKeys(s => [...s!, key])} />
+                <ContentBox title={'Criar chave API'} css={tw`flex-none w-full md:w-1/2`}></ContentBox>
                 <ContentBox title={'chaves API'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
                     <SpinnerOverlay visible={loading} />
                     <Dialog.Confirm

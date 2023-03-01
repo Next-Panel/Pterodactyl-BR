@@ -96,4 +96,4 @@ function ResetPasswordContainer() {
             )}
         </Formik>
     );
-};
+}
