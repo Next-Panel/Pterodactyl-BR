@@ -41,10 +41,10 @@ const JavaVersionModalFeature = () => {
         });
     }, [visible]);
 
-    useWebsocketEvent(SocketEvent.CONSOLE_OUTPUT, (data) => {
+    useWebsocketEvent(SocketEvent.CONSOLE_OUTPUT, data => {
         if (status === 'running') return;
 
-        if (MATCH_ERRORS.some((p) => data.toLowerCase().includes(p.toLowerCase()))) {
+        if (MATCH_ERRORS.some(p => data.toLowerCase().includes(p.toLowerCase()))) {
             setVisible(true);
         }
     });

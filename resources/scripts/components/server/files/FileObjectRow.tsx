@@ -63,13 +63,15 @@ function FileObjectRow({ file }: { file: FileObject }) {
         </div>
     );
 }
-            <div css={tw`flex-1 truncate`}>{file.name}</div>
-            {file.isFile && <div css={tw`w-1/6 text-right mr-4 hidden sm:block`}>{bytesToString(file.size)}</div>}
-            <div css={tw`w-1/5 text-right mr-4 hidden md:block`} title={file.modifiedAt.toString()}>
-                {Math.abs(differenceInHours(file.modifiedAt, new Date())) > 48
-                    ? format(file.modifiedAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
-                    : formatDistanceToNow(file.modifiedAt, { addSuffix: true, locale: ptBR })}
-            </div>
+<div css={tw`flex-1 truncate`}>{file.name}</div>;
+{
+    file.isFile && <div css={tw`w-1/6 text-right mr-4 hidden sm:block`}>{bytesToString(file.size)}</div>;
+}
+<div css={tw`w-1/5 text-right mr-4 hidden md:block`} title={file.modifiedAt.toString()}>
+    {Math.abs(differenceInHours(file.modifiedAt, new Date())) > 48
+        ? format(file.modifiedAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
+        : formatDistanceToNow(file.modifiedAt, { addSuffix: true, locale: ptBR })}
+</div>;
 
 export default memo(FileObjectRow, (prevProps, nextProps) => {
     /* eslint-disable @typescript-eslint/no-unused-vars */

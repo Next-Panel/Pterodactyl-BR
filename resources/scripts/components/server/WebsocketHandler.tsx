@@ -57,7 +57,7 @@ function WebsocketHandler() {
                 updateToken(uuid, socket);
             } else {
                 setError(
-                    'Houve um erro na validação das credenciais fornecidas para o websocket. Por favor, atualize a página.'
+                    'Houve um erro na validação das credenciais fornecidas para o websocket. Por favor, atualize a página.',
                 );
             }
         });
