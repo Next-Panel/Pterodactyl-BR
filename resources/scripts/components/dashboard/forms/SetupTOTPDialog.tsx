@@ -90,9 +90,8 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 autoComplete={'one-time-code'}
                 pattern={'\\d{6}'}
             />
-                Senha da conta
-            <label htmlFor={'totp-password'} className={'mt-3 block'}>
-            </label>
+            Senha da conta
+            <label htmlFor={'totp-password'} className={'mt-3 block'}></label>
             <Input.Text
                 variant={Input.Text.Variants.Loose}
                 className={'mt-1'}
