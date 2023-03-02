@@ -140,7 +140,7 @@ export default ({ backup }: Props) => {
                     Seu servidor será interrompido. Você não será capaz de controlar o estado de energia, acessar o
                     arquivo ou crie backups adicionais até que seja concluído.
                 </p>
-                <p css={tw`mt-4 -mb-2 bg-gray-700 p-3 rounded`}>
+                <p css={tw`mt-4 -mb-2 bg-slate-700 p-3 rounded`}>
                     <label htmlFor={'restore_truncate'} css={tw`text-base flex items-center cursor-pointer`}>
                         <Input
                             type={'checkbox'}

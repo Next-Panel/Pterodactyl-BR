@@ -9,7 +9,6 @@ import tw from 'twin.macro';
 import { join } from 'pathe';
 
 import type { FileObject } from '@/api/server/files/loadDirectory';
-import { ptBR } from 'date-fns/locale';
 import FileDropdownMenu from '@/components/server/files/FileDropdownMenu';
 import SelectFileCheckbox from '@/components/server/files/SelectFileCheckbox';
 import { encodePathSegments } from '@/helpers';
@@ -58,20 +57,18 @@ function FileObjectRow({ file }: { file: FileObject }) {
                         <FontAwesomeIcon icon={faFolder} />
                     )}
                 </div>
+                <div css={tw`flex-1 truncate`}>{file.name}</div>
+                {file.isFile && <div css={tw`w-1/6 text-right mr-4 hidden sm:block`}>{bytesToString(file.size)}</div>}
+                <div css={tw`w-1/5 text-right mr-4 hidden md:block`} title={file.modifiedAt.toString()}>
+                    {Math.abs(differenceInHours(file.modifiedAt, new Date())) > 48
+                        ? format(file.modifiedAt, 'MMM do, yyyy h:mma')
+                        : formatDistanceToNow(file.modifiedAt, { addSuffix: true })}
+                </div>
             </MemoizedClickable>
             <FileDropdownMenu file={file} />
         </div>
     );
 }
-<div css={tw`flex-1 truncate`}>{file.name}</div>;
-{
-    file.isFile && <div css={tw`w-1/6 text-right mr-4 hidden sm:block`}>{bytesToString(file.size)}</div>;
-}
-<div css={tw`w-1/5 text-right mr-4 hidden md:block`} title={file.modifiedAt.toString()}>
-    {Math.abs(differenceInHours(file.modifiedAt, new Date())) > 48
-        ? format(file.modifiedAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
-        : formatDistanceToNow(file.modifiedAt, { addSuffix: true, locale: ptBR })}
-</div>;
 
 export default memo(FileObjectRow, (prevProps, nextProps) => {
     /* eslint-disable @typescript-eslint/no-unused-vars */

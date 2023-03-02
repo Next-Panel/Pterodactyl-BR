@@ -41,7 +41,7 @@ export default () => {
                         className={classNames(btnStyles.button, btnStyles.text, 'w-full sm:w-auto')}
                         onClick={() => setFilters(value => ({ ...value, filters: {} }))}
                     >
-                        Limpar filtros <XCircleIcon className={'w-4 h-4 ml-2'} />
+                        Clear Filters <XCircleIcon className={'ml-2 h-4 w-4'} />
                     </Link>
                 </div>
             )}
@@ -49,8 +49,8 @@ export default () => {
                 <Spinner centered />
             ) : !data?.items.length ? (
                 <p className={'text-sm text-center text-gray-400'}>
-                    Não há logs de atividades disponíveis para este servidor.
                 </p>
+                <p className={'text-center text-sm text-slate-400'}>No activity logs available for this server.</p>
             ) : (
                 <div className={'bg-slate-700'}>
                     {data?.items.map(activity => (
