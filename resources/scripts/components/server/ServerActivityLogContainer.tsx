@@ -32,7 +32,7 @@ export default () => {
     }, [error]);
 
     return (
-        <ServerContentBlock title={'Logs de Atividades'}>
+        <ServerContentBlock title={'Activity Log'}>
             <FlashMessageRender byKey={'server:activity'} />
             {(filters.filters?.event || filters.filters?.ip) && (
                 <div className={'mb-2 flex justify-end'}>
@@ -48,8 +48,6 @@ export default () => {
             {!data && isValidating ? (
                 <Spinner centered />
             ) : !data?.items.length ? (
-                <p className={'text-sm text-center text-gray-400'}>
-                </p>
                 <p className={'text-center text-sm text-slate-400'}>No activity logs available for this server.</p>
             ) : (
                 <div className={'bg-slate-700'}>
