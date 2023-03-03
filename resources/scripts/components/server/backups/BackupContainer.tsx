@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Spinner from '@/components/elements/Spinner';
 import useFlash from '@/plugins/useFlash';
 import Can from '@/components/elements/Can';
@@ -16,7 +16,7 @@ const BackupContainer = () => {
     const { clearFlashes, clearAndAddHttpError } = useFlash();
     const { data: backups, error, isValidating } = getServerBackups();
 
-    const backupLimit = ServerContext.useStoreState((state) => state.server.data!.featureLimits.backups);
+    const backupLimit = ServerContext.useStoreState(state => state.server.data!.featureLimits.backups);
 
     useEffect(() => {
         if (!error) {
@@ -44,7 +44,7 @@ const BackupContainer = () => {
                             <p css={tw`text-center text-sm text-neutral-300`}>
                                 {page > 1
                                     ? 'Parece que ficamos sem backups para mostrar a você, tente voltar uma página.'
-                                    : 'Parece que não há backups atualmente armazenados para este servidor.'}
+                                    : 'It looks like there are no backups currently stored for this server.'}
                             </p>
                         )
                     ) : (

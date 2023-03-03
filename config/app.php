@@ -11,7 +11,7 @@ return [
     | change this value if you are not maintaining your own internal versions.
     */
 
-    'version' => '1.11.3',
+    'version' => 'canary',
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +88,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'pt'),
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +101,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'pt',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -202,11 +202,6 @@ return [
         Pterodactyl\Providers\RouteServiceProvider::class,
         Pterodactyl\Providers\RepositoryServiceProvider::class,
         Pterodactyl\Providers\ViewComposerServiceProvider::class,
-
-        /*
-         * Additional Dependencies
-         */
-        Prologue\Alerts\AlertsServiceProvider::class,
     ],
 
     /*
@@ -221,10 +216,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Alert' => Prologue\Alerts\Facades\Alert::class,
         'Carbon' => Carbon\Carbon::class,
         'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
-        'Theme' => Pterodactyl\Extensions\Facades\Theme::class,
 
         // Custom Facades
         'Activity' => Pterodactyl\Facades\Activity::class,

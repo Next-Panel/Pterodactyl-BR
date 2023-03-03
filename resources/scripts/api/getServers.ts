@@ -1,5 +1,5 @@
-import http, { getPaginationSet, PaginatedResult } from '@/api/http';
 import { rawDataToServerObject, Server } from '@/api/server/getServer';
+import http, { getPaginationSet, PaginatedResult } from '@/api/http';
 
 interface QueryParams {
     query?: string;
@@ -19,7 +19,7 @@ export default ({ query, ...params }: QueryParams): Promise<PaginatedResult<Serv
                 resolve({
                     items: (data.data || []).map((datum: any) => rawDataToServerObject(datum)),
                     pagination: getPaginationSet(data.meta.pagination),
-                })
+                }),
             )
             .catch(reject);
     });

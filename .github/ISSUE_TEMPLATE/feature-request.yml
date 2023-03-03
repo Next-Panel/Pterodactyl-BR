@@ -1,25 +1,32 @@
-name: Solicitação de recursos
-description: Sugerir um novo recurso ou melhoria para o software.
+name: Feature Request
+description: Suggest a new feature or improvement for the software.
 labels: [feature request]
 body:
 - type: checkboxes
   attributes:
-    label: Existe alguma solicitação de recursos para isso?
-    description: Por favor [pesquise aqui](https://github.com/Jexactyl-Brasil/Jexactyl-Brasil/issues?q=is%3Aissue) para ver se outra pessoa já sugeriu isto.
+    label: Is there an existing feature request for this?
+    description: Please [search here](https://github.com/pterodactyl/panel/issues?q=is%3Aissue) to see if someone else has already suggested this.
     options:
-    - label: Pesquisei as questões existentes antes de abrir este pedido de recurso.
+    - label: I have searched the existing issues before opening this feature request.
       required: true
 
 - type: textarea
   attributes:
-    label: Descreva a característica que você gostaria de ver.
-    description: "Uma descrição clara e concisa da característica que você gostaria de ter acrescentado, e quais os problemas que isso resolveria."
+    label: Describe the feature you would like to see.
+    description: "A clear & concise description of the feature you'd like to have added, and what issues it would solve."
   validations:
     required: true
 
 - type: textarea
   attributes:
-    label: Conteúdo adicional a esta solicitação.
-    description: "Adicione qualquer outro conteúdo ou screenshots sobre o pedido de recursos."
+    label: Describe the solution you'd like.
+    description: "You must explain how you'd like to see this feature implemented. Technical implementation details are not necessary, rather an idea of how you'd like to see this feature used."
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Additional context to this request.
+    description: "Add any other context or screenshots about the feature request."
   validations:
     required: false

@@ -25,7 +25,7 @@ class MakeNodeCommand extends Command
                             {--daemonSFTPPort= : Entre na porta de escuta SFTP das Wings.}
                             {--daemonBase= : Entre na pasta base.}';
 
-    protected $description = 'ria um novo node no sistema por meio da CLI.';
+    protected $description = 'Cria um novo node no sistema por meio da CLI.';
 
     /**
      * MakeNodeCommand constructor.

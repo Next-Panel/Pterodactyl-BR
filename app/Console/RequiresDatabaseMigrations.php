@@ -38,12 +38,12 @@ trait RequiresDatabaseMigrations
         $this->getOutput()->writeln('<options=bold>
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |
 |                                                                              |
-|               Seu Database não foi devidamente migrado!                |
+|               Seu Database não foi devidamente migrado!                      |
 |                                                                              |
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |</>
 Você deve executar o seguinte comando para finalizar a migração de seu Database:
   <fg=green;options=bold>php artisan migrate --step --force</>
-  Você não poderá usar o Painel do Jexactyl como esperado sem fixar seu
+  Você não poderá usar o Painel do Pterodactyl como esperado sem fixar seu
   de Database, executando o comando acima.
 ');
 

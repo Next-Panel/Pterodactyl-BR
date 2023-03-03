@@ -20,9 +20,9 @@ export default ({ username, password, recaptchaData }: LoginData): Promise<Login
                     user: username,
                     password,
                     'g-recaptcha-response': recaptchaData,
-                })
+                }),
             )
-            .then((response) => {
+            .then(response => {
                 if (!(response.data instanceof Object)) {
                     return reject(new Error('Ocorreu um erro ao processar a solicitação de login.'));
                 }
