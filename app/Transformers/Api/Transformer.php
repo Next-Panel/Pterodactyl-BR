@@ -17,7 +17,7 @@ use League\Fractal\TransformerAbstract;
  */
 abstract class Transformer extends TransformerAbstract
 {
-    protected static string $timezone = 'America/Sao_Paulo';
+    protected static string $timezone = 'UTC';
 
     protected Request $request;
 
@@ -108,7 +108,7 @@ abstract class Transformer extends TransformerAbstract
      */
     public static function setTimezone(string $tz = null)
     {
-        static::$timezone = $tz ?? 'America/Sao_Paulo';
+        static::$timezone = $tz ?? 'UTC';
     }
 
     /**

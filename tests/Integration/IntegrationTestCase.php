@@ -32,7 +32,7 @@ abstract class IntegrationTestCase extends TestCase
     protected function formatTimestamp(string $timestamp): string
     {
         return CarbonImmutable::createFromFormat(CarbonInterface::DEFAULT_TO_STRING_FORMAT, $timestamp)
-            ->setTimezone('America/Sao_Paulo')
+            ->setTimezone('UTC')
             ->toAtomString();
     }
 }

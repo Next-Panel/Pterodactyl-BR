@@ -84,7 +84,7 @@ jobs:
       APP_DEBUG: "true"
       APP_KEY: SomeRandomString3232RandomString
       APP_THEME: pterodactyl
-      APP_TIMEZONE: America/Sao_Paulo
+      APP_TIMEZONE: UTC
       APP_URL: http://localhost/
       APP_ENVIRONMENT_ONLY: "true"
       CACHE_DRIVER: array
