@@ -87,6 +87,6 @@ class CommandControllerTest extends ClientApiIntegrationTestCase
 
         $response->assertStatus(Response::HTTP_BAD_GATEWAY);
         $response->assertJsonPath('errors.0.code', 'HttpException');
-        $response->assertJsonPath('errors.0.detail', 'O servidor deve estar online para poder enviar comandos');
+        $response->assertJsonPath('errors.0.detail', 'O servidor deve estar online para poder enviar comandos.');
     }
 }

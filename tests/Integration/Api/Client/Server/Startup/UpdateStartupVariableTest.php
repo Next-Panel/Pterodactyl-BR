@@ -78,7 +78,7 @@ class UpdateStartupVariableTest extends ClientApiIntegrationTestCase
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
         $response->assertJsonPath('errors.0.code', 'BadRequestHttpException');
-        $response->assertJsonPath('errors.0.detail', 'The environment variable you are trying to edit is read-only.');
+        $response->assertJsonPath('errors.0.detail', 'A variável de ambiente que você está tentando editar é somente leitura.');
     }
 
     /**
