@@ -41,11 +41,11 @@ class ScheduleTaskController extends ClientApiController
     {
         $limit = config('pterodactyl.client_features.schedules.per_schedule_task_limit', 10);
         if ($schedule->tasks()->count() >= $limit) {
-            throw new ServiceLimitExceededException("Schedules may not have more than $limit tasks associated with them. Creating this task would put this schedule over the limit.");
+            throw new ServiceLimitExceededException("Os cronogramas não podem ter mais do que $limit de tarefas associadas a eles. A criação desta tarefa colocaria este cronograma acima do limite.");
         }
 
         if ($server->backup_limit === 0 && $request->action === 'backup') {
-            throw new HttpForbiddenException("A backup task cannot be created when the server's backup limit is set to 0.");
+            throw new HttpForbiddenException("Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.");
         }
 
         /** @var \Pterodactyl\Models\Task|null $lastTask */
@@ -105,7 +105,7 @@ class ScheduleTaskController extends ClientApiController
         }
 
         if ($server->backup_limit === 0 && $request->action === 'backup') {
-            throw new HttpForbiddenException("A backup task cannot be created when the server's backup limit is set to 0.");
+            throw new HttpForbiddenException("Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.");
         }
 
         $this->connection->transaction(function () use ($request, $schedule, $task) {
@@ -160,7 +160,7 @@ class ScheduleTaskController extends ClientApiController
         }
 
         if (!$request->user()->can(Permission::ACTION_SCHEDULE_UPDATE, $server)) {
-            throw new HttpForbiddenException('You do not have permission to perform this action.');
+            throw new HttpForbiddenException('Você não tem permissão para realizar esta ação.');
         }
 
         $schedule->tasks()

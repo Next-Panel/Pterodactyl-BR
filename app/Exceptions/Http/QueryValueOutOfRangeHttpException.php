@@ -14,7 +14,7 @@ class QueryValueOutOfRangeHttpException extends HttpException
     {
         parent::__construct(
             Response::HTTP_BAD_REQUEST,
-            '\"' . $name . '\" query parameter must be between ' . $min . ' and ' . $max,
+            '\"' . $name . '\" parâmetro de consulta deve estar entre ' . $min . ' e ' . $max,
             $previous,
         );
     }
