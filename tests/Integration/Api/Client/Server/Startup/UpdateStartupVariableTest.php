@@ -69,7 +69,7 @@ class UpdateStartupVariableTest extends ClientApiIntegrationTestCase
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
         $response->assertJsonPath('errors.0.code', 'BadRequestHttpException');
-        $response->assertJsonPath('errors.0.detail', 'The environment variable you are trying to edit does not exist.');
+        $response->assertJsonPath('errors.0.detail', 'A variável de ambiente que você está tentando editar não existe.');
 
         $response = $this->actingAs($user)->putJson($this->link($server) . '/startup/variable', [
             'key' => 'SERVER_JARFILE',

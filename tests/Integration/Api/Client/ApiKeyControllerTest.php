@@ -116,7 +116,7 @@ class ApiKeyControllerTest extends ClientApiIntegrationTestCase
         ])
             ->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertJsonPath('errors.0.code', 'DisplayException')
-            ->assertJsonPath('errors.0.detail', 'You have reached the account limit for number of API keys.');
+            ->assertJsonPath('errors.0.detail', 'Você atingiu o limite da conta para o número de chaves API.');
     }
 
     /**

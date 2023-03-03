@@ -66,7 +66,7 @@ class DeleteAllocationTest extends ClientApiIntegrationTestCase
         $this->actingAs($user)->deleteJson($this->link($server->allocation))
             ->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertJsonPath('errors.0.code', 'DisplayException')
-            ->assertJsonPath('errors.0.detail', 'You cannot delete the primary allocation for this server.');
+            ->assertJsonPath('errors.0.detail', 'Você não pode excluir a alocação primária para este servidor.');
     }
 
     public function testAllocationCannotBeDeletedIfServerLimitIsNotDefined()
@@ -78,7 +78,7 @@ class DeleteAllocationTest extends ClientApiIntegrationTestCase
 
         $this->actingAs($user)->deleteJson($this->link($allocation))
             ->assertStatus(400)
-            ->assertJsonPath('errors.0.detail', 'You cannot delete allocations for this server: no allocation limit is set.');
+            ->assertJsonPath('errors.0.detail', 'Você não pode excluir alocações para este servidor: nenhum limite de alocação é definido.');
 
         $allocation->refresh();
         $this->assertNotNull($allocation->notes);

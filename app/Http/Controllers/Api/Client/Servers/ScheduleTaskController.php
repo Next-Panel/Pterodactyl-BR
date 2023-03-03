@@ -45,7 +45,7 @@ class ScheduleTaskController extends ClientApiController
         }
 
         if ($server->backup_limit === 0 && $request->action === 'backup') {
-            throw new HttpForbiddenException("Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.");
+            throw new HttpForbiddenException('Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.');
         }
 
         /** @var \Pterodactyl\Models\Task|null $lastTask */
@@ -105,7 +105,7 @@ class ScheduleTaskController extends ClientApiController
         }
 
         if ($server->backup_limit === 0 && $request->action === 'backup') {
-            throw new HttpForbiddenException("Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.");
+            throw new HttpForbiddenException('Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.');
         }
 
         $this->connection->transaction(function () use ($request, $schedule, $task) {

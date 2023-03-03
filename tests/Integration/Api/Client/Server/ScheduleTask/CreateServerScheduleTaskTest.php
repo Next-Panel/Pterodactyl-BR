@@ -102,7 +102,7 @@ class CreateServerScheduleTaskTest extends ClientApiIntegrationTestCase
             'time_offset' => 0,
         ])
             ->assertStatus(Response::HTTP_FORBIDDEN)
-            ->assertJsonPath('errors.0.detail', 'A backup task cannot be created when the server\'s backup limit is set to 0.');
+            ->assertJsonPath('errors.0.detail', 'Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.');
 
         $this->actingAs($user)->postJson($this->link($schedule, '/tasks'), [
             'action' => 'backup',
@@ -110,7 +110,7 @@ class CreateServerScheduleTaskTest extends ClientApiIntegrationTestCase
             'time_offset' => 0,
         ])
             ->assertStatus(Response::HTTP_FORBIDDEN)
-            ->assertJsonPath('errors.0.detail', 'A backup task cannot be created when the server\'s backup limit is set to 0.');
+            ->assertJsonPath('errors.0.detail', 'Uma tarefa de backup não pode ser criada quando o limite de backup do servidor é definido como 0.');
     }
 
     /**
@@ -134,7 +134,7 @@ class CreateServerScheduleTaskTest extends ClientApiIntegrationTestCase
         ])
             ->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertJsonPath('errors.0.code', 'ServiceLimitExceededException')
-            ->assertJsonPath('errors.0.detail', 'Schedules may not have more than 2 tasks associated with them. Creating this task would put this schedule over the limit.');
+            ->assertJsonPath('errors.0.detail', 'Os cronogramas não podem ter mais do que 2 de tarefas associadas a eles. A criação desta tarefa colocaria este cronograma acima do limite.');
     }
 
     /**

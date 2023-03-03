@@ -162,7 +162,7 @@ class SftpAuthenticationControllerTest extends IntegrationTestCase
             'password' => 'foobar',
         ])
             ->assertForbidden()
-            ->assertJsonPath('errors.0.detail', 'You do not have permission to access SFTP for this server.');
+            ->assertJsonPath('errors.0.detail', 'Você não tem permissão de acesso ao SFTP para este servidor.');
     }
 
     /**
