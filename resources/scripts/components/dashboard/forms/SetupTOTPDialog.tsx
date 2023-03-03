@@ -90,8 +90,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 autoComplete={'one-time-code'}
                 pattern={'\\d{6}'}
             />
-            Senha da conta
-            <label htmlFor={'totp-password'} className={'mt-3 block'}></label>
+            <label htmlFor={'totp-password'} className={'mt-3 block'}>Senha da conta</label>
             <Input.Text
                 variant={Input.Text.Variants.Loose}
                 className={'mt-1'}
@@ -126,5 +125,5 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
 export default asDialog({
     title: 'Habilitar a verificação em duas etapas',
     description:
-        "Help protect your account from unauthorized access. You'll be prompted for a verification code each time you sign in.",
+        "Ajude a proteger sua conta contra acesso não autorizado. Você será solicitado a fornecer um código de verificação sempre que entrar.",
 })(ConfigureTwoFactorForm);

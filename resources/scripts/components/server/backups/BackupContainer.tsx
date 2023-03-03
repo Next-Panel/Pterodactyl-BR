@@ -44,7 +44,7 @@ const BackupContainer = () => {
                             <p css={tw`text-center text-sm text-neutral-300`}>
                                 {page > 1
                                     ? 'Parece que ficamos sem backups para mostrar a você, tente voltar uma página.'
-                                    : 'It looks like there are no backups currently stored for this server.'}
+                                    : 'Parece que não há backups atualmente armazenados para este servidor.'}
                             </p>
                         )
                     ) : (

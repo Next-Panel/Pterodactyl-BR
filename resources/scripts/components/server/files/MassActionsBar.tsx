@@ -75,8 +75,8 @@ const MassActionsBar = () => {
                 >
                     <p className="mb-2">
                         Tem certeza de que deseja excluir&nbsp;
-                        <span className="font-semibold text-slate-50">{selectedFiles.length} arquivos</span>? Isto é uma
-                        Ação permanente e os arquivos não podem ser recuperados.
+                        <span className="font-semibold text-slate-50">{selectedFiles.length} arquivos</span>? Isto é
+                        uma Ação permanente e os arquivos não podem ser recuperados.
                     </p>
                     {selectedFiles.slice(0, 15).map(file => (
                         <li key={file}>{file}</li>

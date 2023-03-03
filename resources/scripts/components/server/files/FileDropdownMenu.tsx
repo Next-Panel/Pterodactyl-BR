@@ -138,7 +138,7 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
                 onConfirmed={doDeletion}
             >
                 Você não será capaz de recuperar o conteúdo de&nbsp;
-                <span className={'font-semibold text-slate-50'}>{file.name}</span> once deleted.
+                <span className={'font-semibold text-slate-50'}>{file.name}</span> Uma vez excluído.
             </Dialog.Confirm>
             <DropdownMenu
                 ref={onClickRef}
@@ -174,7 +174,7 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
                 </Can>
                 {file.isFile && (
                     <Can action={'file.create'}>
-                        <Row onClick={doCopy} icon={faCopy} title={'Copy'} />
+                        <Row onClick={doCopy} icon={faCopy} title={'Copiar'} />
                     </Can>
                 )}
                 {file.isArchiveType() ? (
