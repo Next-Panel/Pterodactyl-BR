@@ -1,6 +1,5 @@
-import type { ComponentType } from 'react';
-import { lazy } from 'react';
-
+import React, { lazy } from 'react';
+import ServerConsole from '@/components/server/console/ServerConsoleContainer';
 import DatabasesContainer from '@/components/server/databases/DatabasesContainer';
 import ScheduleContainer from '@/components/server/schedules/ScheduleContainer';
 import UsersContainer from '@/components/server/users/UsersContainer';
@@ -16,152 +15,129 @@ import ActivityLogContainer from '@/components/dashboard/activity/ActivityLogCon
 import ServerActivityLogContainer from '@/components/server/ServerActivityLogContainer';
 
 // Each of the router files is already code split out appropriately — so
-// all the items above will only be loaded in when that router is loaded.
+// all of the items above will only be loaded in when that router is loaded.
 //
 // These specific lazy loaded routes are to avoid loading in heavy screens
 // for the server dashboard when they're only needed for specific instances.
-const ServerConsoleContainer = lazy(() => import('@/components/server/console/ServerConsoleContainer'));
 const FileEditContainer = lazy(() => import('@/components/server/files/FileEditContainer'));
 const ScheduleEditContainer = lazy(() => import('@/components/server/schedules/ScheduleEditContainer'));
 
 interface RouteDefinition {
-    /**
-     * Route is the path that will be matched against, this field supports wildcards.
-     */
-    route: string;
-    /**
-     * Path is the path that will be used for any navbars or links, do not use wildcards or fancy
-     * matchers here. If this field is left undefined, this route will not have a navigation element,
-     */
-    path?: string;
+    path: string;
     // If undefined is passed this route is still rendered into the router itself
     // but no navigation link is displayed in the sub-navigation menu.
     name: string | undefined;
-    component: ComponentType;
-    end?: boolean;
+    component: React.ComponentType;
+    exact?: boolean;
 }
 
 interface ServerRouteDefinition extends RouteDefinition {
-    permission?: string | string[];
+    permission: string | string[] | null;
 }
 
 interface Routes {
-    // All the routes available under "/account"
+    // All of the routes available under "/account"
     account: RouteDefinition[];
-    // All the routes available under "/server/:id"
+    // All of the routes available under "/server/:id"
     server: ServerRouteDefinition[];
 }
 
 export default {
     account: [
         {
-            route: '',
-            path: '',
-            name: 'Account',
+            path: '/',
+            name: 'Conta',
             component: AccountOverviewContainer,
-            end: true,
+            exact: true,
         },
         {
-            route: 'api',
-            path: 'api',
-            name: 'API Credentials',
+            path: '/api',
+            name: 'Credenciais API',
             component: AccountApiContainer,
         },
         {
-            route: 'ssh',
-            path: 'ssh',
-            name: 'SSH Keys',
+            path: '/ssh',
+            name: 'Chaves SSH',
             component: AccountSSHContainer,
         },
         {
-            route: 'activity',
-            path: 'activity',
-            name: 'Activity',
+            path: '/activity',
+            name: 'Atividade',
             component: ActivityLogContainer,
         },
     ],
     server: [
         {
-            route: '',
-            path: '',
+            path: '/',
             permission: null,
             name: 'Console',
-            component: ServerConsoleContainer,
-            end: true,
+            component: ServerConsole,
+            exact: true,
         },
         {
-            route: 'files/*',
-            path: 'files',
+            path: '/files',
             permission: 'file.*',
-            name: 'Files',
+            name: 'Arquivos',
             component: FileManagerContainer,
         },
         {
-            route: 'files/:action/*',
+            path: '/files/:action(edit|new)',
             permission: 'file.*',
             name: undefined,
             component: FileEditContainer,
         },
         {
-            route: 'databases/*',
-            path: 'databases',
+            path: '/databases',
             permission: 'database.*',
             name: 'Databases',
             component: DatabasesContainer,
         },
         {
-            route: 'schedules/*',
-            path: 'schedules',
+            path: '/schedules',
             permission: 'schedule.*',
-            name: 'Schedules',
+            name: 'Cronogramas',
             component: ScheduleContainer,
         },
         {
-            route: 'schedules/:id/*',
+            path: '/schedules/:id',
             permission: 'schedule.*',
             name: undefined,
             component: ScheduleEditContainer,
         },
         {
-            route: 'users/*',
-            path: 'users',
+            path: '/users',
             permission: 'user.*',
-            name: 'Users',
+            name: 'Usuários',
             component: UsersContainer,
         },
         {
-            route: 'backups/*',
-            path: 'backups',
+            path: '/backups',
             permission: 'backup.*',
             name: 'Backups',
             component: BackupContainer,
         },
         {
-            route: 'network/*',
-            path: 'network',
+            path: '/network',
             permission: 'allocation.*',
-            name: 'Network',
+            name: 'Rede',
             component: NetworkContainer,
         },
         {
-            route: 'startup/*',
-            path: 'startup',
+            path: '/startup',
             permission: 'startup.*',
-            name: 'Startup',
+            name: 'Inicialização',
             component: StartupContainer,
         },
         {
-            route: 'settings/*',
-            path: 'settings',
+            path: '/settings',
             permission: ['settings.*', 'file.sftp'],
-            name: 'Settings',
+            name: 'Configurações',
             component: SettingsContainer,
         },
         {
-            route: 'activity/*',
-            path: 'activity',
+            path: '/activity',
             permission: 'activity.*',
-            name: 'Activity',
+            name: 'Atividades',
             component: ServerActivityLogContainer,
         },
     ],

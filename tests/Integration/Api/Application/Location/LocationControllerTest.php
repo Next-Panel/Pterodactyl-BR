@@ -2,6 +2,7 @@
 
 namespace Pterodactyl\Tests\Integration\Api\Application\Location;
 
+use Pterodactyl\Models\Node;
 use Illuminate\Http\Response;
 use Pterodactyl\Models\Location;
 use Pterodactyl\Transformers\Api\Application\NodeTransformer;
@@ -99,10 +100,11 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
         ]);
 
         $response->assertStatus(Response::HTTP_CREATED);
-        $response->assertJsonCount(2);
+        $response->assertJsonCount(3);
         $response->assertJsonStructure([
             'object',
             'attributes' => ['id', 'short', 'long', 'created_at', 'updated_at'],
+            'meta' => ['resource'],
         ]);
 
         $this->assertDatabaseHas('locations', ['short' => 'inhouse', 'long' => 'This is my inhouse location']);
@@ -110,7 +112,10 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
         $location = Location::where('short', 'inhouse')->first();
         $response->assertJson([
             'object' => 'location',
-            'attributes' => (new LocationTransformer())->transform($location),
+            'attributes' => $this->getTransformer(LocationTransformer::class)->transform($location),
+            'meta' => [
+                'resource' => route('api.application.locations.view', $location->id),
+            ],
         ], true);
     }
 
@@ -137,7 +142,7 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
 
         $response->assertJson([
             'object' => 'location',
-            'attributes' => (new LocationTransformer())->transform($location),
+            'attributes' => $this->getTransformer(LocationTransformer::class)->transform($location),
         ]);
     }
 
@@ -184,7 +189,7 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
                         'data' => [
                             [
                                 'object' => 'node',
-                                'attributes' => (new NodeTransformer())->transform($server->getRelation('node')),
+                                'attributes' => $this->getTransformer(NodeTransformer::class)->transform($server->getRelation('node')),
                             ],
                         ],
                     ],
@@ -193,7 +198,7 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
                         'data' => [
                             [
                                 'object' => 'server',
-                                'attributes' => (new ServerTransformer())->transform($server),
+                                'attributes' => $this->getTransformer(ServerTransformer::class)->transform($server),
                             ],
                         ],
                     ],
@@ -208,7 +213,33 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
      */
     public function testKeyWithoutPermissionCannotLoadRelationship()
     {
-        $this->markTestSkipped('todo: implement proper admin api key permissions system');
+        $this->createNewDefaultApiKey($this->getApiUser(), ['r_nodes' => 0]);
+
+        $location = Location::factory()->create();
+        Node::factory()->create(['location_id' => $location->id]);
+
+        $response = $this->getJson('/api/application/locations/' . $location->id . '?include=nodes');
+        $response->assertStatus(Response::HTTP_OK);
+        $response->assertJsonCount(2)->assertJsonCount(1, 'attributes.relationships');
+        $response->assertJsonStructure([
+            'attributes' => [
+                'relationships' => [
+                    'nodes' => ['object', 'attributes'],
+                ],
+            ],
+        ]);
+
+        // Just assert that we see the expected relationship IDs in the response.
+        $response->assertJson([
+            'attributes' => [
+                'relationships' => [
+                    'nodes' => [
+                        'object' => 'null_resource',
+                        'attributes' => null,
+                    ],
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -218,7 +249,7 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
      */
     public function testGetMissingLocation()
     {
-        $response = $this->getJson('/api/application/locations/0');
+        $response = $this->getJson('/api/application/locations/nil');
         $this->assertNotFoundJson($response);
     }
 
@@ -228,6 +259,10 @@ class LocationControllerTest extends ApplicationApiIntegrationTestCase
      */
     public function testErrorReturnedIfNoPermission()
     {
-        $this->markTestSkipped('todo: implement proper admin api key permissions system');
+        $location = Location::factory()->create();
+        $this->createNewDefaultApiKey($this->getApiUser(), ['r_locations' => 0]);
+
+        $response = $this->getJson('/api/application/locations/' . $location->id);
+        $this->assertAccessDeniedJson($response);
     }
 }

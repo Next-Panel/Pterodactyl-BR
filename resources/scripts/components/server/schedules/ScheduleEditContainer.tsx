@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import getServerSchedule from '@/api/server/schedules/getServerSchedule';
 import Spinner from '@/components/elements/Spinner';
 import FlashMessageRender from '@/components/FlashMessageRender';
@@ -18,6 +18,10 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import ScheduleCronRow from '@/components/server/schedules/ScheduleCronRow';
 import RunScheduleButton from '@/components/server/schedules/RunScheduleButton';
+
+interface Params {
+    id: string;
+}
 
 const CronBox = ({ title, value }: { title: string; value: string }) => (
     <div css={tw`bg-neutral-700 rounded p-3`}>
@@ -38,21 +42,21 @@ const ActivePill = ({ active }: { active: boolean }) => (
 );
 
 export default () => {
-    const { id: scheduleId } = useParams<'id'>();
-    const navigate = useNavigate();
+    const history = useHistory();
+    const { id: scheduleId } = useParams<Params>();
 
-    const id = ServerContext.useStoreState(state => state.server.data!.id);
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
+    const id = ServerContext.useStoreState((state) => state.server.data!.id);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
 
     const { clearFlashes, clearAndAddHttpError } = useFlash();
     const [isLoading, setIsLoading] = useState(true);
     const [showEditModal, setShowEditModal] = useState(false);
 
     const schedule = ServerContext.useStoreState(
-        st => st.schedules.data.find(s => s.id === Number(scheduleId)),
-        isEqual,
+        (st) => st.schedules.data.find((s) => s.id === Number(scheduleId)),
+        isEqual
     );
-    const appendSchedule = ServerContext.useStoreActions(actions => actions.schedules.appendSchedule);
+    const appendSchedule = ServerContext.useStoreActions((actions) => actions.schedules.appendSchedule);
 
     useEffect(() => {
         if (schedule?.id === Number(scheduleId)) {
@@ -62,8 +66,8 @@ export default () => {
 
         clearFlashes('schedules');
         getServerSchedule(uuid, Number(scheduleId))
-            .then(schedule => appendSchedule(schedule))
-            .catch(error => {
+            .then((schedule) => appendSchedule(schedule))
+            .catch((error) => {
                 console.error(error);
                 clearAndAddHttpError({ error, key: 'schedules' });
             })
@@ -71,7 +75,7 @@ export default () => {
     }, [scheduleId]);
 
     const toggleEditModal = useCallback(() => {
-        setShowEditModal(s => !s);
+        setShowEditModal((s) => !s);
     }, []);
 
     return (
@@ -123,7 +127,7 @@ export default () => {
                             </div>
                             <div css={tw`flex sm:block mt-3 sm:mt-0`}>
                                 <Can action={'schedule.update'}>
-                                    <Button.Text className={'mr-4 flex-1'} onClick={toggleEditModal}>
+                                    <Button.Text className={'flex-1 mr-4'} onClick={toggleEditModal}>
                                         Editar
                                     </Button.Text>
                                     <NewTaskButton schedule={schedule} />
@@ -141,9 +145,9 @@ export default () => {
                             {schedule.tasks.length > 0
                                 ? schedule.tasks
                                       .sort((a, b) =>
-                                          a.sequenceId === b.sequenceId ? 0 : a.sequenceId > b.sequenceId ? 1 : -1,
+                                          a.sequenceId === b.sequenceId ? 0 : a.sequenceId > b.sequenceId ? 1 : -1
                                       )
-                                      .map(task => (
+                                      .map((task) => (
                                           <ScheduleTaskRow
                                               key={`${schedule.id}_${task.id}`}
                                               task={task}
@@ -158,7 +162,7 @@ export default () => {
                         <Can action={'schedule.delete'}>
                             <DeleteScheduleButton
                                 scheduleId={schedule.id}
-                                onDeleted={() => navigate(`/server/${id}/schedules`)}
+                                onDeleted={() => history.push(`/server/${id}/schedules`)}
                             />
                         </Can>
                         {schedule.tasks.length > 0 && (

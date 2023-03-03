@@ -1,3 +1,4 @@
+import React from 'react';
 import TitledGreyBox from '@/components/elements/TitledGreyBox';
 import { ServerContext } from '@/state/server';
 import { useStoreState } from 'easy-peasy';
@@ -15,11 +16,11 @@ import { ip } from '@/lib/formatters';
 import { Button } from '@/components/elements/button/index';
 
 export default () => {
-    const username = useStoreState(state => state.user.data!.username);
-    const id = ServerContext.useStoreState(state => state.server.data!.id);
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const node = ServerContext.useStoreState(state => state.server.data!.node);
-    const sftp = ServerContext.useStoreState(state => state.server.data!.sftpDetails, isEqual);
+    const username = useStoreState((state) => state.user.data!.username);
+    const id = ServerContext.useStoreState((state) => state.server.data!.id);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const node = ServerContext.useStoreState((state) => state.server.data!.node);
+    const sftp = ServerContext.useStoreState((state) => state.server.data!.sftpDetails, isEqual);
 
     return (
         <ServerContentBlock title={'Configurações'}>

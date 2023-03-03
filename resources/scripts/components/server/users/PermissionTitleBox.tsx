@@ -1,33 +1,29 @@
+import React, { memo, useCallback } from 'react';
 import { useField } from 'formik';
-import type { ReactNode } from 'react';
-import { memo, useCallback } from 'react';
-import isEqual from 'react-fast-compare';
-import tw from 'twin.macro';
-
 import TitledGreyBox from '@/components/elements/TitledGreyBox';
+import tw from 'twin.macro';
 import Input from '@/components/elements/Input';
+import isEqual from 'react-fast-compare';
 
 interface Props {
-    children?: ReactNode;
-    className?: string;
-
-    isEditable?: boolean;
+    isEditable: boolean;
     title: string;
     permissions: string[];
+    className?: string;
 }
 
-function PermissionTitleBox({ isEditable, title, permissions, className, children }: Props) {
+const PermissionTitleBox: React.FC<Props> = memo(({ isEditable, title, permissions, className, children }) => {
     const [{ value }, , { setValue }] = useField<string[]>('permissions');
 
     const onCheckboxClicked = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             if (e.currentTarget.checked) {
-                setValue([...value, ...permissions.filter(p => !value.includes(p))]);
+                setValue([...value, ...permissions.filter((p) => !value.includes(p))]);
             } else {
-                setValue(value.filter(p => !permissions.includes(p)));
+                setValue(value.filter((p) => !permissions.includes(p)));
             }
         },
-        [permissions, value],
+        [permissions, value]
     );
 
     return (
@@ -38,7 +34,7 @@ function PermissionTitleBox({ isEditable, title, permissions, className, childre
                     {isEditable && (
                         <Input
                             type={'checkbox'}
-                            checked={permissions.every(p => value.includes(p))}
+                            checked={permissions.every((p) => value.includes(p))}
                             onChange={onCheckboxClicked}
                         />
                     )}
@@ -49,8 +45,6 @@ function PermissionTitleBox({ isEditable, title, permissions, className, childre
             {children}
         </TitledGreyBox>
     );
-}
+}, isEqual);
 
-const MemoizedPermissionTitleBox = memo(PermissionTitleBox, isEqual);
-
-export default MemoizedPermissionTitleBox;
+export default PermissionTitleBox;

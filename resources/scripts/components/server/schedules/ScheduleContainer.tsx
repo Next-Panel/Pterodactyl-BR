@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import getServerSchedules from '@/api/server/schedules/getServerSchedules';
 import { ServerContext } from '@/state/server';
 import Spinner from '@/components/elements/Spinner';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import FlashMessageRender from '@/components/FlashMessageRender';
 import ScheduleRow from '@/components/server/schedules/ScheduleRow';
 import { httpErrorToHuman } from '@/api/http';
@@ -12,23 +13,24 @@ import tw from 'twin.macro';
 import GreyRowBox from '@/components/elements/GreyRowBox';
 import { Button } from '@/components/elements/button/index';
 import ServerContentBlock from '@/components/elements/ServerContentBlock';
-import { Link } from 'react-router-dom';
 
-function ScheduleContainer() {
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
+export default () => {
+    const match = useRouteMatch();
+    const history = useHistory();
+
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const { clearFlashes, addError } = useFlash();
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false);
 
-    const schedules = ServerContext.useStoreState(state => state.schedules.data);
-    const setSchedules = ServerContext.useStoreActions(actions => actions.schedules.setSchedules);
+    const schedules = ServerContext.useStoreState((state) => state.schedules.data);
+    const setSchedules = ServerContext.useStoreActions((actions) => actions.schedules.setSchedules);
 
     useEffect(() => {
         clearFlashes('schedules');
-
         getServerSchedules(uuid)
-            .then(schedules => setSchedules(schedules))
-            .catch(error => {
+            .then((schedules) => setSchedules(schedules))
+            .catch((error) => {
                 addError({ message: httpErrorToHuman(error), key: 'schedules' });
                 console.error(error);
             })
@@ -47,13 +49,16 @@ function ScheduleContainer() {
                             Não há cronogramas configurados para este servidor.
                         </p>
                     ) : (
-                        schedules.map(schedule => (
-                            // @ts-expect-error go away
+                        schedules.map((schedule) => (
                             <GreyRowBox
+                                as={'a'}
                                 key={schedule.id}
-                                as={Link}
-                                to={schedule.id}
+                                href={`${match.url}/${schedule.id}`}
                                 css={tw`cursor-pointer mb-2 flex-wrap`}
+                                onClick={(e: any) => {
+                                    e.preventDefault();
+                                    history.push(`${match.url}/${schedule.id}`);
+                                }}
                             >
                                 <ScheduleRow schedule={schedule} />
                             </GreyRowBox>
@@ -71,6 +76,4 @@ function ScheduleContainer() {
             )}
         </ServerContentBlock>
     );
-}
-
-export default ScheduleContainer;
+};

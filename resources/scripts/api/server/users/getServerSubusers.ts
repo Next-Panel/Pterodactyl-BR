@@ -1,5 +1,5 @@
-import http, { FractalResponseData } from '@/api/http';
 import { Subuser } from '@/state/server/subusers';
+import http, { FractalResponseData } from '@/api/http';
 
 export const rawDataToServerSubuser = (data: FractalResponseData): Subuser => ({
     uuid: data.attributes.uuid,
@@ -9,7 +9,7 @@ export const rawDataToServerSubuser = (data: FractalResponseData): Subuser => ({
     twoFactorEnabled: data.attributes['2fa_enabled'],
     createdAt: new Date(data.attributes.created_at),
     permissions: data.attributes.permissions || [],
-    can: permission => (data.attributes.permissions || []).indexOf(permission) >= 0,
+    can: (permission) => (data.attributes.permissions || []).indexOf(permission) >= 0,
 });
 
 export default (uuid: string): Promise<Subuser[]> => {

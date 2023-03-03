@@ -1,13 +1,12 @@
+import React, { useContext, useEffect } from 'react';
+import { ServerContext } from '@/state/server';
 import { CloudUploadIcon, XIcon } from '@heroicons/react/solid';
-import { useSignal } from '@preact/signals-react';
-import { useContext, useEffect } from 'react';
-
-import { Button } from '@/components/elements/button/index';
+import asDialog from '@/hoc/asDialog';
 import { Dialog, DialogWrapperContext } from '@/components/elements/dialog';
+import { Button } from '@/components/elements/button/index';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 import Code from '@/components/elements/Code';
-import asDialog from '@/hoc/asDialog';
-import { ServerContext } from '@/state/server';
+import { useSignal } from '@preact/signals-react';
 
 const svgProps = {
     cx: 16,
@@ -25,7 +24,7 @@ const Spinner = ({ progress, className }: { progress: number; className?: string
             {...svgProps}
             stroke={'white'}
             strokeDasharray={28 * Math.PI}
-            className={'origin-[50%_50%] rotate-[-90deg] transition-[stroke-dashoffset] duration-300'}
+            className={'rotate-[-90deg] origin-[50%_50%] transition-[stroke-dashoffset] duration-300'}
             style={{ strokeDashoffset: ((100 - progress) / 100) * 28 * Math.PI }}
         />
     </svg>
@@ -33,27 +32,27 @@ const Spinner = ({ progress, className }: { progress: number; className?: string
 
 const FileUploadList = () => {
     const { close } = useContext(DialogWrapperContext);
-    const cancelFileUpload = ServerContext.useStoreActions(actions => actions.files.cancelFileUpload);
-    const clearFileUploads = ServerContext.useStoreActions(actions => actions.files.clearFileUploads);
-    const uploads = ServerContext.useStoreState(state =>
-        Object.entries(state.files.uploads).sort(([a], [b]) => a.localeCompare(b)),
+    const cancelFileUpload = ServerContext.useStoreActions((actions) => actions.files.cancelFileUpload);
+    const clearFileUploads = ServerContext.useStoreActions((actions) => actions.files.clearFileUploads);
+    const uploads = ServerContext.useStoreState((state) =>
+        Object.entries(state.files.uploads).sort(([a], [b]) => a.localeCompare(b))
     );
 
     return (
-        <div className={'mt-6 space-y-2'}>
+        <div className={'space-y-2 mt-6'}>
             {uploads.map(([name, file]) => (
-                <div key={name} className={'flex items-center space-x-3 rounded bg-slate-700 p-3'}>
+                <div key={name} className={'flex items-center space-x-3 bg-gray-700 p-3 rounded'}>
                     <Tooltip content={`${Math.floor((file.loaded / file.total) * 100)}%`} placement={'left'}>
                         <div className={'flex-shrink-0'}>
-                            <Spinner progress={(file.loaded / file.total) * 100} className={'h-6 w-6'} />
+                            <Spinner progress={(file.loaded / file.total) * 100} className={'w-6 h-6'} />
                         </div>
                     </Tooltip>
                     <Code className={'flex-1 truncate'}>{name}</Code>
                     <button
                         onClick={cancelFileUpload.bind(this, name)}
-                        className={'text-slate-500 transition-colors duration-75 hover:text-slate-200'}
+                        className={'text-gray-500 hover:text-gray-200 transition-colors duration-75'}
                     >
-                        <XIcon className={'h-5 w-5'} />
+                        <XIcon className={'w-5 h-5'} />
                     </button>
                 </div>
             ))}
@@ -75,8 +74,8 @@ const FileUploadListDialog = asDialog({
 export default () => {
     const open = useSignal(false);
 
-    const count = ServerContext.useStoreState(state => Object.keys(state.files.uploads).length);
-    const progress = ServerContext.useStoreState(state => ({
+    const count = ServerContext.useStoreState((state) => Object.keys(state.files.uploads).length);
+    const progress = ServerContext.useStoreState((state) => ({
         uploaded: Object.values(state.files.uploads).reduce((count, file) => count + file.loaded, 0),
         total: Object.values(state.files.uploads).reduce((count, file) => count + file.total, 0),
     }));
@@ -92,11 +91,11 @@ export default () => {
             {count > 0 && (
                 <Tooltip content={`${count} files are uploading, click to view`}>
                     <button
-                        className={'flex h-10 w-10 items-center justify-center'}
+                        className={'flex items-center justify-center w-10 h-10'}
                         onClick={() => (open.value = true)}
                     >
-                        <Spinner progress={(progress.uploaded / progress.total) * 100} className={'h-8 w-8'} />
-                        <CloudUploadIcon className={'absolute mx-auto h-3 animate-pulse'} />
+                        <Spinner progress={(progress.uploaded / progress.total) * 100} className={'w-8 h-8'} />
+                        <CloudUploadIcon className={'h-3 absolute mx-auto animate-pulse'} />
                     </button>
                 </Tooltip>
             )}

@@ -1,11 +1,10 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react';
-import tw from 'twin.macro';
-
+import React from 'react';
 import FlashMessageRender from '@/components/FlashMessageRender';
 import SpinnerOverlay from '@/components/elements/SpinnerOverlay';
+import tw from 'twin.macro';
 
 type Props = Readonly<
-    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
         title?: string;
         borderColor?: string;
         showFlashes?: string | boolean;

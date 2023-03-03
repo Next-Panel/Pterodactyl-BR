@@ -5,7 +5,6 @@ namespace Pterodactyl\Repositories\Eloquent;
 use Illuminate\Http\Request;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Pterodactyl\Repositories\Repository;
 use Illuminate\Database\Eloquent\Builder;
@@ -76,7 +75,6 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
      */
     public function create(array $fields, bool $validate = true, bool $force = false): Model|bool
     {
-        /** @var \Pterodactyl\Models\Model $instance */
         $instance = $this->getBuilder()->newModelInstance();
         ($force) ? $instance->forceFill($fields) : $instance->fill($fields);
 
@@ -162,7 +160,6 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
     public function update(int $id, array $fields, bool $validate = true, bool $force = false): Model|bool
     {
         try {
-            /** @var \Pterodactyl\Models\Model $instance */
             $instance = $this->getBuilder()->where('id', $id)->firstOrFail();
         } catch (ModelNotFoundException) {
             throw new RecordNotFoundException();
@@ -274,17 +271,7 @@ abstract class EloquentRepository extends Repository implements RepositoryInterf
             return sprintf('(%s)', $grammar->parameterize($record));
         })->implode(', ');
 
-        $driver = DB::getPdo()->getAttribute(\PDO::ATTR_DRIVER_NAME);
-        switch ($driver) {
-            case 'mysql':
-                $statement = "insert ignore into $table ($columns) values $parameters";
-                break;
-            case 'pgsql':
-                $statement = "insert into $table ($columns) values $parameters on conflict do nothing";
-                break;
-            default:
-                throw new \RuntimeException("Unsupported database driver \"$driver\" for insert ignore.");
-        }
+        $statement = "insert ignore into $table ($columns) values $parameters";
 
         return $this->getBuilder()->getConnection()->statement($statement, $bindings);
     }

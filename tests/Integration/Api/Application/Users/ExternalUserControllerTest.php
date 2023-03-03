@@ -22,7 +22,7 @@ class ExternalUserControllerTest extends ApplicationApiIntegrationTestCase
         $response->assertJsonStructure([
             'object',
             'attributes' => [
-                'id', 'external_id', 'uuid', 'username', 'email',
+                'id', 'external_id', 'uuid', 'username', 'email', 'first_name', 'last_name',
                 'language', 'root_admin', '2fa', 'created_at', 'updated_at',
             ],
         ]);
@@ -35,9 +35,11 @@ class ExternalUserControllerTest extends ApplicationApiIntegrationTestCase
                 'uuid' => $user->uuid,
                 'username' => $user->username,
                 'email' => $user->email,
+                'first_name' => $user->name_first,
+                'last_name' => $user->name_last,
                 'language' => $user->language,
                 'root_admin' => (bool) $user->root_admin,
-                '2fa' => (bool) $user->use_totp,
+                '2fa' => (bool) $user->totp_enabled,
                 'created_at' => $this->formatTimestamp($user->created_at),
                 'updated_at' => $this->formatTimestamp($user->updated_at),
             ],
@@ -49,7 +51,7 @@ class ExternalUserControllerTest extends ApplicationApiIntegrationTestCase
      */
     public function testGetMissingUser()
     {
-        $response = $this->getJson('/api/application/users/external/0');
+        $response = $this->getJson('/api/application/users/external/nil');
         $this->assertNotFoundJson($response);
     }
 
@@ -59,6 +61,10 @@ class ExternalUserControllerTest extends ApplicationApiIntegrationTestCase
      */
     public function testErrorReturnedIfNoPermission()
     {
-        $this->markTestSkipped('todo: implement proper admin api key permissions system');
+        $user = User::factory()->create(['external_id' => Str::random()]);
+        $this->createNewDefaultApiKey($this->getApiUser(), ['r_users' => 0]);
+
+        $response = $this->getJson('/api/application/users/external/' . $user->external_id);
+        $this->assertAccessDeniedJson($response);
     }
 }

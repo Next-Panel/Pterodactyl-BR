@@ -1,5 +1,5 @@
-import { rawDataToServerDatabase, ServerDatabase } from '@/api/server/databases/getServerDatabases';
 import http from '@/api/http';
+import { rawDataToServerDatabase, ServerDatabase } from '@/api/server/databases/getServerDatabases';
 
 export default (uuid: string, data: { connectionsFrom: string; databaseName: string }): Promise<ServerDatabase> => {
     return new Promise((resolve, reject) => {
@@ -11,9 +11,9 @@ export default (uuid: string, data: { connectionsFrom: string; databaseName: str
             },
             {
                 params: { include: 'password' },
-            },
+            }
         )
-            .then(response => resolve(rawDataToServerDatabase(response.data.attributes)))
+            .then((response) => resolve(rawDataToServerDatabase(response.data.attributes)))
             .catch(reject);
     });
 };

@@ -27,11 +27,11 @@ class ResourceBelongsToServer
     public function handle(Request $request, \Closure $next): mixed
     {
         $params = $request->route()->parameters();
-        if (!$params['server'] instanceof Server) {
+        if (is_null($params) || !$params['server'] instanceof Server) {
             throw new \InvalidArgumentException('Este middleware não pode ser usado em um contexto que não tenha um servidor nos parâmetros.');
         }
 
-        /** @var Server $server */
+        /** @var \Pterodactyl\Models\Server $server */
         $server = $request->route()->parameter('server');
         $exception = new NotFoundHttpException('O recurso solicitado não foi encontrado para este servidor.');
         foreach ($params as $key => $model) {
@@ -43,7 +43,6 @@ class ResourceBelongsToServer
                 continue;
             }
 
-            /** @var Allocation|Backup|Database|Schedule|Subuser $model */
             switch (get_class($model)) {
                 // All of these models use "server_id" as the field key for the server
                 // they are assigned to, so the logic is identical for them all.
@@ -70,7 +69,6 @@ class ResourceBelongsToServer
                     // Tasks are special since they're (currently) the only item in the API
                     // that requires something in addition to the server in order to be accessed.
                 case Task::class:
-                    /** @var Schedule $schedule */
                     $schedule = $request->route()->parameter('schedule');
                     if ($model->schedule_id !== $schedule->id || $schedule->server_id !== $server->id) {
                         throw $exception;

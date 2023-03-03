@@ -1,5 +1,6 @@
+import * as React from 'react';
 import tw, { TwStyle } from 'twin.macro';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export type FlashMessageType = 'success' | 'info' | 'warning' | 'error';
 
@@ -41,7 +42,7 @@ const getBackground = (type?: FlashMessageType): TwStyle | string => {
 
 const Container = styled.div<{ $type?: FlashMessageType }>`
     ${tw`p-2 border items-center leading-normal rounded flex w-full text-sm text-white`};
-    ${props => styling(props.$type)};
+    ${(props) => styling(props.$type)};
 `;
 Container.displayName = 'MessageBox.Container';
 

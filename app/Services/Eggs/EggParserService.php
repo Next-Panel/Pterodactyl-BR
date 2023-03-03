@@ -4,6 +4,7 @@ namespace Pterodactyl\Services\Eggs;
 
 use Illuminate\Support\Arr;
 use Pterodactyl\Models\Egg;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Pterodactyl\Exceptions\Service\InvalidFileUploadException;
 
@@ -12,10 +13,17 @@ class EggParserService
     /**
      * Takes an uploaded file and parses out the egg configuration from within.
      *
+     * @throws \JsonException
      * @throws \Pterodactyl\Exceptions\Service\InvalidFileUploadException
      */
-    public function handle(array $parsed): array
+    public function handle(UploadedFile $file): array
     {
+        if ($file->getError() !== UPLOAD_ERR_OK || !$file->isFile()) {
+            throw new InvalidFileUploadException('O arquivo selecionado não é válido e não pode ser importado.');
+        }
+
+        /** @var array $parsed */
+        $parsed = json_decode($file->openFile()->fread($file->getSize()), true, 512, JSON_THROW_ON_ERROR);
         if (!in_array(Arr::get($parsed, 'meta.version') ?? '', ['PTDL_v1', 'PTDL_v2'])) {
             throw new InvalidFileUploadException('O arquivo JSON fornecido não está em um formato que possa ser reconhecido.');
         }
@@ -38,6 +46,7 @@ class EggParserService
             'update_url' => Arr::get($parsed, 'meta.update_url'),
             'config_files' => Arr::get($parsed, 'config.files'),
             'config_startup' => Arr::get($parsed, 'config.startup'),
+            'config_logs' => Arr::get($parsed, 'config.logs'),
             'config_stop' => Arr::get($parsed, 'config.stop'),
             'startup' => Arr::get($parsed, 'startup'),
             'script_install' => Arr::get($parsed, 'scripts.installation.script'),

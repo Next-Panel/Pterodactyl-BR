@@ -1,8 +1,6 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-
-import type { ButtonProps } from '@/components/elements/button/types';
-import { Options } from '@/components/elements/button/types';
+import { ButtonProps, Options } from '@/components/elements/button/types';
 import styles from './style.module.css';
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -19,14 +17,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         [styles.small]: size === Options.Size.Small,
                         [styles.large]: size === Options.Size.Large,
                     },
-                    className,
+                    className
                 )}
                 {...rest}
             >
                 {children}
             </button>
         );
-    },
+    }
 );
 
 const TextButton = forwardRef<HTMLButtonElement, ButtonProps>(({ className, ...props }, ref) => (

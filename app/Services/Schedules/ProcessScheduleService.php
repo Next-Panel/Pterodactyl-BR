@@ -27,13 +27,13 @@ class ProcessScheduleService
      */
     public function handle(Schedule $schedule, bool $now = false): void
     {
+        /** @var \Pterodactyl\Models\Task $task */
         $task = $schedule->tasks()->orderBy('sequence_id')->first();
 
         if (is_null($task)) {
             throw new DisplayException('Não é possível processar o agendamento para execução da tarefa: nenhuma tarefa está registrada.');
         }
 
-        /* @var \Pterodactyl\Models\Task $task */
         $this->connection->transaction(function () use ($schedule, $task) {
             $schedule->forceFill([
                 'is_processing' => true,

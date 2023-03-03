@@ -3,9 +3,8 @@
 namespace Pterodactyl\Transformers\Api\Client;
 
 use Pterodactyl\Models\User;
-use Pterodactyl\Transformers\Api\Transformer;
 
-class AccountTransformer extends Transformer
+class AccountTransformer extends BaseClientTransformer
 {
     /**
      * Return the resource name for the JSONAPI output.
@@ -25,6 +24,8 @@ class AccountTransformer extends Transformer
             'admin' => $model->root_admin,
             'username' => $model->username,
             'email' => $model->email,
+            'first_name' => $model->name_first,
+            'last_name' => $model->name_last,
             'language' => $model->language,
         ];
     }

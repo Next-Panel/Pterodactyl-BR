@@ -2,8 +2,8 @@
 
 namespace Pterodactyl\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -18,9 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Carbon\CarbonImmutable $created_at
  * @property \Carbon\CarbonImmutable $updated_at
  * @property bool $required
- * @property Egg $egg
- * @property ServerVariable $serverVariables
- * @property string $field_type
+ * @property \Pterodactyl\Models\Egg $egg
+ * @property \Pterodactyl\Models\ServerVariable $serverVariable
  *
  * The "server_value" variable is only present on the object if you've loaded this model
  * using the server relationship.
@@ -81,18 +80,15 @@ class EggVariable extends Model
         return in_array('required', explode('|', $this->rules));
     }
 
-    /**
-     * Returns the egg that this variable belongs to.
-     */
-    public function egg(): BelongsTo
+    public function egg(): HasOne
     {
-        return $this->belongsTo(Egg::class);
+        return $this->hasOne(Egg::class);
     }
 
     /**
      * Return server variables associated with this variable.
      */
-    public function serverVariables(): HasMany
+    public function serverVariable(): HasMany
     {
         return $this->hasMany(ServerVariable::class, 'variable_id');
     }

@@ -6,14 +6,13 @@ use Pterodactyl\Models\Subuser;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\NullResource;
 use Pterodactyl\Services\Acl\Api\AdminAcl;
-use Pterodactyl\Transformers\Api\Transformer;
 
-class SubuserTransformer extends Transformer
+class SubuserTransformer extends BaseTransformer
 {
     /**
      * List of resources that can be included.
      */
-    protected array $availableIncludes = ['server', 'user'];
+    protected array $availableIncludes = ['user', 'server'];
 
     /**
      * Return the resource name for the JSONAPI output.
@@ -26,32 +25,22 @@ class SubuserTransformer extends Transformer
     /**
      * Return a transformed Subuser model that can be consumed by external services.
      */
-    public function transform(Subuser $model): array
+    public function transform(Subuser $subuser): array
     {
         return [
-            'id' => $model->id,
-            'user_id' => $model->user_id,
-            'server_id' => $model->server_id,
-            'permissions' => $model->permissions,
-            'created_at' => self::formatTimestamp($model->created_at),
-            'updated_at' => self::formatTimestamp($model->updated_at),
+            'id' => $subuser->id,
+            'user_id' => $subuser->user_id,
+            'server_id' => $subuser->server_id,
+            'permissions' => $subuser->permissions,
+            'created_at' => $this->formatTimestamp($subuser->created_at),
+            'updated_at' => $this->formatTimestamp($subuser->updated_at),
         ];
     }
 
     /**
-     * Return a generic item of server for this subuser.
-     */
-    public function includeServer(Subuser $subuser): Item|NullResource
-    {
-        if (!$this->authorize(AdminAcl::RESOURCE_SERVERS)) {
-            return $this->null();
-        }
-
-        return $this->item($subuser->server, new ServerTransformer());
-    }
-
-    /**
      * Return a generic item of user for this subuser.
+     *
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeUser(Subuser $subuser): Item|NullResource
     {
@@ -59,6 +48,24 @@ class SubuserTransformer extends Transformer
             return $this->null();
         }
 
-        return $this->item($subuser->user, new UserTransformer());
+        $subuser->loadMissing('user');
+
+        return $this->item($subuser->getRelation('user'), $this->makeTransformer(UserTransformer::class), 'user');
+    }
+
+    /**
+     * Return a generic item of server for this subuser.
+     *
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
+     */
+    public function includeServer(Subuser $subuser): Item|NullResource
+    {
+        if (!$this->authorize(AdminAcl::RESOURCE_SERVERS)) {
+            return $this->null();
+        }
+
+        $subuser->loadMissing('server');
+
+        return $this->item($subuser->getRelation('server'), $this->makeTransformer(ServerTransformer::class), 'server');
     }
 }

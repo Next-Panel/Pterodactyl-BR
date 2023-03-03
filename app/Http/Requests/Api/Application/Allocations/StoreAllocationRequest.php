@@ -2,11 +2,15 @@
 
 namespace Pterodactyl\Http\Requests\Api\Application\Allocations;
 
-use Illuminate\Support\Arr;
+use Pterodactyl\Services\Acl\Api\AdminAcl;
 use Pterodactyl\Http\Requests\Api\Application\ApplicationApiRequest;
 
 class StoreAllocationRequest extends ApplicationApiRequest
 {
+    protected ?string $resource = AdminAcl::RESOURCE_ALLOCATIONS;
+
+    protected int $permission = AdminAcl::WRITE;
+
     public function rules(): array
     {
         return [
@@ -17,22 +21,14 @@ class StoreAllocationRequest extends ApplicationApiRequest
         ];
     }
 
-    /**
-     * @param string|null $key
-     * @param string|array|null $default
-     *
-     * @return mixed
-     */
-    public function validated($key = null, $default = null)
+    public function validated($key = null, $default = null): array
     {
         $data = parent::validated();
 
-        $response = [
+        return [
             'allocation_ip' => $data['ip'],
             'allocation_ports' => $data['ports'],
             'allocation_alias' => $data['alias'] ?? null,
         ];
-
-        return is_null($key) ? $response : Arr::get($response, $key, $default);
     }
 }

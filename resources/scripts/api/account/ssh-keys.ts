@@ -1,12 +1,10 @@
-import type { AxiosError } from 'axios';
-import type { SWRConfiguration } from 'swr';
-import useSWR from 'swr';
-
+import { AxiosError } from 'axios';
+import useSWR, { ConfigInterface } from 'swr';
+import { useUserSWRKey } from '@/plugins/useSWRKey';
 import http, { FractalResponseList } from '@/api/http';
 import { SSHKey, Transformers } from '@definitions/user';
-import { useUserSWRKey } from '@/plugins/useSWRKey';
 
-const useSSHKeys = (config?: SWRConfiguration<SSHKey[], AxiosError>) => {
+const useSSHKeys = (config?: ConfigInterface<SSHKey[], AxiosError>) => {
     const key = useUserSWRKey(['account', 'ssh-keys']);
 
     return useSWR(
@@ -18,12 +16,15 @@ const useSSHKeys = (config?: SWRConfiguration<SSHKey[], AxiosError>) => {
                 return Transformers.toSSHKey(datum.attributes);
             });
         },
-        { revalidateOnMount: false, ...(config || {}) },
+        { revalidateOnMount: false, ...(config || {}) }
     );
 };
 
 const createSSHKey = async (name: string, publicKey: string): Promise<SSHKey> => {
-    const { data } = await http.post('/api/client/account/ssh-keys', { name, public_key: publicKey });
+    const { data } = await http.post('/api/client/account/ssh-keys', {
+        name,
+        public_key: publicKey,
+    });
 
     return Transformers.toSSHKey(data.attributes);
 };

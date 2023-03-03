@@ -23,6 +23,6 @@ class IndexController extends Controller
      */
     public function index(): View
     {
-        return view('templates/base.core');
+        return $this->view->make('templates/base.core');
     }
 }

@@ -155,7 +155,6 @@ abstract class Model extends IlluminateModel
             return;
         }
 
-        /** @var \Illuminate\Validation\Validator $validator */
         $validator = $this->getValidator();
         $validator->setData(
             // Trying to do self::toArray() here will leave out keys based on the whitelist/blacklist

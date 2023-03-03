@@ -1,32 +1,29 @@
-import { useEffect, useState } from 'react';
-import tw from 'twin.macro';
-
-import getWebsocketToken from '@/api/server/getWebsocketToken';
-import ContentContainer from '@/components/elements/ContentContainer';
-import Spinner from '@/components/elements/Spinner';
-import FadeTransition from '@/components/elements/transitions/FadeTransition';
+import React, { useEffect, useState } from 'react';
 import { Websocket } from '@/plugins/Websocket';
 import { ServerContext } from '@/state/server';
+import getWebsocketToken from '@/api/server/getWebsocketToken';
+import ContentContainer from '@/components/elements/ContentContainer';
+import { CSSTransition } from 'react-transition-group';
+import Spinner from '@/components/elements/Spinner';
+import tw from 'twin.macro';
 
 const reconnectErrors = ['jwt: exp claim is invalid', 'jwt: created too far in past (denylist)'];
 
-function WebsocketHandler() {
+export default () => {
     let updatingToken = false;
     const [error, setError] = useState<'connecting' | string>('');
-    const { connected, instance } = ServerContext.useStoreState(state => state.socket);
-    const uuid = ServerContext.useStoreState(state => state.server.data?.uuid);
-    const setServerStatus = ServerContext.useStoreActions(actions => actions.status.setServerStatus);
-    const { setInstance, setConnectionState } = ServerContext.useStoreActions(actions => actions.socket);
+    const { connected, instance } = ServerContext.useStoreState((state) => state.socket);
+    const uuid = ServerContext.useStoreState((state) => state.server.data?.uuid);
+    const setServerStatus = ServerContext.useStoreActions((actions) => actions.status.setServerStatus);
+    const { setInstance, setConnectionState } = ServerContext.useStoreActions((actions) => actions.socket);
 
     const updateToken = (uuid: string, socket: Websocket) => {
-        if (updatingToken) {
-            return;
-        }
+        if (updatingToken) return;
 
         updatingToken = true;
         getWebsocketToken(uuid)
-            .then(data => socket.setToken(data.token, true))
-            .catch(error => console.error(error))
+            .then((data) => socket.setToken(data.token, true))
+            .catch((error) => console.error(error))
             .then(() => {
                 updatingToken = false;
             });
@@ -41,9 +38,9 @@ function WebsocketHandler() {
             setError('connecting');
             setConnectionState(false);
         });
-        socket.on('status', status => setServerStatus(status));
+        socket.on('status', (status) => setServerStatus(status));
 
-        socket.on('daemon error', message => {
+        socket.on('daemon error', (message) => {
             console.warn('Got error message from daemon socket:', message);
         });
 
@@ -53,11 +50,11 @@ function WebsocketHandler() {
             setConnectionState(false);
             console.warn('JWT validation error from wings:', error);
 
-            if (reconnectErrors.find(v => error.toLowerCase().indexOf(v) >= 0)) {
+            if (reconnectErrors.find((v) => error.toLowerCase().indexOf(v) >= 0)) {
                 updateToken(uuid, socket);
             } else {
                 setError(
-                    'Houve um erro na validação das credenciais fornecidas para o websocket. Por favor, atualize a página.',
+                    'Houve um erro na validação das credenciais fornecidas para o websocket. Por favor, atualize a página.'
                 );
             }
         });
@@ -77,14 +74,14 @@ function WebsocketHandler() {
         });
 
         getWebsocketToken(uuid)
-            .then(data => {
+            .then((data) => {
                 // Connect and then set the authentication token.
                 socket.setToken(data.token).connect(data.socket);
 
                 // Once that is done, set the instance.
                 setInstance(socket);
             })
-            .catch(error => console.error(error));
+            .catch((error) => console.error(error));
     };
 
     useEffect(() => {
@@ -108,7 +105,7 @@ function WebsocketHandler() {
     }, [uuid]);
 
     return error ? (
-        <FadeTransition duration="duration-150" appear show>
+        <CSSTransition timeout={150} in appear classNames={'fade'}>
             <div css={tw`bg-red-500 py-2`}>
                 <ContentContainer css={tw`flex items-center justify-center`}>
                     {error === 'connecting' ? (
@@ -123,8 +120,6 @@ function WebsocketHandler() {
                     )}
                 </ContentContainer>
             </div>
-        </FadeTransition>
+        </CSSTransition>
     ) : null;
-}
-
-export default WebsocketHandler;
+};

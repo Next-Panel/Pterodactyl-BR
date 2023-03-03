@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Dialog, RenderDialogProps } from './';
 import { Button } from '@/components/elements/button/index';
 

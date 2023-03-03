@@ -25,7 +25,7 @@ class AccountController extends ClientApiController
     public function index(Request $request): array
     {
         return $this->fractal->item($request->user())
-            ->transformWith(AccountTransformer::class)
+            ->transformWith($this->getTransformer(AccountTransformer::class))
             ->toArray();
     }
 

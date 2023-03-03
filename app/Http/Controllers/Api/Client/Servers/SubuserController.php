@@ -38,7 +38,7 @@ class SubuserController extends ClientApiController
     public function index(GetSubuserRequest $request, Server $server): array
     {
         return $this->fractal->collection($server->subusers)
-            ->transformWith(SubuserTransformer::class)
+            ->transformWith($this->getTransformer(SubuserTransformer::class))
             ->toArray();
     }
 
@@ -50,7 +50,7 @@ class SubuserController extends ClientApiController
         $subuser = $request->attributes->get('subuser');
 
         return $this->fractal->item($subuser)
-            ->transformWith(SubuserTransformer::class)
+            ->transformWith($this->getTransformer(SubuserTransformer::class))
             ->toArray();
     }
 
@@ -76,7 +76,7 @@ class SubuserController extends ClientApiController
             ->log();
 
         return $this->fractal->item($response)
-            ->transformWith(SubuserTransformer::class)
+            ->transformWith($this->getTransformer(SubuserTransformer::class))
             ->toArray();
     }
 
@@ -129,7 +129,7 @@ class SubuserController extends ClientApiController
         $log->reset();
 
         return $this->fractal->item($subuser->refresh())
-            ->transformWith(SubuserTransformer::class)
+            ->transformWith($this->getTransformer(SubuserTransformer::class))
             ->toArray();
     }
 

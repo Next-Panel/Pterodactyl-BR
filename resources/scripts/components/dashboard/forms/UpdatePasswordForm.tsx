@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React from 'react';
 import { Actions, State, useStoreActions, useStoreState } from 'easy-peasy';
 import { Form, Formik, FormikHelpers } from 'formik';
 import Field from '@/components/elements/Field';
@@ -24,7 +24,7 @@ const schema = Yup.object().shape({
         'A confirmação de senha não corresponde à senha digitada.',
         function (value) {
             return value === this.parent.password;
-        },
+        }
     ),
 });
 
@@ -43,26 +43,26 @@ export default () => {
                 // @ts-expect-error this is valid
                 window.location = '/auth/login';
             })
-            .catch(error =>
+            .catch((error) =>
                 addFlash({
                     key: 'account:password',
                     type: 'error',
                     title: 'Erro',
                     message: httpErrorToHuman(error),
-                }),
+                })
             )
             .then(() => setSubmitting(false));
     };
 
     return (
-        <Fragment>
+        <React.Fragment>
             <Formik
                 onSubmit={submit}
                 validationSchema={schema}
                 initialValues={{ current: '', password: '', confirmPassword: '' }}
             >
                 {({ isSubmitting, isValid }) => (
-                    <Fragment>
+                    <React.Fragment>
                         <SpinnerOverlay size={'large'} visible={isSubmitting} />
                         <Form css={tw`m-0`}>
                             <Field id={'current_password'} type={'password'} name={'current'} label={'Senha atual'} />
@@ -89,9 +89,9 @@ export default () => {
                                 <Button disabled={isSubmitting || !isValid}>Atualizar senha</Button>
                             </div>
                         </Form>
-                    </Fragment>
+                    </React.Fragment>
                 )}
             </Formik>
-        </Fragment>
+        </React.Fragment>
     );
 };

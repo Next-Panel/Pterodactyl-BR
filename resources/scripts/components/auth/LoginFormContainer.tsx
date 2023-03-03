@@ -1,7 +1,6 @@
-import { forwardRef } from 'react';
-import * as React from 'react';
+import React, { forwardRef } from 'react';
 import { Form } from 'formik';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { breakpoint } from '@/theme';
 import FlashMessageRender from '@/components/FlashMessageRender';
 import tw from 'twin.macro';
@@ -49,7 +48,7 @@ export default forwardRef<HTMLFormElement, Props>(({ title, ...props }, ref) => 
                 target={'_blank'}
                 css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
             >
-                Pterodactyl Software
+                Pterodactyl-Brasil Software
             </a>
         </p>
     </Container>

@@ -172,7 +172,7 @@
           buildInputs = [];
 
           buildPhase = ''
-            pnpm run build
+            yarn run build
           '';
 
           installPhase = ''
@@ -224,6 +224,7 @@
                   nodejs-18_x
                   nodePackages.npm
                   nodePackages.pnpm
+                  nodePackages.yarn
                   php81WithExtensions
                   postgresql_14
                 ];

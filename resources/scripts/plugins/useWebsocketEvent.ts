@@ -1,9 +1,9 @@
-import { ServerContext } from '@/state/server';
 import { useEffect, useRef } from 'react';
+import { ServerContext } from '@/state/server';
 import { SocketEvent } from '@/components/server/events';
 
 const useWebsocketEvent = (event: SocketEvent, callback: (data: string) => void) => {
-    const { connected, instance } = ServerContext.useStoreState(state => state.socket);
+    const { connected, instance } = ServerContext.useStoreState((state) => state.socket);
     const savedCallback = useRef<any>(null);
 
     useEffect(() => {

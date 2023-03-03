@@ -2,11 +2,11 @@
 
 namespace Pterodactyl\Transformers\Api\Client;
 
+use Pterodactyl\Models\Task;
 use Pterodactyl\Models\Schedule;
 use League\Fractal\Resource\Collection;
-use Pterodactyl\Transformers\Api\Transformer;
 
-class ScheduleTransformer extends Transformer
+class ScheduleTransformer extends BaseClientTransformer
 {
     protected array $availableIncludes = ['tasks'];
 
@@ -38,18 +38,24 @@ class ScheduleTransformer extends Transformer
             'is_active' => $model->is_active,
             'is_processing' => $model->is_processing,
             'only_when_online' => $model->only_when_online,
-            'last_run_at' => self::formatTimestamp($model->last_run_at),
-            'next_run_at' => self::formatTimestamp($model->next_run_at),
-            'created_at' => self::formatTimestamp($model->created_at),
-            'updated_at' => self::formatTimestamp($model->updated_at),
+            'last_run_at' => $model->last_run_at?->toAtomString(),
+            'next_run_at' => $model->next_run_at?->toAtomString(),
+            'created_at' => $model->created_at->toAtomString(),
+            'updated_at' => $model->updated_at->toAtomString(),
         ];
     }
 
     /**
      * Allows attaching the tasks specific to the schedule in the response.
+     *
+     * @throws \Pterodactyl\Exceptions\Transformer\InvalidTransformerLevelException
      */
     public function includeTasks(Schedule $model): Collection
     {
-        return $this->collection($model->tasks, new TaskTransformer());
+        return $this->collection(
+            $model->tasks,
+            $this->makeTransformer(TaskTransformer::class),
+            Task::RESOURCE_NAME
+        );
     }
 }

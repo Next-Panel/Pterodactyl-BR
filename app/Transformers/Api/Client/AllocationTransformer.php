@@ -3,9 +3,8 @@
 namespace Pterodactyl\Transformers\Api\Client;
 
 use Pterodactyl\Models\Allocation;
-use Pterodactyl\Transformers\Api\Transformer;
 
-class AllocationTransformer extends Transformer
+class AllocationTransformer extends BaseClientTransformer
 {
     /**
      * Return the resource name for the JSONAPI output.

@@ -11,7 +11,6 @@ use Pterodactyl\Exceptions\Http\Base\InvalidPasswordProvidedException;
 class UpdateEmailRequest extends ClientApiRequest
 {
     /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \Pterodactyl\Exceptions\Http\Base\InvalidPasswordProvidedException
      */
     public function authorize(): bool

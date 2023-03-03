@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useEventListener from '@/plugins/useEventListener';
@@ -18,9 +18,8 @@ export default () => {
 
     return (
         <>
-            <SearchModal appear visible={visible} onDismissed={() => setVisible(false)} />
-
-            <Tooltip placement={'bottom'} content={'Search'}>
+            {visible && <SearchModal appear visible={visible} onDismissed={() => setVisible(false)} />}
+            <Tooltip placement={'bottom'} content={'Procurar'}>
                 <div className={'navigation-link'} onClick={() => setVisible(true)}>
                     <FontAwesomeIcon icon={faSearch} />
                 </div>

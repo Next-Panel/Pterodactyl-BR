@@ -1,52 +1,40 @@
 [![Logo Image](https://cdn.pterodactyl.io/logos/new/pterodactyl_logo.png)](https://pterodactyl.io)
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pterodactyl/panel/laravel.yaml?label=Tests&style=for-the-badge&branch=develop)
+![Status do fluxo de trabalho do GitHub](https://img.shields.io/github/actions/workflow/status/pterodactyl/panel/ci.yaml?label=Tests&style=for-the-badge&branch=1.0-develop)
 ![Discord](https://img.shields.io/discord/122900397965705216?label=Discord&logo=Discord&logoColor=white&style=for-the-badge)
 ![GitHub Releases](https://img.shields.io/github/downloads/pterodactyl/panel/latest/total?style=for-the-badge)
-![GitHub contributors](https://img.shields.io/github/contributors/pterodactyl/panel?style=for-the-badge)
+![GitHub Contribuições](https://img.shields.io/github/contributors/pterodactyl/panel?style=for-the-badge)
 
-# Pterodactyl Panel
+# Painel Pterodactyl
+Testando as actions
 
-Pterodactyl® is a free, open-source game server management panel built with PHP, React, and Go. Designed with security 
-in mind, Pterodactyl runs all game servers in isolated Docker containers while exposing a beautiful and intuitive
-UI to end users.
+O Pterodactyl® é um painel de gerenciamento de servidor de jogos gratuito e de código aberto construído com PHP, React e Go. Projetado com segurança
+em mente, o Pterodactyl executa todos os servidores de jogos em contêineres Docker isolados enquanto expõe uma interface bonita e intuitiva
+IU para usuários finais.
 
-Stop settling for less. Make game servers a first class citizen on your platform.
+Pare de se contentar com menos. Torne os servidores de jogo um cidadão de primeira classe em sua plataforma.
 
 ![Image](https://cdn.pterodactyl.io/site-assets/pterodactyl_v1_demo.gif)
 
-## Documentation
+## Documentação
 
-* [Panel Documentation](https://pterodactyl.io/panel/1.0/getting_started.html)
-* [Wings Documentation](https://pterodactyl.io/wings/1.0/installing.html)
-* [Community Guides](https://pterodactyl.io/community/about.html)
-* Or, get additional help [via Discord](https://discord.gg/pterodactyl)
+* [Documentação do Painel](https://pterodactyl.io/panel/1.0/getting_started.html)
+* [Documentação de asas](https://pterodactyl.io/wings/1.0/installing.html)
+* [Guias da comunidade](https://pterodactyl.io/community/about.html)
+* Ou obtenha ajuda adicional [via Discord](https://discord.gg/Wf8Eycz4Tq)
 
-## Sponsors
+## Patrocinadores
 
-I would like to extend my sincere thanks to the following sponsors for helping fund Pterodactyl's developement.
-[Interested in becoming a sponsor?](https://github.com/sponsors/matthewpi)
+* Atualmente sem nenhum.
 
-| Company                                                   | About                                                                                                                                                                                                                           |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**WISP**](https://wisp.gg)                               | Extra features.                                                                                                                                                                                                                 |
-| [**Aussie Server Hosts**](https://aussieserverhosts.com/) | No frills Australian Owned and operated High Performance Server hosting for some of the most demanding games serving Australia and New Zealand.                                                                                 |
-| [**BisectHosting**](https://www.bisecthosting.com/)       | BisectHosting provides Minecraft, Valheim and other server hosting services with the highest reliability and lightning fast support since 2012.                                                                                 |
-| [**MineStrator**](https://minestrator.com/)               | Looking for the most highend French hosting company for your minecraft server? More than 24,000 members on our discord trust us. Give us a try!                                                                                 |
-| [**Skynode**](https://www.skynode.pro/)                   | Skynode provides blazing fast game servers along with a top-notch user experience. Whatever our clients are looking for, we're able to provide it!                                                                              |
-| [**VibeGAMES**](https://vibegames.net/)                   | VibeGAMES is a game server provider that specializes in DDOS protection for the games we offer. We have multiple locations in the US, Brazil, France, Germany, Singapore, Australia and South Africa.                           |
-| [**Pterodactyl Market**](https://pterodactylmarket.com/)  | Pterodactyl Market is a one-and-stop shop for Pterodactyl. In our market, you can find Add-ons, Themes, Eggs, and more for Pterodactyl.                                                                                         |
-| [**UltraServers**](https://ultraservers.com/)             | Deploy premium games hosting with the click of a button. Manage and swap games with ease and let us take care of the rest. We currently support Minecraft, Rust, ARK, 7 Days to Die, Garys MOD, CS:GO, Satisfactory and others. |
-| [**Realms Hosting**](https://realmshosting.com/)          | Want to build your Gaming Empire? Use Realms Hosting today to kick start your game server hosting with outstanding DDOS Protection, 24/7 Support, Cheap Prices and a Custom Control Panel.                                      |                                                                                                                                                                                                                                |
+### Jogos suportados
 
-### Supported Games
+O Pterodactyl oferece suporte a uma ampla variedade de jogos, utilizando contêineres Docker para isolar cada instância. Isto dá
+você o poder de executar servidores de jogo sem inchar as máquinas com uma série de dependências adicionais.
 
-Pterodactyl supports a wide variety of games by utilizing Docker containers to isolate each instance. This gives
-you the power to run game servers without bloating machines with a host of additional dependencies.
+Alguns de nossos principais jogos suportados incluem:
 
-Some of our core supported games include:
-
-* Minecraft — including Paper, Sponge, Bungeecord, Waterfall, and more
+* Minecraft — incluindo Paper, Sponge, Bungeecord, Waterfall, e mais
 * Rust
 * Terraria
 * Teamspeak
@@ -56,8 +44,8 @@ Some of our core supported games include:
 * Garry's Mod
 * ARK: Survival Evolved
 
-In addition to our standard nest of supported games, our community is constantly pushing the limits of this software
-and there are plenty more games available provided by the community. Some of these games include:
+Além de nosso nest padrão de jogos suportados, nossa comunidade está constantemente ultrapassando os limites deste software
+e há muitos outros jogos disponíveis fornecidos pela comunidade. Alguns desses jogos incluem:
 
 * Factorio
 * San Andreas: MP
@@ -65,11 +53,15 @@ and there are plenty more games available provided by the community. Some of the
 * Squad
 * Xonotic
 * Starmade
-* Discord ATLBot, and most other Node.js/Python discord bots
-* [and many more...](https://github.com/parkervcp/eggs)
+* Discord ATLBot, e outros Node.js/Python discord bots
+* [e muito mais...](https://github.com/parkervcp/eggs)
 
-## License
+## Licença
 
-Pterodactyl® Copyright © 2015 - 2022 Dane Everitt and contributors.
+Pterodactyl-Brasil é um York no qual decidimos traduzir o Pterodactyl para Português. De forma alguma os Tradutores são ou pertencem a Equipe do Pterodactyl, somos apenas um grupo cujo temos os mesmos objetivos.
 
-Code released under the [MIT License](./LICENSE.md).
+Pterodactyl-Brasil® 2023 - Drylian e Ashuu.
+
+Pterodactyl® Copyright © 2015 - 2022 Dane Everitt e colaboradores.
+
+Código lançado sob a [Licença MIT](./LICENSE.md).

@@ -26,14 +26,12 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
      * Handle a direct call to this notification from the server installed event. This is configured
      * in the event service provider.
      */
-    public function handle(Event|Installed $notification): void
+    public function handle(Event|Installed $event): void
     {
-        abort_unless($notification instanceof Installed, 500);
-        /* @var Installed $notification */
-        $notification->server->loadMissing('user');
+        $event->server->loadMissing('user');
 
-        $this->server = $notification->server;
-        $this->user = $notification->server->user;
+        $this->server = $event->server;
+        $this->user = $event->server->user;
 
         // Since we are calling this notification directly from an event listener we need to fire off the dispatcher
         // to send the email now. Don't use send() or you'll end up firing off two different events.

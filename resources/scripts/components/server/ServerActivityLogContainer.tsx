@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useActivityLogs } from '@/api/server/activity';
 import ServerContentBlock from '@/components/elements/ServerContentBlock';
 import { useFlashKey } from '@/plugins/useFlash';
@@ -24,7 +24,7 @@ export default () => {
     });
 
     useEffect(() => {
-        setFilters(value => ({ ...value, filters: { ip: hash.ip, event: hash.event } }));
+        setFilters((value) => ({ ...value, filters: { ip: hash.ip, event: hash.event } }));
     }, [hash]);
 
     useEffect(() => {
@@ -32,26 +32,28 @@ export default () => {
     }, [error]);
 
     return (
-        <ServerContentBlock title={'Activity Log'}>
+        <ServerContentBlock title={'Logs de Atividades'}>
             <FlashMessageRender byKey={'server:activity'} />
             {(filters.filters?.event || filters.filters?.ip) && (
-                <div className={'mb-2 flex justify-end'}>
+                <div className={'flex justify-end mb-2'}>
                     <Link
                         to={'#'}
                         className={classNames(btnStyles.button, btnStyles.text, 'w-full sm:w-auto')}
-                        onClick={() => setFilters(value => ({ ...value, filters: {} }))}
+                        onClick={() => setFilters((value) => ({ ...value, filters: {} }))}
                     >
-                        Clear Filters <XCircleIcon className={'ml-2 h-4 w-4'} />
+                        Limpar filtros <XCircleIcon className={'w-4 h-4 ml-2'} />
                     </Link>
                 </div>
             )}
             {!data && isValidating ? (
                 <Spinner centered />
             ) : !data?.items.length ? (
-                <p className={'text-center text-sm text-slate-400'}>No activity logs available for this server.</p>
+                <p className={'text-sm text-center text-gray-400'}>
+                    Não há logs de atividades disponíveis para este servidor.
+                </p>
             ) : (
-                <div className={'bg-slate-700'}>
-                    {data?.items.map(activity => (
+                <div className={'bg-gray-700'}>
+                    {data?.items.map((activity) => (
                         <ActivityLogEntry key={activity.id} activity={activity}>
                             <span />
                         </ActivityLogEntry>
@@ -61,7 +63,7 @@ export default () => {
             {data && (
                 <PaginationFooter
                     pagination={data.pagination}
-                    onPageSelect={page => setFilters(value => ({ ...value, page }))}
+                    onPageSelect={(page) => setFilters((value) => ({ ...value, page }))}
                 />
             )}
         </ServerContentBlock>

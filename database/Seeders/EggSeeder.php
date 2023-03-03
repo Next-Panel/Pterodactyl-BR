@@ -11,6 +11,10 @@ use Pterodactyl\Services\Eggs\Sharing\EggUpdateImporterService;
 
 class EggSeeder extends Seeder
 {
+    protected EggImporterService $importerService;
+
+    protected EggUpdateImporterService $updateImporterService;
+
     /**
      * @var string[]
      */
@@ -25,15 +29,15 @@ class EggSeeder extends Seeder
      * EggSeeder constructor.
      */
     public function __construct(
-        private EggImporterService $importerService,
-        private EggUpdateImporterService $updateImporterService
+        EggImporterService $importerService,
+        EggUpdateImporterService $updateImporterService
     ) {
+        $this->importerService = $importerService;
+        $this->updateImporterService = $updateImporterService;
     }
 
     /**
      * Run the egg seeder.
-     *
-     * @throws \JsonException
      */
     public function run()
     {
@@ -47,8 +51,6 @@ class EggSeeder extends Seeder
 
     /**
      * Loop through the list of egg files and import them.
-     *
-     * @throws \JsonException
      */
     protected function parseEggFiles(Nest $nest)
     {
@@ -73,7 +75,7 @@ class EggSeeder extends Seeder
                 $this->updateImporterService->handle($egg, $file);
                 $this->command->info('Atualizado ' . $decoded['name']);
             } else {
-                $this->importerService->handleFile($nest->id, $file);
+                $this->importerService->handle($file, $nest->id);
                 $this->command->comment('Criado ' . $decoded['name']);
             }
         }

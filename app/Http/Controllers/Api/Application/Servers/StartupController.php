@@ -22,7 +22,10 @@ class StartupController extends ApplicationApiController
     /**
      * Update the startup and environment settings for a specific server.
      *
-     * @throws \Throwable
+     * @throws \Illuminate\Validation\ValidationException
+     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
+     * @throws \Pterodactyl\Exceptions\Model\DataValidationException
+     * @throws \Pterodactyl\Exceptions\Repository\RecordNotFoundException
      */
     public function index(UpdateServerStartupRequest $request, Server $server): array
     {
@@ -31,7 +34,7 @@ class StartupController extends ApplicationApiController
             ->handle($server, $request->validated());
 
         return $this->fractal->item($server)
-            ->transformWith(ServerTransformer::class)
+            ->transformWith($this->getTransformer(ServerTransformer::class))
             ->toArray();
     }
 }

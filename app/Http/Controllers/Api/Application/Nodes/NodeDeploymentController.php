@@ -33,7 +33,7 @@ class NodeDeploymentController extends ApplicationApiController
             ->handle($request->query('per_page'), $request->query('page'));
 
         return $this->fractal->collection($nodes)
-            ->transformWith(NodeTransformer::class)
+            ->transformWith($this->getTransformer(NodeTransformer::class))
             ->toArray();
     }
 }

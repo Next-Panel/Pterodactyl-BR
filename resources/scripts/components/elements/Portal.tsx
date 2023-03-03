@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import * as React from 'react';
+import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 export default ({ children }: { children: React.ReactNode }) => {

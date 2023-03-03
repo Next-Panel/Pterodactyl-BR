@@ -21,7 +21,7 @@ class MailTested extends Notification
     {
         return (new MailMessage())
             ->subject('Mensagem de Teste de Pterodactyl')
+            ->greeting('Olá ' . $this->user->name . '!')
             ->line('Este é um teste do sistema de e-mail do Pterodactyl. Você está pronto para ir!');
-            ->greeting('Hello ' . $this->user->username . '!')
     }
 }

@@ -1,29 +1,28 @@
-import type { ActionCreator } from 'easy-peasy';
-import { useFormikContext, withFormik } from 'formik';
-import { useState } from 'react';
-import type { Location, RouteProps } from 'react-router-dom';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import tw from 'twin.macro';
-
+import React, { useState } from 'react';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import loginCheckpoint from '@/api/auth/loginCheckpoint';
 import LoginFormContainer from '@/components/auth/LoginFormContainer';
-import Button from '@/components/elements/Button';
-import Field from '@/components/elements/Field';
+import { ActionCreator } from 'easy-peasy';
+import { StaticContext } from 'react-router';
+import { useFormikContext, withFormik } from 'formik';
 import useFlash from '@/plugins/useFlash';
-import type { FlashStore } from '@/state/flashes';
+import { FlashStore } from '@/state/flashes';
+import Field from '@/components/elements/Field';
+import tw from 'twin.macro';
+import Button from '@/components/elements/Button';
 
 interface Values {
     code: string;
     recoveryCode: '';
 }
 
-type OwnProps = RouteProps;
+type OwnProps = RouteComponentProps<Record<string, string | undefined>, StaticContext, { token?: string }>;
 
 type Props = OwnProps & {
     clearAndAddHttpError: ActionCreator<FlashStore['clearAndAddHttpError']['payload']>;
 };
 
-function LoginCheckpointContainer() {
+const LoginCheckpointContainer = () => {
     const { isSubmitting, setFieldValue } = useFormikContext<Values>();
     const [isMissingDevice, setIsMissingDevice] = useState(false);
 
@@ -54,7 +53,7 @@ function LoginCheckpointContainer() {
                     onClick={() => {
                         setFieldValue('code', '');
                         setFieldValue('recoveryCode', '');
-                        setIsMissingDevice(s => !s);
+                        setIsMissingDevice((s) => !s);
                     }}
                     css={tw`cursor-pointer text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                 >
@@ -71,12 +70,12 @@ function LoginCheckpointContainer() {
             </div>
         </LoginFormContainer>
     );
-}
+};
 
-const EnhancedForm = withFormik<Props & { location: Location }, Values>({
+const EnhancedForm = withFormik<Props, Values>({
     handleSubmit: ({ code, recoveryCode }, { setSubmitting, props: { clearAndAddHttpError, location } }) => {
         loginCheckpoint(location.state?.token || '', code, recoveryCode)
-            .then(response => {
+            .then((response) => {
                 if (response.complete) {
                     // @ts-expect-error this is valid
                     window.location = response.intended || '/';
@@ -85,7 +84,7 @@ const EnhancedForm = withFormik<Props & { location: Location }, Values>({
 
                 setSubmitting(false);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 setSubmitting(false);
                 clearAndAddHttpError({ error });
@@ -98,17 +97,16 @@ const EnhancedForm = withFormik<Props & { location: Location }, Values>({
     }),
 })(LoginCheckpointContainer);
 
-export default ({ ...props }: OwnProps) => {
+export default ({ history, location, ...props }: OwnProps) => {
     const { clearAndAddHttpError } = useFlash();
 
-    const location = useLocation();
-    const navigate = useNavigate();
-
     if (!location.state?.token) {
-        navigate('/auth/login');
+        history.replace('/auth/login');
 
         return null;
     }
 
-    return <EnhancedForm clearAndAddHttpError={clearAndAddHttpError} location={location} {...props} />;
+    return (
+        <EnhancedForm clearAndAddHttpError={clearAndAddHttpError} history={history} location={location} {...props} />
+    );
 };

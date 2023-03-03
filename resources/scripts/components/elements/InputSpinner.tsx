@@ -1,15 +1,14 @@
-import type { ReactNode } from 'react';
-import styled, { css } from 'styled-components';
-import tw from 'twin.macro';
-
-import Select from '@/components/elements/Select';
+import React from 'react';
 import Spinner from '@/components/elements/Spinner';
-import FadeTransition from '@/components/elements/transitions/FadeTransition';
+import Fade from '@/components/elements/Fade';
+import tw from 'twin.macro';
+import styled, { css } from 'styled-components/macro';
+import Select from '@/components/elements/Select';
 
 const Container = styled.div<{ visible?: boolean }>`
     ${tw`relative`};
 
-    ${props =>
+    ${(props) =>
         props.visible &&
         css`
             & ${Select} {
@@ -18,18 +17,15 @@ const Container = styled.div<{ visible?: boolean }>`
         `};
 `;
 
-function InputSpinner({ visible, children }: { visible: boolean; children: ReactNode }) {
-    return (
-        <Container visible={visible}>
-            <FadeTransition show={visible} duration="duration-150" appear unmount>
-                <div css={tw`absolute right-0 h-full flex items-center justify-end pr-3`}>
-                    <Spinner size="small" />
-                </div>
-            </FadeTransition>
-
-            {children}
-        </Container>
-    );
-}
+const InputSpinner = ({ visible, children }: { visible: boolean; children: React.ReactNode }) => (
+    <Container visible={visible}>
+        <Fade appear unmountOnExit in={visible} timeout={150}>
+            <div css={tw`absolute right-0 h-full flex items-center justify-end pr-3`}>
+                <Spinner size={'small'} />
+            </div>
+        </Fade>
+        {children}
+    </Container>
+);
 
 export default InputSpinner;

@@ -2,6 +2,7 @@
 
 namespace Pterodactyl\Extensions\Backups;
 
+use Closure;
 use Aws\S3\S3Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
