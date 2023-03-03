@@ -37,7 +37,7 @@ class ActivityProcessingController extends Controller
                 $when = Carbon::createFromFormat(
                     \DateTimeInterface::RFC3339,
                     preg_replace('/(\.\d+)Z$/', 'Z', $datum['timestamp']),
-                    'UTC'
+                    'America/Sao_Paulo'
                 );
             } catch (\Exception $exception) {
                 Log::warning($exception, ['timestamp' => $datum['timestamp']]);
