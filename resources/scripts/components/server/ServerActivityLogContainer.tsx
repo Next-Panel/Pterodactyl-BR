@@ -48,7 +48,9 @@ export default () => {
             {!data && isValidating ? (
                 <Spinner centered />
             ) : !data?.items.length ? (
-                <p className={'text-center text-sm text-slate-400'}>Não há logs de atividades disponíveis para este servidor.</p>
+                <p className={'text-center text-sm text-slate-400'}>
+                    Não há logs de atividades disponíveis para este servidor.
+                </p>
             ) : (
                 <div className={'bg-slate-700'}>
                     {data?.items.map(activity => (

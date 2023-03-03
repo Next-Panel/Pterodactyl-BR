@@ -40,7 +40,11 @@ export default () => {
                 <ContentBox title="Atualizar Senha" showFlashes="account:password">
                     <UpdatePasswordForm />
                 </ContentBox>
-                <ContentBox css={tw`mt-8 sm:mt-0 sm:ml-8`} title="Atualizar Endereço de Email" showFlashes="account:email">
+                <ContentBox
+                    css={tw`mt-8 sm:mt-0 sm:ml-8`}
+                    title="Atualizar Endereço de Email"
+                    showFlashes="account:email"
+                >
                     <UpdateEmailAddressForm />
                 </ContentBox>
                 <ContentBox css={tw`md:ml-8 mt-8 md:mt-0`} title="Verificação de duas etapas">
