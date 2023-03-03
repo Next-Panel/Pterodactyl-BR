@@ -55,7 +55,7 @@ class EggImporterService
     public function handleFile(int $nestId, UploadedFile $file): Egg
     {
         if ($file->getError() !== UPLOAD_ERR_OK || !$file->isFile()) {
-            throw new InvalidFileUploadException(sprintf('The selected file ["%s"] was not in a valid format to import. (is_file: %s is_valid: %s err_code: %s err: %s)', $file->getFilename(), $file->isFile() ? 'true' : 'false', $file->isValid() ? 'true' : 'false', $file->getError(), $file->getErrorMessage()));
+            throw new InvalidFileUploadException(sprintf('O arquivo selecionado ["%s"] não estava em um formato válido para importar. (is_file: %s is_valid: %s err_code: %s err: %s)', $file->getFilename(), $file->isFile() ? 'true' : 'false', $file->isValid() ? 'true' : 'false', $file->getError(), $file->getErrorMessage()));
         }
 
         return $this->handleContent($nestId, $file->openFile()->fread($file->getSize()), 'application/json');
@@ -87,10 +87,10 @@ class EggImporterService
 
                     return $this->handleArray($nestId, $parsed);
                 } catch (ParseException $exception) {
-                    throw new BadYamlFormatException('There was an error while attempting to parse the YAML: ' . $exception->getMessage() . '.');
+                    throw new BadYamlFormatException('Ocorreu um erro ao tentar analisar o YAML: ' . $exception->getMessage() . '.');
                 }
             default:
-                throw new DisplayException('unknown content type');
+                throw new DisplayException('tipo de conteúdo desconhecido');
         }
     }
 

@@ -80,7 +80,7 @@ class InitiateBackupService
         if ($period > 0) {
             $previous = $this->repository->getBackupsGeneratedDuringTimespan($server->id, $period);
             if ($previous->count() >= $limit) {
-                $message = sprintf('Only %d backups may be generated within a %d second span of time.', $limit, $period);
+                $message = sprintf('Somente %d backups podem ser gerados dentro de um %d segundo período de tempo.', $limit, $period);
 
                 throw new TooManyRequestsHttpException(CarbonImmutable::now()->diffInSeconds($previous->last()->created_at->addSeconds($period)), $message);
             }
