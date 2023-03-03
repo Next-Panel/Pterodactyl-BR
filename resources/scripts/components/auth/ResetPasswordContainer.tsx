@@ -57,12 +57,11 @@ function ResetPasswordContainer() {
                     .min(8, 'Sua nova senha deve ter pelo menos 8 caracteres.'),
                 passwordConfirmation: string()
                     .required('Sua nova senha não corresponde.')
-                    // @ts-expect-error this is valid
                     .oneOf([ref('password'), null], 'Sua nova senha não corresponde.'),
             })}
         >
             {({ isSubmitting }) => (
-                <LoginFormContainer title={'Redefinir senha'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Resetar Senha'} css={tw`w-full flex`}>
                     <div>
                         <label>Email</label>
                         <Input value={email} isLight disabled />
@@ -77,11 +76,11 @@ function ResetPasswordContainer() {
                         />
                     </div>
                     <div css={tw`mt-6`}>
-                        <Field light label={'Confirme a nova senha'} name={'passwordConfirmation'} type={'password'} />
+                        <Field light label={'Confirmar Nova Senha'} name={'passwordConfirmation'} type={'password'} />
                     </div>
                     <div css={tw`mt-6`}>
                         <Button size={'xlarge'} type={'submit'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            Reset Password
+                            Resetar Senha
                         </Button>
                     </div>
                     <div css={tw`mt-6 text-center`}>
@@ -97,3 +96,5 @@ function ResetPasswordContainer() {
         </Formik>
     );
 }
+
+export default ResetPasswordContainer;
