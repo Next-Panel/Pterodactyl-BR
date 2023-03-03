@@ -1,4 +1,4 @@
-name: Fixers
+name: ESLint
 
 on:
   push:
@@ -11,7 +11,8 @@ on:
       - "1.0-develop"
 
 jobs:
-  eslint:
+  lint:
+    name: Lint
     runs-on: ubuntu-22.04
     steps:
       - name: Code checkout
@@ -25,9 +26,9 @@ jobs:
         with:
           node-version: 18
           cache: pnpm
-        
+
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run ESLint fix
+      - name: Lint
         run: pnpm run lint --fix
