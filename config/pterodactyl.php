@@ -92,7 +92,7 @@ return [
 
     'cdn' => [
         'cache_time' => 60,
-        'url' => 'https://cdn.pterodactyl.io/releases/latest.json',
+        'url' => 'https://raw.githubusercontent.com/Next-Panel/Pterodactyl-API/main/status.json',
     ],
 
     /*
