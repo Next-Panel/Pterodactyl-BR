@@ -19,24 +19,23 @@
 -->
 
 </div>
-
-# Painel Pterodactyl
-Testando as actions
-
-O Pterodactyl® é um painel de gerenciamento de servidor de jogos gratuito e de código aberto construído com PHP, React e Go. Projetado com segurança
-em mente, o Pterodactyl executa todos os servidores de jogos em contêineres Docker isolados enquanto expõe uma interface bonita e intuitiva
-IU para usuários finais.
-
-Pare de se contentar com menos. Torne os servidores de jogo um cidadão de primeira classe em sua plataforma.
+<h1 align="center">Pterodactyl</h1>
+<h5 align="center">
+    <strong>
+        O Pterodactyl® é um painel de gerenciamento de servidor de jogos gratuito e de código aberto construído com PHP, React e Go. Projetado com segurança
+        em mente, o Pterodactyl executa todos os servidores de jogos em contêineres Docker isolados enquanto expõe uma interface bonita e intuitiva
+        IU para usuários finais.
+        Pare de se contentar com menos. Torne os servidores de jogo um cidadão de primeira classe em sua plataforma.
+    </strong>
+</h5>
 
 ![Image](https://cdn.pterodactyl.io/site-assets/pterodactyl_v1_demo.gif)
 
 ## Documentação
 
-* [Documentação do Painel](https://pterodactyl.io/panel/1.0/getting_started.html)
-* [Documentação de asas](https://pterodactyl.io/wings/1.0/installing.html)
-* [Guias da comunidade](https://pterodactyl.io/community/about.html)
-* Ou obtenha ajuda adicional [via Discord](https://discord.gg/Wf8Eycz4Tq)
+* [Documentação do Painel](https://nextpanel.com.br/docs/Pterodactyl/intro)
+* [Documentação da Wings](https://nextpanel.com.br/docs/Pterodactyl/Wings/Instala%C3%A7%C3%A3o)
+* Ou obtenha ajuda adicional [via Discord](https://discord.gg/68k7wDGjYc)
 
 ## Patrocinadores
 
@@ -75,8 +74,8 @@ e há muitos outros jogos disponíveis fornecidos pela comunidade. Alguns desses
 
 Pterodactyl-Brasil é um York no qual decidimos traduzir o Pterodactyl para Português. De forma alguma os Tradutores são ou pertencem a Equipe do Pterodactyl, somos apenas um grupo cujo temos os mesmos objetivos.
 
-Pterodactyl-Brasil® 2023 - Drylian e Ashuu.
+Pterodactyl-Brasil® 2023 - [@Drylian](https://github.com/drylian) e [@Ashu](https://github.com/Ashu11-A/).
 
-Pterodactyl® Copyright © 2015 - 2022 Dane Everitt e colaboradores.
+Pterodactyl® Copyright © 2015 - 2022 [@Dane Everitt](https://github.com/DaneEveritt) e colaboradores.
 
 Código lançado sob a [Licença MIT](./LICENSE.md).
