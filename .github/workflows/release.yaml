@@ -30,13 +30,13 @@ jobs:
           REF: ${{ github.ref }}
         run: |
           BRANCH=release/${REF:10}
-          git config --local user.email "ci@pterodactyl.io"
-          git config --local user.name "Pterodactyl CI"
+          git config --local user.email "nextpanel@pterodactyl.br"
+          git config --local user.name "Pterodactyl-BR CI"
           git checkout -b $BRANCH
           git push -u origin $BRANCH
           sed -i "s/    'version' => 'canary',/    'version' => '${REF:11}',/" config/app.php
           git add config/app.php
-          git commit -m "ci(release): bump version"
+          git commit -m "Nova versão do Pterodactyl-BR!"
           git push
 
       - name: Create release archive
