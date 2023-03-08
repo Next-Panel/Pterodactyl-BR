@@ -22,6 +22,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Lint Fix
+        run: yarn lint --fix
+
       - name: Build
         run: yarn build:production
 
@@ -30,18 +33,17 @@ jobs:
           REF: ${{ github.ref }}
         run: |
           BRANCH=release/${REF:10}
-          git config --local user.email "nextpanel@pterodactyl.br"
-          git config --local user.name "Pterodactyl-BR CI"
+          git config --local user.email "github@nextpanel.com.br"
+          git config --local user.name "Pterodactyl Releases"
           git checkout -b $BRANCH
           git push -u origin $BRANCH
           sed -i "s/    'version' => 'canary',/    'version' => '${REF:11}',/" config/app.php
           git add config/app.php
-          git commit -m "Nova versão do Pterodactyl-BR!"
+          git commit -m "New Pterodactyl release inbound!"
           git push
 
       - name: Create release archive
-        run: |
-          rm -rf node_modules tests CODE_OF_CONDUCT.md CONTRIBUTING.md flake.lock flake.nix phpunit.xml shell.nix 
+        run: | 
           tar -czf panel.tar.gz * .editorconfig .env.example .eslintignore .eslintrc.js .gitignore .prettierrc.json
 
       - name: Extract changelog
