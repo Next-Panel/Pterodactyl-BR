@@ -4,17 +4,15 @@
 
 ![GitHub Stars](https://img.shields.io/github/stars/Next-Panel/Pterodactyl-BR?colorA=302D41&colorB=f9e2af&style=for-the-badge)
 ![Comitts Year](https://img.shields.io/github/commit-activity/y/Next-Panel/Pterodactyl-BR?colorA=302D41&colorB=f9e2af&style=for-the-badge)
-<!--
 ![Version](https://img.shields.io/github/v/release/Next-Panel/Pterodactyl-BR?colorA=302D41&colorB=f9e2af&style=for-the-badge)
--->
 
 ![Last-Comitt](https://img.shields.io/github/last-commit/Next-Panel/Pterodactyl-BR?style=for-the-badge&colorA=302D41&colorB=b4befe)
 [![Discord](https://img.shields.io/discord/1053464120311173172?style=for-the-badge&colorA=302D41&colorB=b4befe)](https://discord.gg/68k7wDGjYc)
 ![Contributors](https://img.shields.io/github/contributors-anon/Next-Panel/Pterodactyl-BR?style=for-the-badge&colorA=302D41&colorB=b4befe)
-<!--
 ![Downloads - Total](https://img.shields.io/github/downloads/Next-Panel/Pterodactyl-BR/total?style=for-the-badge&colorA=302D41&colorB=b4befe)
 ![Downloads - Latest](https://img.shields.io/github/downloads/Next-Panel/Pterodactyl-BR/latest/total?style=for-the-badge&colorA=302D41&colorB=b4befe)
 
+<!--
 [![CodeFactor](https://www.codefactor.io/repository/github/next-panel/Pterodactyl-br/badge?style=for-the-badge&colorA=302D41&colorB=b4befe)](https://www.codefactor.io/repository/github/next-panel/jexactyl-br)
 -->
 
