@@ -90,7 +90,7 @@
                         <p class="text-muted small">Na maioria dos casos, você deve optar por usar uma conexão SSL. Se estiver usando um endereço IP ou se você não deseja usar SSL, selecione uma conexão HTTP.</p>
                     </div>
                     <div class="form-group col-xs-12">
-                        <label class="form-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> Serviços de CDN</label>
+                        <label class="form-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span>Serviços CDN(Proxy)</label>
                         <div>
                             <div class="radio radio-success radio-inline">
                                 <input type="radio" id="pProxyFalse" value="0" name="behind_proxy" {{ (old('behind_proxy', $node->behind_proxy) == false) ? 'checked' : '' }}>
@@ -101,7 +101,7 @@
                                 <label for="pProxyTrue"> Usar Proxy </label>
                             </div>
                         </div>
-                        <p class="text-muted small">Se você estiver usando serviços CDN como CloudFlare que estão com proxy ativados coloque <code>"Usar Proxy"</code>,Caso contrario deixe <code>"Não usar Proxy"</code>.</p>
+                        <p class="text-muted small">Se você estiver usando serviços CDN que estão com proxy ativados coloque <code>"Usar Proxy"</code>,Caso contrario deixe <code>"Não usar Proxy"</code>.No CloudFlare isso pode não ser necessario.</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <label class="form-label"><span class="label label-warning"><i class="fa fa-wrench"></i></span> Modo de Manutenção</label>
