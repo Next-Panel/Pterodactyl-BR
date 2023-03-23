@@ -123,7 +123,7 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
                     <h2 css={tw`text-2xl mb-6`}>{task ? 'Editar Tarefa' : 'Criar Tarefa'}</h2>
                     <div css={tw`flex`}>
                         <div css={tw`mr-2 w-1/3`}>
-                            <Label>Action</Label>
+                            <Label>Ação</Label>
                             <ActionListener />
                             <FormikFieldWrapper name={'action'}>
                                 <FormikField as={Select} name={'action'}>
@@ -156,20 +156,20 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
                                 <Label>Payload</Label>
                                 <FormikFieldWrapper name={'payload'}>
                                     <FormikField as={Select} name={'payload'}>
-                                        <option value={'start'}>Start the server</option>
-                                        <option value={'restart'}>Restart the server</option>
-                                        <option value={'stop'}>Stop the server</option>
-                                        <option value={'kill'}>Terminate the server</option>
+                                        <option value={'start'}>Iniciar o servidor</option>
+                                        <option value={'restart'}>Reiniciar o servidor</option>
+                                        <option value={'stop'}>Parar o servidor</option>
+                                        <option value={'kill'}>Encerrar o servidor</option>
                                     </FormikField>
                                 </FormikFieldWrapper>
                             </div>
                         ) : (
                             <div>
-                                <Label>Ignored Files</Label>
+                                <Label>Arquivos ignorados</Label>
                                 <FormikFieldWrapper
                                     name={'payload'}
                                     description={
-                                        'Optional. Include the files and folders to be excluded in this backup. By default, the contents of your .pteroignore file will be used. If you have reached your backup limit, the oldest backup will be rotated.'
+                                        'Opcional. Inclua os arquivos e pastas a serem excluídos neste backup. Por padrão, o conteúdo do arquivo .pteroignore será usado. Se você tiver atingido o limite de backup, o backup mais antigo será girado.'
                                     }
                                 >
                                     <FormikField as={Textarea} name={'payload'} rows={6} />
@@ -180,13 +180,13 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'continueOnFailure'}
-                            description={'Future tasks will be run when this task fails.'}
-                            label={'Continue on Failure'}
+                            description={'Tarefas futuras serão executadas quando esta tarefa falhar.'}
+                            label={'Continuar caso Falha'}
                         />
                     </div>
                     <div css={tw`flex justify-end mt-6`}>
                         <Button type={'submit'} disabled={isSubmitting}>
-                            {task ? 'Save Changes' : 'Create Task'}
+                            {task ? 'Salvar Mudanças' : 'Criar Tarefa'}
                         </Button>
                     </div>
                 </Form>
