@@ -80,7 +80,7 @@
                         <div>
                         <input type="text" name="daemonSFTPIP" class="form-control" value="{{ old('daemonSFTPIP', $node->daemonSFTPIP) }}"/>
                         </div>
-                        <p class="text-muted"><small>Insira o nome do domínio SFTP ou ip (por exemplo, <code>sftp.example.com<code> ou <code>123.456.789.123<code>) a ser usado para se conectar ao sftp do daemon.
+                        <p class="text-muted"><small>Insira o nome do domínio SFTP ou ip (por exemplo, <code>sftp.example.com</code> ou <code>123.456.789.123</code>) a ser usado para se conectar ao sftp do daemon.
                                 <a tabindex="0" data-toggle="popover" data-trigger="focus" title="Por que eu preciso de uma FQDN para o SFTP?" data-content="Ao utilizar um SFTP separado, é possível configurar um servidor Wings atrás do Proxy do Cloudflare. Isso pode melhorar a segurança e a eficiência do servidor.">Por quê?</a>
                             </small></p>
                     </div>
