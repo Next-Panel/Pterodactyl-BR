@@ -182,15 +182,21 @@
                         <p class="text-muted"><small>Insira o tamanho máximo de arquivos que podem ser carregados por meio do gerenciador de arquivos baseado na Web.</small></p>
                     </div>
                     <div class="col-xs-12">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="daemonListen" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> Porta do Daemon</label>
+                    <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="daemonListen" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> Porta do Daemon </label>
                                 <div>
                                     <input type="text" name="daemonListen" class="form-control" value="{{ old('daemonListen', $node->daemonListen) }}"/>
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="daemonSFTP" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span>Porta SFTP do Daemon </label>
+                            <div class="form-group col-md-4">
+                                <label for="daemonSFTPIP" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> IP SFTP do Daemon </label>
+                                <div>
+                                    <input type="text" name="daemonSFTPIP" class="form-control" value="{{ old('daemonSFTPIP', $node->daemonSFTPIP) }}"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="daemonSFTP" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> Porta SFTP do Daemon </label>
                                 <div>
                                     <input type="text" name="daemonSFTP" class="form-control" value="{{ old('daemonSFTP', $node->daemonSFTP) }}"/>
                                 </div>
