@@ -64,8 +64,7 @@
                         <div>
                         <input type="text" name="daemonSFTPIP" class="form-control" id="pDaemonSFTPIP"/>
                         </div>
-                        <p class="text-muted"><small>Insira o nome do domínio SFTP ou ip (por exemplo, <code>sftp.example.com</code> ou <code>123.456.789.123</code>) a ser usado para se conectar ao sftp do daemon.
-                                <a tabindex="0" data-toggle="popover" data-trigger="focus" title="Por que eu preciso de uma FQDN para o SFTP?" data-content="Ao utilizar um SFTP separado, é possível configurar um servidor Wings atrás do Proxy do Cloudflare. Isso pode melhorar a segurança e a eficiência do servidor.">Por quê?</a>
+                        <p class="text-muted"><small>Insira o nome do domínio SFTP ou ip (por exemplo, <code>sftp.example.com</code> ou <code>123.456.789.123</code>) a ser usado para se conectar ao sftp do daemon.Ao utilizar um SFTP separado, é possível configurar um servidor Wings atrás do Proxy do Cloudflare. Isso pode melhorar a segurança e a eficiência do servidor.
                             </small></p>
                     </div>
                     <div class="form-group">
@@ -152,19 +151,19 @@
                             <p class="text-muted small">Insira a quantidade total de espaço em disco disponível para novos servidores. Se você quiser permitir a superalocação de espaço em disco, insira a porcentagem que deseja permitir. Para desativar a verificação de superalocação, insira <code>-1</code> no campo. Digitar <code>0</code> evitará a criação de novos servidores se ultrapassar o limite do Node.</p>
                         </div>
                     </div>
-                    <div class="row">
-                    <div class="form-group col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-6">
                                 <label for="daemonListen" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span>Porta do Daemon</label>
-                                <div>
-                                <input type="text" name="daemonListen" class="form-control" id="pDaemonListen" value="8080" />
+                                    <div>
+                                        <input type="text" name="daemonListen" class="form-control" id="pDaemonListen" value="8080" />
+                                    </div>
                                 </div>
-                            </div>
                             <div class="form-group col-md-6">
                                 <label for="daemonSFTP" class="control-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span>Porta SFTP do Daemon</label>
-                                <div>
-                                <input type="text" name="daemonSFTP" class="form-control" id="pDaemonSFTP" value="2022" />
+                                    <div>
+                                        <input type="text" name="daemonSFTP" class="form-control" id="pDaemonSFTP" value="2022" />
                                 </div>
-                    </div>
+                        </div>
                     <div class="col-md-12">
                             <p class="text-muted small">O daemon executa seu próprio contêiner de gerenciamento SFTP e não utiliza o processo SSHd no servidor físico principal. <Strong>Não utilize a mesma porta que você designou para o processo SSH do seu servidor físico.</strong> Se você estiver executando o daemon atrás do CloudFlare&reg; você deve configurar o porta daemon para <code>8443</code> para permitir a proxy de websocket sobre SSL.</p>
                         </div>
