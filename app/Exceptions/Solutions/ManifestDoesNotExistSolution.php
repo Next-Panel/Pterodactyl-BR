@@ -19,7 +19,7 @@ class ManifestDoesNotExistSolution implements Solution
     public function getDocumentationLinks(): array
     {
         return [
-            'Docs' => 'https://github.com/pterodactyl/panel/blob/develop/package.json',
+            'Docs' => 'https://github.com/Next-Panel/Pterodactyl-BR/blob/develop/package.json',
         ];
     }
 }

@@ -29,7 +29,7 @@
                 @if ($version->isLatestPanel())
                     Você está executando o Painel Pterodactyl na versão <code>{{ config('app.version') }}</code>. Seu painel está atualizado!
                 @else
-                    Seu painel <strong>não está atualizado!</strong> A versão mais recente é a: <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> e você está atualmente executando a versão: <code>{{ config('app.version') }}</code>.
+                    Seu painel <strong>não está atualizado!</strong> A versão mais recente é a: <a href="https://github.com/Next-Panel/Pterodactyl-BR/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> e você está atualmente executando a versão: <code>{{ config('app.version') }}</code>.
                 @endif
             </div>
         </div>
@@ -40,11 +40,11 @@
         <a href="{{ $version->getDiscord() }}"><button class="btn btn-warning" style="width:100%;"><i class="fa fa-fw fa-support"></i> Obter ajuda <small>(via Discord)</small></button></a>
     </div>
     <div class="col-xs-6 col-sm-3 text-center">
-        <a href="https://pterodactyl.io"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-link"></i> Documentação</button></a>
+        <a href="https://nextpanel.com.br"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-link"></i> Documentação</button></a>
     </div>
     <div class="clearfix visible-xs-block">&nbsp;</div>
     <div class="col-xs-6 col-sm-3 text-center">
-        <a href="https://github.com/pterodactyl/panel"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-support"></i> Github</button></a>
+        <a href="https://github.com/Next-Panel/Pterodactyl-BR"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-support"></i> Github</button></a>
     </div>
     <div class="col-xs-6 col-sm-3 text-center">
         <a href="{{ $version->getDonations() }}"><button class="btn btn-success" style="width:100%;"><i class="fa fa-fw fa-money"></i> Apoiar o Projeto</button></a>
