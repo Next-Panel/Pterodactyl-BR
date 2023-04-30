@@ -39,9 +39,9 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
                             rel={'noopener nofollow noreferrer'}
                             href={'https://nextpanel.com.br'}
                             target={'_blank'}
-                        css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
+                            css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
                         >
-                        Nextpanel&reg;
+                            Nextpanel&reg;
                         </a>
                         &nbsp;&copy; 2015 - {new Date().getFullYear()}
                     </p>
