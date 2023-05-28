@@ -54,6 +54,7 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
     public function toMail(): MailMessage
     {
         return (new MailMessage())
+            ->subject(config('app.name', 'Pterodactyl') . ' - Servidor Instalado')
             ->greeting('Olá ' . $this->user->username . '.')
             ->line('Seu servidor terminou de instalar e agora está pronto para você usar.')
             ->line('Nome do servidor: ' . $this->server->name)

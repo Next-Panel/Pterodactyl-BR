@@ -36,6 +36,7 @@ class RemovedFromServer extends Notification implements ShouldQueue
     {
         return (new MailMessage())
             ->error()
+            ->subject(config('app.name', 'Pterodactyl') . ' - Removido do Servidor - ' . $this->server->name)
             ->greeting('Olá ' . $this->server->user . '.')
             ->line('Você foi removido como subusuário do seguinte servidor.')
             ->line('Nome do servidor: ' . $this->server->name)
