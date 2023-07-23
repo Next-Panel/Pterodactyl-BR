@@ -24,7 +24,7 @@ const schema = Yup.object().shape({
         'A confirmação de senha não corresponde à senha digitada.',
         function (value) {
             return value === this.parent.password;
-        }
+        },
     ),
 });
 
@@ -49,7 +49,7 @@ export default () => {
                     type: 'error',
                     title: 'Erro',
                     message: httpErrorToHuman(error),
-                })
+                }),
             )
             .then(() => setSubmitting(false));
     };

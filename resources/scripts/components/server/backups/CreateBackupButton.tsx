@@ -85,7 +85,7 @@ export default () => {
             .then((backup) => {
                 mutate(
                     (data) => ({ ...data, items: data.items.concat(backup), backupCount: data.backupCount + 1 }),
-                    false
+                    false,
                 );
                 setVisible(false);
             })

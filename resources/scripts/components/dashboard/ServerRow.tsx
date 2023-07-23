@@ -19,7 +19,7 @@ const Icon = memo(
     styled(FontAwesomeIcon)<{ $alarm: boolean }>`
         ${(props) => (props.$alarm ? tw`text-red-400` : tw`text-neutral-500`)};
     `,
-    isEqual
+    isEqual,
 );
 
 const IconDescription = styled.p<{ $alarm: boolean }>`

@@ -46,7 +46,7 @@ export default () => {
         () => () => {
             clearServerState();
         },
-        []
+        [],
     );
 
     useEffect(() => {
@@ -89,7 +89,7 @@ export default () => {
                                             <NavLink key={route.path} to={to(route.path, true)} exact={route.exact}>
                                                 {route.name}
                                             </NavLink>
-                                        )
+                                        ),
                                     )}
                                 {rootAdmin && (
                                     // eslint-disable-next-line react/jsx-no-target-blank

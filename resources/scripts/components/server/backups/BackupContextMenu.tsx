@@ -62,8 +62,8 @@ export default ({ backup }: Props) => {
                         items: data.items.filter((b) => b.uuid !== backup.uuid),
                         backupCount: data.backupCount - 1,
                     }),
-                    false
-                )
+                    false,
+                ),
             )
             .catch((error) => {
                 console.error(error);
@@ -81,7 +81,7 @@ export default ({ backup }: Props) => {
                 setServerFromState((s) => ({
                     ...s,
                     status: 'restoring_backup',
-                }))
+                })),
             )
             .catch((error) => {
                 console.error(error);
@@ -107,11 +107,11 @@ export default ({ backup }: Props) => {
                                 : {
                                       ...b,
                                       isLocked: !b.isLocked,
-                                  }
+                                  },
                         ),
                     }),
-                    false
-                )
+                    false,
+                ),
             )
             .catch((error) => alert(httpErrorToHuman(error)))
             .then(() => setModal(''));
