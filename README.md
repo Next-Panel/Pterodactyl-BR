@@ -70,9 +70,9 @@ e há muitos outros jogos disponíveis fornecidos pela comunidade. Alguns desses
 
 ## Licença
 
-Pterodactyl-Brasil é um York no qual decidimos traduzir o Pterodactyl para Português. De forma alguma os Tradutores são ou pertencem a Equipe do Pterodactyl, somos apenas um grupo cujo temos os mesmos objetivos.
+Pterodactyl-BR é um York que nós da Next-panel traduzimos para Português. De forma alguma a nossa equipe são ou pertencem a Equipe do Pterodactyl, somos apenas um grupo cujo temos os mesmos objetivos.
 
-Pterodactyl-Brasil® 2023 - [@Drylian](https://github.com/drylian) e [@Ashu](https://github.com/Ashu11-A/).
+Pterodactyl-BR® 2023 - Next-Panel [@Drylian](https://github.com/drylian) e [@Ashu](https://github.com/Ashu11-A/).
 
 Pterodactyl® Copyright © 2015 - 2022 [@Dane Everitt](https://github.com/DaneEveritt) e colaboradores.
 
