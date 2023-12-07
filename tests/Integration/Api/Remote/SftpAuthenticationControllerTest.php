@@ -1,14 +1,13 @@
 <?php
 
 namespace Pterodactyl\Tests\Integration\Api\Remote;
-
+use phpseclib3\Crypt\EC;
 use Pterodactyl\Models\Node;
 use Pterodactyl\Models\User;
 use Pterodactyl\Models\Server;
 use Pterodactyl\Models\Permission;
 use Pterodactyl\Models\UserSSHKey;
 use phpseclib3\Crypt\EC\PrivateKey;
-use phpseclib3\Crypt\EC;
 use Pterodactyl\Tests\Integration\IntegrationTestCase;
 
 class SftpAuthenticationControllerTest extends IntegrationTestCase
