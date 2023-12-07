@@ -1,6 +1,7 @@
 <?php
 
 namespace Pterodactyl\Tests\Integration\Api\Remote;
+
 use phpseclib3\Crypt\EC;
 use Pterodactyl\Models\Node;
 use Pterodactyl\Models\User;
