@@ -1,5 +1,5 @@
-import { FractalResponseData } from '@/api/http';
 import { Allocation } from '@/api/server/getServer';
+import { FractalResponseData } from '@/api/http';
 import { FileObject } from '@/api/server/files/loadDirectory';
 import { ServerBackup, ServerEggVariable } from '@/api/server/types';
 
@@ -40,6 +40,7 @@ export const rawDataToFileObject = (data: FractalResponseData): FileObject => ({
                 'application/x-xz', // .tar.xz, .xz
                 'application/zstd', // .tar.zst, .zst
                 'application/zip', // .zip
+                'application/x-7z-compressed', // .7z
             ].indexOf(this.mimetype) >= 0
         );
     },

@@ -20,7 +20,7 @@ class BuildModificationService
     public function __construct(
         private ConnectionInterface $connection,
         private DaemonServerRepository $daemonServerRepository,
-        private ServerConfigurationStructureService $structureService
+        private ServerConfigurationStructureService $structureService,
     ) {
     }
 
@@ -28,11 +28,11 @@ class BuildModificationService
      * Change the build details for a specified server.
      *
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws DisplayException
      */
     public function handle(Server $server, array $data): Server
     {
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var Server $server */
         $server = $this->connection->transaction(function () use ($server, $data) {
             $this->processAllocations($server, $data);
 
@@ -40,7 +40,7 @@ class BuildModificationService
                 try {
                     Allocation::query()->where('id', $data['allocation_id'])->where('server_id', $server->id)->firstOrFail();
                 } catch (ModelNotFoundException) {
-                    throw new DisplayException('A alocação padrão solicitada não está atualmente atribuída a este servidor.');
+                    throw new DisplayException('The requested default allocation is not currently assigned to this server.');
                 }
             }
 
@@ -77,7 +77,7 @@ class BuildModificationService
     /**
      * Process the allocations being assigned in the data and ensure they are available for a server.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws DisplayException
      */
     private function processAllocations(Server $server, array &$data): void
     {
@@ -107,7 +107,7 @@ class BuildModificationService
                 // will throw an exception back.
                 if ($allocation === ($data['allocation_id'] ?? $server->allocation_id)) {
                     if (empty($freshlyAllocated)) {
-                        throw new DisplayException('Você está tentando excluir a alocação padrão para este servidor, mas não há alocação alternativa para usar.');
+                        throw new DisplayException('You are attempting to delete the default allocation for this server but there is no fallback allocation to use.');
                     }
 
                     // Update the default allocation to be the first allocation that we are creating.

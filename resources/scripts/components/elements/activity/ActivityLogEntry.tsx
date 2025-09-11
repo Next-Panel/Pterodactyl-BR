@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 import Translate from '@/components/elements/Translate';
 import { format, formatDistanceToNowStrict } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
 import { ActivityLog } from '@definitions/user';
 import ActivityLogMetaButton from '@/components/elements/activity/ActivityLogMetaButton';
 import { FolderOpenIcon, TerminalIcon } from '@heroicons/react/solid';
@@ -24,15 +23,12 @@ function wrapProperties(value: unknown): any {
     }
 
     if (isObject(value)) {
-        return getObjectKeys(value).reduce(
-            (obj, key) => {
-                if (key === 'count' || (typeof key === 'string' && key.endsWith('_count'))) {
-                    return { ...obj, [key]: value[key] };
-                }
-                return { ...obj, [key]: wrapProperties(value[key]) };
-            },
-            {} as Record<string, unknown>,
-        );
+        return getObjectKeys(value).reduce((obj, key) => {
+            if (key === 'count' || (typeof key === 'string' && key.endsWith('_count'))) {
+                return { ...obj, [key]: value[key] };
+            }
+            return { ...obj, [key]: wrapProperties(value[key]) };
+        }, {} as Record<string, unknown>);
     }
 
     if (Array.isArray(value)) {
@@ -57,7 +53,7 @@ export default ({ activity, children }: Props) => {
             <div className={'col-span-10 sm:col-span-9 flex'}>
                 <div className={'flex-1 px-4 sm:px-0'}>
                     <div className={'flex items-center text-gray-50'}>
-                        <Tooltip placement={'top'} content={actor?.email || 'Usuário do sistema'}>
+                        <Tooltip placement={'top'} content={actor?.email || 'System User'}>
                             <span>{actor?.username || 'System'}</span>
                         </Tooltip>
                         <span className={'text-gray-400'}>&nbsp;&mdash;&nbsp;</span>
@@ -91,13 +87,8 @@ export default ({ activity, children }: Props) => {
                                 <span className={'text-gray-400'}>&nbsp;|&nbsp;</span>
                             </span>
                         )}
-                        <Tooltip
-                            placement={'right'}
-                            content={format(activity.timestamp, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })}
-                        >
-                            <span>
-                                {formatDistanceToNowStrict(activity.timestamp, { addSuffix: true, locale: ptBR })}
-                            </span>
+                        <Tooltip placement={'right'} content={format(activity.timestamp, 'MMM do, yyyy H:mm:ss')}>
+                            <span>{formatDistanceToNowStrict(activity.timestamp, { addSuffix: true })}</span>
                         </Tooltip>
                     </div>
                 </div>

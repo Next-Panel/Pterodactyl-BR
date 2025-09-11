@@ -79,18 +79,18 @@ export default () => {
         switch (status) {
             // Sent by either the source or target node if a failure occurs.
             case 'failure':
-                terminal.writeln(TERMINAL_PRELUDE + 'A transferência falhou.\u001b[0m');
+                terminal.writeln(TERMINAL_PRELUDE + 'Transfer has failed.\u001b[0m');
                 return;
         }
     };
 
     const handleDaemonErrorOutput = (line: string) =>
         terminal.writeln(
-            TERMINAL_PRELUDE + '\u001b[1m\u001b[41m' + line.replace(/(?:\r\n|\r|\n)$/im, '') + '\u001b[0m',
+            TERMINAL_PRELUDE + '\u001b[1m\u001b[41m' + line.replace(/(?:\r\n|\r|\n)$/im, '') + '\u001b[0m'
         );
 
     const handlePowerChangeEvent = (state: string) =>
-        terminal.writeln(TERMINAL_PRELUDE + 'Servidor marcado como ' + state + '...\u001b[0m');
+        terminal.writeln(TERMINAL_PRELUDE + 'Server marked as ' + state + '...\u001b[0m');
 
     const handleCommandKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'ArrowUp') {
@@ -156,7 +156,7 @@ export default () => {
             if (terminal.element) {
                 fitAddon.fit();
             }
-        }, 100),
+        }, 100)
     );
 
     useEffect(() => {
@@ -206,8 +206,8 @@ export default () => {
                     <input
                         className={classNames('peer', styles.command_input)}
                         type={'text'}
-                        placeholder={'Digite um comando...'}
-                        aria-label={'Entrada de comando do console.'}
+                        placeholder={'Type a command...'}
+                        aria-label={'Console command input.'}
                         disabled={!instance || !connected}
                         onKeyDown={handleCommandKeyDown}
                         autoCorrect={'off'}
@@ -216,7 +216,7 @@ export default () => {
                     <div
                         className={classNames(
                             'text-gray-100 peer-focus:text-gray-50 peer-focus:animate-pulse',
-                            styles.command_icon,
+                            styles.command_icon
                         )}
                     >
                         <ChevronDoubleRightIcon className={'w-4 h-4'} />

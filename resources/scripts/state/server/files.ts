@@ -32,12 +32,15 @@ const files: ServerFileStore = {
     setDirectory: action((state, payload) => {
         state.directory = cleanDirectoryPath(payload);
     }),
+
     setSelectedFiles: action((state, payload) => {
         state.selectedFiles = payload;
     }),
+
     appendSelectedFile: action((state, payload) => {
         state.selectedFiles = state.selectedFiles.filter((f) => f !== payload).concat(payload);
     }),
+
     removeSelectedFile: action((state, payload) => {
         state.selectedFiles = state.selectedFiles.filter((f) => f !== payload);
     }),

@@ -15,7 +15,7 @@ class StoreNodeRequest extends ApplicationApiRequest
     /**
      * Validation rules to apply to this request.
      */
-    public function rules(array $rules = null): array
+    public function rules(?array $rules = null): array
     {
         return collect($rules ?? Node::getRules())->only([
             'public',
@@ -46,10 +46,10 @@ class StoreNodeRequest extends ApplicationApiRequest
     public function attributes(): array
     {
         return [
-            'daemon_base' => 'Caminho base do daemon',
-            'upload_size' => 'Limite de tamanho de upload de arquivo',
-            'location_id' => 'Localização',
-            'public' => 'Visibilidade do node',
+            'daemon_base' => 'Daemon Base Path',
+            'upload_size' => 'File Upload Size Limit',
+            'location_id' => 'Location',
+            'public' => 'Node Visibility',
         ];
     }
 

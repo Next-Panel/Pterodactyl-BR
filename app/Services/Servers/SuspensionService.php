@@ -16,7 +16,7 @@ class SuspensionService
      * SuspensionService constructor.
      */
     public function __construct(
-        private DaemonServerRepository $daemonServerRepository
+        private DaemonServerRepository $daemonServerRepository,
     ) {
     }
 
@@ -39,7 +39,7 @@ class SuspensionService
 
         // Check if the server is currently being transferred.
         if (!is_null($server->transfer)) {
-            throw new ConflictHttpException('Não é possível alternar o status de suspensão em um servidor que está sendo transferido no momento.');
+            throw new ConflictHttpException('Cannot toggle suspension status on a server that is currently being transferred.');
         }
 
         // Update the server's suspension status.

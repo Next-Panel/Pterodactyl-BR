@@ -10,7 +10,6 @@ import { useFlashKey } from '@/plugins/useFlash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
 import CreateSSHKeyForm from '@/components/dashboard/ssh/CreateSSHKeyForm';
 import DeleteSSHKeyButton from '@/components/dashboard/ssh/DeleteSSHKeyButton';
 
@@ -29,14 +28,14 @@ export default () => {
         <PageContentBlock title={'SSH Keys'}>
             <FlashMessageRender byKey={'account'} />
             <div css={tw`md:flex flex-nowrap my-10`}>
-                <ContentBox title={'Adicionar Chave SSH'} css={tw`flex-none w-full md:w-1/2`}>
+                <ContentBox title={'Add SSH Key'} css={tw`flex-none w-full md:w-1/2`}>
                     <CreateSSHKeyForm />
                 </ContentBox>
-                <ContentBox title={'Chaves SSH'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
+                <ContentBox title={'SSH Keys'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
                     <SpinnerOverlay visible={!data && isValidating} />
                     {!data || !data.length ? (
                         <p css={tw`text-center text-sm`}>
-                            {!data ? 'Carregando...' : 'Não existem chaves SSH para esta conta.'}
+                            {!data ? 'Loading...' : 'No SSH Keys exist for this account.'}
                         </p>
                     ) : (
                         data.map((key, index) => (
@@ -49,10 +48,8 @@ export default () => {
                                     <p css={tw`text-sm break-words font-medium`}>{key.name}</p>
                                     <p css={tw`text-xs mt-1 font-mono truncate`}>SHA256:{key.fingerprint}</p>
                                     <p css={tw`text-xs mt-1 text-neutral-300 uppercase`}>
-                                        Adicionado em:&nbsp;
-                                        {format(key.createdAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm:ss", {
-                                            locale: ptBR,
-                                        })}
+                                        Added on:&nbsp;
+                                        {format(key.createdAt, 'MMM do, yyyy HH:mm')}
                                     </p>
                                 </div>
                                 <DeleteSSHKeyButton name={key.name} fingerprint={key.fingerprint} />

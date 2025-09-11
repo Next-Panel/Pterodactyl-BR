@@ -39,7 +39,7 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                 console.error(error);
 
                 setSubmitting(false);
-                addFlash({ type: 'error', title: 'Erro', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: 'Error', message: httpErrorToHuman(error) });
             });
     };
 
@@ -52,16 +52,16 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
             }}
             validationSchema={object().shape({
                 password: string()
-                    .required('Uma nova senha é necessária.')
-                    .min(8, 'Sua nova senha deve ter pelo menos 8 caracteres.'),
+                    .required('A new password is required.')
+                    .min(8, 'Your new password should be at least 8 characters in length.'),
                 passwordConfirmation: string()
-                    .required('Sua nova senha não corresponde.')
+                    .required('Your new password does not match.')
                     // @ts-expect-error this is valid
-                    .oneOf([ref('password'), null], 'Sua nova senha não corresponde.'),
+                    .oneOf([ref('password'), null], 'Your new password does not match.'),
             })}
         >
             {({ isSubmitting }) => (
-                <LoginFormContainer title={'Redefinir senha'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Reset Password'} css={tw`w-full flex`}>
                     <div>
                         <label>Email</label>
                         <Input value={email} isLight disabled />
@@ -69,14 +69,14 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                     <div css={tw`mt-6`}>
                         <Field
                             light
-                            label={'Nova Senha'}
+                            label={'New Password'}
                             name={'password'}
                             type={'password'}
-                            description={'As senhas devem ter pelo menos 8 caracteres.'}
+                            description={'Passwords must be at least 8 characters in length.'}
                         />
                     </div>
                     <div css={tw`mt-6`}>
-                        <Field light label={'Confirme a nova senha'} name={'passwordConfirmation'} type={'password'} />
+                        <Field light label={'Confirm New Password'} name={'passwordConfirmation'} type={'password'} />
                     </div>
                     <div css={tw`mt-6`}>
                         <Button size={'xlarge'} type={'submit'} disabled={isSubmitting} isLoading={isSubmitting}>
@@ -88,7 +88,7 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
-                            Retornar para Login
+                            Return to Login
                         </Link>
                     </div>
                 </LoginFormContainer>

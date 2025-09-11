@@ -34,7 +34,7 @@ export default ({ className }: WithClassname) => {
     const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const directory = ServerContext.useStoreState((state) => state.files.directory);
     const { clearFileUploads, removeFileUpload, pushFileUpload, setUploadProgress } = ServerContext.useStoreActions(
-        (actions) => actions.files,
+        (actions) => actions.files
     );
 
     useEventListener(
@@ -46,7 +46,7 @@ export default ({ className }: WithClassname) => {
                 visible.value = true;
             }
         },
-        { capture: true },
+        { capture: true }
     );
 
     useEventListener('dragexit', () => (visible.value = false), { capture: true });
@@ -65,7 +65,7 @@ export default ({ className }: WithClassname) => {
         clearAndAddHttpError();
         const list = Array.from(files);
         if (list.some((file) => !file.size || (!file.type && file.size === 4096))) {
-            return addError('Os uploads de pasta não são suportados neste momento.', 'Erro');
+            return addError('Folder uploads are not supported at this time.', 'Error');
         }
 
         const uploads = list.map((file) => {
@@ -86,9 +86,9 @@ export default ({ className }: WithClassname) => {
                                 headers: { 'Content-Type': 'multipart/form-data' },
                                 params: { directory },
                                 onUploadProgress: (data) => onUploadProgress(data, file.name),
-                            },
+                            }
                         )
-                        .then(() => timeouts.value.push(setTimeout(() => removeFileUpload(file.name), 500))),
+                        .then(() => timeouts.value.push(setTimeout(() => removeFileUpload(file.name), 500)))
                 );
         });
 
@@ -125,7 +125,7 @@ export default ({ className }: WithClassname) => {
                             >
                                 <CloudUploadIcon className={'w-10 h-10 flex-shrink-0'} />
                                 <p className={'font-header flex-1 text-lg text-neutral-100 text-center'}>
-                                    Arraste e solte arquivos para fazer upload.
+                                    Drag and drop files to upload.
                                 </p>
                             </div>
                         </div>

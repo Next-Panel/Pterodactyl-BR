@@ -80,13 +80,13 @@ class UpdateServerBuildConfigurationRequest extends ServerWriteRequest
     public function attributes(): array
     {
         return [
-            'add_allocations' => 'alocações para adicionar',
-            'remove_allocations' => 'alocações para remover',
-            'add_allocations.*' => 'alocação para adicionar',
-            'remove_allocations.*' => 'alocação para remover',
-            'feature_limits.databases' => 'Limite do Database',
-            'feature_limits.allocations' => 'Limite de Alocação',
-            'feature_limits.backups' => 'Limite de backup',
+            'add_allocations' => 'allocations to add',
+            'remove_allocations' => 'allocations to remove',
+            'add_allocations.*' => 'allocation to add',
+            'remove_allocations.*' => 'allocation to remove',
+            'feature_limits.databases' => 'Database Limit',
+            'feature_limits.allocations' => 'Allocation Limit',
+            'feature_limits.backups' => 'Backup Limit',
         ];
     }
 

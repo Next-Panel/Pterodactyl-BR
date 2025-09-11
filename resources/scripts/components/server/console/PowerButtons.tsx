@@ -17,7 +17,7 @@ export default ({ className }: PowerButtonProps) => {
     const killable = status === 'stopping';
     const onButtonClick = (
         action: PowerAction | 'kill-confirmed',
-        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ): void => {
         e.preventDefault();
         if (action === 'kill') {
@@ -42,11 +42,11 @@ export default ({ className }: PowerButtonProps) => {
                 open={open}
                 hideCloseIcon
                 onClose={() => setOpen(false)}
-                title={'Processo de Parada Forçada'}
-                confirm={'Continuar'}
+                title={'Forcibly Stop Process'}
+                confirm={'Continue'}
                 onConfirmed={onButtonClick.bind(this, 'kill-confirmed')}
             >
-                Parar um servidor à força pode levar à corrupção de dados.
+                Forcibly stopping a server can lead to data corruption.
             </Dialog.Confirm>
             <Can action={'control.start'}>
                 <Button
@@ -54,12 +54,12 @@ export default ({ className }: PowerButtonProps) => {
                     disabled={status !== 'offline'}
                     onClick={onButtonClick.bind(this, 'start')}
                 >
-                    Iniciar
+                    Start
                 </Button>
             </Can>
             <Can action={'control.restart'}>
                 <Button.Text className={'flex-1'} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}>
-                    Reiniciar
+                    Restart
                 </Button.Text>
             </Can>
             <Can action={'control.stop'}>
@@ -68,7 +68,7 @@ export default ({ className }: PowerButtonProps) => {
                     disabled={status === 'offline'}
                     onClick={onButtonClick.bind(this, killable ? 'kill' : 'stop')}
                 >
-                    {killable ? 'Matar' : 'Parar'}
+                    {killable ? 'Kill' : 'Stop'}
                 </Button.Danger>
             </Can>
         </div>

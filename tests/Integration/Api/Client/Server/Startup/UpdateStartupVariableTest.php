@@ -12,9 +12,8 @@ class UpdateStartupVariableTest extends ClientApiIntegrationTestCase
 {
     /**
      * Test that a startup variable can be edited successfully for a server.
-     *
-     * @dataProvider permissionsDataProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('permissionsDataProvider')]
     public function testStartupVariableCanBeUpdated(array $permissions)
     {
         /** @var \Pterodactyl\Models\Server $server */
@@ -30,7 +29,7 @@ class UpdateStartupVariableTest extends ClientApiIntegrationTestCase
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonPath('errors.0.code', 'ValidationException');
-        $response->assertJsonPath('errors.0.detail', 'O value pode conter apenas letras e números.');
+        $response->assertJsonPath('errors.0.detail', 'The value may only contain letters and numbers.');
 
         $response = $this->actingAs($user)->putJson($this->link($server) . '/startup/variable', [
             'key' => 'BUNGEE_VERSION',
@@ -47,9 +46,8 @@ class UpdateStartupVariableTest extends ClientApiIntegrationTestCase
     /**
      * Test that variables that are either not user_viewable, or not user_editable, cannot be
      * updated via this endpoint.
-     *
-     * @dataProvider permissionsDataProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('permissionsDataProvider')]
     public function testStartupVariableCannotBeUpdatedIfNotUserViewableOrEditable(array $permissions)
     {
         /** @var \Pterodactyl\Models\Server $server */

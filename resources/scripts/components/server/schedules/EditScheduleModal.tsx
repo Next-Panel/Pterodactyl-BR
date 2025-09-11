@@ -90,30 +90,29 @@ const EditScheduleModal = ({ schedule }: Props) => {
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <h3 css={tw`text-2xl mb-6`}>{schedule ? 'Editar cronograma' : 'Criar novo cronograma'}</h3>
+                    <h3 css={tw`text-2xl mb-6`}>{schedule ? 'Edit schedule' : 'Create new schedule'}</h3>
                     <FlashMessageRender byKey={'schedule:edit'} css={tw`mb-6`} />
                     <Field
                         name={'name'}
-                        label={'Nome do cronograma'}
-                        description={'Um identificador humano legível para este cronograma.'}
+                        label={'Schedule name'}
+                        description={'A human readable identifier for this schedule.'}
                     />
                     <div css={tw`grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6`}>
-                        <Field name={'minute'} label={'Minuto'} />
-                        <Field name={'hour'} label={'Hora'} />
-                        <Field name={'dayOfMonth'} label={'Dia do Mês'} />
-                        <Field name={'month'} label={'Mês'} />
-                        <Field name={'dayOfWeek'} label={'Dia da Semana'} />
+                        <Field name={'minute'} label={'Minute'} />
+                        <Field name={'hour'} label={'Hour'} />
+                        <Field name={'dayOfMonth'} label={'Day of month'} />
+                        <Field name={'month'} label={'Month'} />
+                        <Field name={'dayOfWeek'} label={'Day of week'} />
                     </div>
                     <p css={tw`text-neutral-400 text-xs mt-2`}>
-                        O sistema de cronograma suporta o uso da sintaxe Cronjob ao definir quando as tarefas devem
-                        começar em funcionamento. Use os campos acima para especificar quando estas tarefas devem
-                        começar a ser executadas.
+                        The schedule system supports the use of Cronjob syntax when defining when tasks should begin
+                        running. Use the fields above to specify when these tasks should begin running.
                     </p>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <Switch
                             name={'show_cheatsheet'}
-                            description={'Mostrar a folha de dados do cron para alguns exemplos.'}
-                            label={'Mostrar Exemplos de Cron'}
+                            description={'Show the cron cheatsheet for some examples.'}
+                            label={'Show Cheatsheet'}
                             defaultChecked={showCheatsheet}
                             onChange={() => setShowCheetsheet((s) => !s)}
                         />
@@ -126,22 +125,20 @@ const EditScheduleModal = ({ schedule }: Props) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'onlyWhenOnline'}
-                            description={
-                                'Executar este cronograma somente quando o servidor estiver em estado de funcionamento.'
-                            }
-                            label={'Somente quando o servidor está online'}
+                            description={'Only execute this schedule when the server is in a running state.'}
+                            label={'Only When Server Is Online'}
                         />
                     </div>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'enabled'}
-                            description={'Este cronograma será executado automaticamente se ativado.'}
-                            label={'Cronograma Ativado'}
+                            description={'This schedule will be executed automatically if enabled.'}
+                            label={'Schedule Enabled'}
                         />
                     </div>
                     <div css={tw`mt-6 text-right`}>
                         <Button className={'w-full sm:w-auto'} type={'submit'} disabled={isSubmitting}>
-                            {schedule ? 'Salvar Mudanças' : 'Criar Cronograma'}
+                            {schedule ? 'Save changes' : 'Create schedule'}
                         </Button>
                     </div>
                 </Form>

@@ -17,7 +17,7 @@ class DataValidationException extends PterodactylException implements HttpExcept
     public function __construct(protected Validator $validator, protected Model $model)
     {
         $message = sprintf(
-            'Não foi possível salvar %s[%s]: falha ao validar dados: %s',
+            'Could not save %s[%s]: failed to validate data: %s',
             get_class($model),
             $model->getKey(),
             $validator->errors()->toJson()

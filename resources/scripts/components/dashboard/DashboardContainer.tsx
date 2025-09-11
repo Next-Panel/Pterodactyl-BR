@@ -26,7 +26,7 @@ export default () => {
 
     const { data: servers, error } = useSWR<PaginatedResult<Server>>(
         ['/api/client/servers', showOnlyAdmin && rootAdmin, page],
-        () => getServers({ page, type: showOnlyAdmin && rootAdmin ? 'admin' : undefined }),
+        () => getServers({ page, type: showOnlyAdmin && rootAdmin ? 'admin' : undefined })
     );
 
     useEffect(() => {
@@ -49,11 +49,11 @@ export default () => {
     }, [error]);
 
     return (
-        <PageContentBlock title={'Painel'} showFlashKey={'dashboard'}>
+        <PageContentBlock title={'Dashboard'} showFlashKey={'dashboard'}>
             {rootAdmin && (
                 <div css={tw`mb-2 flex justify-end items-center`}>
                     <p css={tw`uppercase text-xs text-neutral-400 mr-2`}>
-                        {showOnlyAdmin ? 'Mostrando os servidores de outras pessoas' : 'Mostrando seus servidores'}
+                        {showOnlyAdmin ? "Showing others' servers" : 'Showing your servers'}
                     </p>
                     <Switch
                         name={'show_all_servers'}
@@ -74,8 +74,8 @@ export default () => {
                         ) : (
                             <p css={tw`text-center text-sm text-neutral-400`}>
                                 {showOnlyAdmin
-                                    ? 'Não há outros servidores para exibir.'
-                                    : 'Não há servidores associados à sua conta.'}
+                                    ? 'There are no other servers to display.'
+                                    : 'There are no servers associated with your account.'}
                             </p>
                         )
                     }

@@ -31,7 +31,7 @@ class ServerTransformer extends BaseClientTransformer
      */
     public function transform(Server $server): array
     {
-        /** @var \Pterodactyl\Services\Servers\StartupCommandService $service */
+        /** @var StartupCommandService $service */
         $service = Container::getInstance()->make(StartupCommandService::class);
 
         $user = $this->request->user();
@@ -45,7 +45,7 @@ class ServerTransformer extends BaseClientTransformer
             'node' => $server->node->name,
             'is_node_under_maintenance' => $server->node->isUnderMaintenance(),
             'sftp_details' => [
-                'ip' => ($server->node->daemonSFTPIP ? $server->node->daemonSFTPIP : $server->node->fqdn),
+                'ip' => $server->node->fqdn,
                 'port' => $server->node->daemonSFTP,
             ],
             'description' => $server->description,

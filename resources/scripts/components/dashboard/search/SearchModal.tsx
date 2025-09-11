@@ -50,7 +50,7 @@ export default ({ ...props }: Props) => {
     const isAdmin = useStoreState((state) => state.user.data!.rootAdmin);
     const [servers, setServers] = useState<Server[]>([]);
     const { clearAndAddHttpError, clearFlashes } = useStoreActions(
-        (actions: Actions<ApplicationStore>) => actions.flashes,
+        (actions: Actions<ApplicationStore>) => actions.flashes
     );
 
     const search = debounce(({ term }: Values, { setSubmitting }: FormikHelpers<Values>) => {
@@ -80,7 +80,7 @@ export default ({ ...props }: Props) => {
         <Formik
             onSubmit={search}
             validationSchema={object().shape({
-                term: string().min(3, 'Digite pelo menos três caracteres para começar a pesquisar.'),
+                term: string().min(3, 'Please enter at least three characters to begin searching.'),
             })}
             initialValues={{ term: '' } as Values}
         >
@@ -89,8 +89,8 @@ export default ({ ...props }: Props) => {
                     <Form>
                         <FormikFieldWrapper
                             name={'term'}
-                            label={'Termo de pesquisa'}
-                            description={'Insira um nome de servidor, uuid ou alocação para começar a pesquisar.'}
+                            label={'Search term'}
+                            description={'Enter a server name, uuid, or allocation to begin searching.'}
                         >
                             <SearchWatcher />
                             <InputSpinner visible={isSubmitting}>

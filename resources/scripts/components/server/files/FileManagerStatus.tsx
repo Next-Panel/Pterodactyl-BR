@@ -35,7 +35,7 @@ const FileUploadList = () => {
     const cancelFileUpload = ServerContext.useStoreActions((actions) => actions.files.cancelFileUpload);
     const clearFileUploads = ServerContext.useStoreActions((actions) => actions.files.clearFileUploads);
     const uploads = ServerContext.useStoreState((state) =>
-        Object.entries(state.files.uploads).sort(([a], [b]) => a.localeCompare(b)),
+        Object.entries(state.files.uploads).sort(([a], [b]) => a.localeCompare(b))
     );
 
     return (
@@ -58,17 +58,17 @@ const FileUploadList = () => {
             ))}
             <Dialog.Footer>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => clearFileUploads()}>
-                    Cancelar uploads
+                    Cancel Uploads
                 </Button.Danger>
-                <Button.Text onClick={close}>Fechar</Button.Text>
+                <Button.Text onClick={close}>Close</Button.Text>
             </Dialog.Footer>
         </div>
     );
 };
 
 const FileUploadListDialog = asDialog({
-    title: 'Uploads de arquivo',
-    description: 'Os seguintes arquivos estão sendo carregados para o seu servidor.',
+    title: 'File Uploads',
+    description: 'The following files are being uploaded to your server.',
 })(FileUploadList);
 
 export default () => {

@@ -9,12 +9,12 @@ use Pterodactyl\Contracts\Repository\NestRepositoryInterface;
 class NestSeeder extends Seeder
 {
     /**
-     * @var \Pterodactyl\Services\Nests\NestCreationService
+     * @var NestCreationService
      */
     private $creationService;
 
     /**
-     * @var \Pterodactyl\Contracts\Repository\NestRepositoryInterface
+     * @var NestRepositoryInterface
      */
     private $repository;
 
@@ -23,7 +23,7 @@ class NestSeeder extends Seeder
      */
     public function __construct(
         NestCreationService $creationService,
-        NestRepositoryInterface $repository
+        NestRepositoryInterface $repository,
     ) {
         $this->creationService = $creationService;
         $this->repository = $repository;
@@ -51,12 +51,12 @@ class NestSeeder extends Seeder
      *
      * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
-    private function createMinecraftNest(array $nest = null)
+    private function createMinecraftNest(?array $nest = null)
     {
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Minecraft',
-                'description' => 'Minecraft - o clássico jogo da Mojang. Com suporte para Vanilla MC, Spigot, e muitos outros!',
+                'description' => 'Minecraft - the classic game from Mojang. With support for Vanilla MC, Spigot, and many others!',
             ], 'support@pterodactyl.io');
         }
     }
@@ -66,12 +66,12 @@ class NestSeeder extends Seeder
      *
      * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
-    private function createSourceEngineNest(array $nest = null)
+    private function createSourceEngineNest(?array $nest = null)
     {
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Source Engine',
-                'description' => 'Inclui suporte para a maioria dos jogos do Servidor Dedicado de Origem.',
+                'description' => 'Includes support for most Source Dedicated Server games.',
             ], 'support@pterodactyl.io');
         }
     }
@@ -81,12 +81,12 @@ class NestSeeder extends Seeder
      *
      * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
-    private function createVoiceServersNest(array $nest = null)
+    private function createVoiceServersNest(?array $nest = null)
     {
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Voice Servers',
-                'description' => 'Servidores de voz como Mumble e Teamspeak 3.',
+                'description' => 'Voice servers such as Mumble and Teamspeak 3.',
             ], 'support@pterodactyl.io');
         }
     }
@@ -96,12 +96,12 @@ class NestSeeder extends Seeder
      *
      * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      */
-    private function createRustNest(array $nest = null)
+    private function createRustNest(?array $nest = null)
     {
         if (is_null($nest)) {
             $this->creationService->handle([
                 'name' => 'Rust',
-                'description' => 'Rust - Um jogo onde você deve lutar para sobreviver.',
+                'description' => 'Rust - A game where you must fight to survive.',
             ], 'support@pterodactyl.io');
         }
     }

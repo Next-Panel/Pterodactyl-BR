@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    Nests &rarr; Novo Egg
+    Nests &rarr; New Egg
 @endsection
 
 @section('content-header')
-    <h1>Novo Egg<small>Criar um novo egg para atribuir aos servidores.</small></h1>
+    <h1>New Egg<small>Create a new Egg to assign to servers.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administração</a></li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
         <li><a href="{{ route('admin.nests') }}">Nests</a></li>
-        <li class="active">Novo Egg</li>
+        <li class="active">New Egg</li>
     </ol>
 @endsection
 
@@ -19,43 +19,43 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Configurações</h3>
+                    <h3 class="box-title">Configuration</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pNestId" class="form-label">Nest Associado</label>
+                                <label for="pNestId" class="form-label">Associated Nest</label>
                                 <div>
                                     <select name="nest_id" id="pNestId">
                                         @foreach($nests as $nest)
                                             <option value="{{ $nest->id }}" {{ old('nest_id') != $nest->id ?: 'selected' }}>{{ $nest->name }} &lt;{{ $nest->author }}&gt;</option>
                                         @endforeach
                                     </select>
-                                    <p class="text-muted small">Pense em um Nest como uma categoria. Você pode colocar vários eggs em um nest, mas considere colocar apenas eggs que estejam relacionados entre si em cada nest.</p>
+                                    <p class="text-muted small">Think of a Nest as a category. You can put multiple Eggs in a nest, but consider putting only Eggs that are related to each other in each Nest.</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="pName" class="form-label">Nome</label>
+                                <label for="pName" class="form-label">Name</label>
                                 <input type="text" id="pName" name="name" value="{{ old('name') }}" class="form-control" />
-                                <p class="text-muted small">Um nome simples, legível pelo homem, para ser usado como identificador deste Eggs. Isto é o que os usuários verão como seu tipo de servidor de jogo.</p>
+                                <p class="text-muted small">A simple, human-readable name to use as an identifier for this Egg. This is what users will see as their game server type.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pDescription" class="form-label">Descrição</label>
+                                <label for="pDescription" class="form-label">Description</label>
                                 <textarea id="pDescription" name="description" class="form-control" rows="8">{{ old('description') }}</textarea>
-                                <p class="text-muted small">Uma descrição deste egg.</p>
+                                <p class="text-muted small">A description of this Egg.</p>
                             </div>
                             <div class="form-group">
                                 <div class="checkbox checkbox-primary no-margin-bottom">
                                     <input id="pForceOutgoingIp" name="force_outgoing_ip" type="checkbox" value="1" {{ \Pterodactyl\Helpers\Utilities::checked('force_outgoing_ip', 0) }} />
-                                    <label for="pForceOutgoingIp" class="strong">Forçar o IP de saída</label>
+                                    <label for="pForceOutgoingIp" class="strong">Force Outgoing IP</label>
                                     <p class="text-muted small">
-                                        Força todo o tráfego de saída da rede a ter seu IP de origem NAT no IP do IP primário de alocação do servidor.
-                                        Necessário para que certos jogos funcionem corretamente quando o Node tem múltiplos endereços IP públicos.
+                                        Forces all outgoing network traffic to have its Source IP NATed to the IP of the server's primary allocation IP.
+                                        Required for certain games to work properly when the Node has multiple public IP addresses.
                                         <br>
                                         <strong>
-                                            A habilitação desta opção desabilitará a rede interna para qualquer servidor que utilize este egg,
-                                            fazendo com que eles não possam acessar internamente outros servidores no mesmo node.
+                                            Enabling this option will disable internal networking for any servers using this egg,
+                                            causing them to be unable to internally access other servers on the same node.
                                         </strong>
                                     </p>
                                 </div>
@@ -63,14 +63,22 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pDockerImage" class="control-label">Imagem do Docker</label>
+                                <label for="pDockerImage" class="control-label">Docker Images</label>
                                 <textarea id="pDockerImages" name="docker_images" rows="4" placeholder="quay.io/pterodactyl/service" class="form-control">{{ old('docker_images') }}</textarea>
-                                <p class="text-muted small">As imagens dos dockers disponíveis para os servidores que utilizam este egg. Insira uma por linha. Os usuários poderão selecionar a partir desta lista de imagens se mais de um valor for fornecido.</p>
+                                <p class="text-muted small">The docker images available to servers using this egg. Enter one per line. Users will be able to select from this list of images if more than one value is provided.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pStartup" class="control-label">Comando de inicialização</label>
+                                <label for="pStartup" class="control-label">Startup Command</label>
                                 <textarea id="pStartup" name="startup" class="form-control" rows="10">{{ old('startup') }}</textarea>
-                                <p class="text-muted small">O comando de inicialização padrão que deve ser usado para novos servidores criados com este Egg. Você pode alterar este por servidor conforme necessário.</p>
+                                <p class="text-muted small">The default startup command that should be used for new servers created with this Egg. You can change this per-server as needed.</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="pConfigFeatures" class="control-label">Features</label>
+                                <div>
+                                    <select class="form-control" name="features[]" id="pConfigFeatures" multiple>
+                                    </select>
+                                    <p class="text-muted small">Additional features belonging to the egg. Useful for configuring additional panel modifications.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,51 +88,51 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Gestão de processos</h3>
+                    <h3 class="box-title">Process Management</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="alert alert-warning">
-                                <p>Todos os campos são obrigatórios a menos que você selecione uma opção separada da caixa suspensa "Copiar Configurações de", caso em que os campos podem ser deixados em branco para usar os valores dessa opção.</p>
+                                <p>All fields are required unless you select a separate option from the 'Copy Settings From' dropdown, in which case fields may be left blank to use the values from that option.</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pConfigFrom" class="form-label">Configurações de cópia de</label>
+                                <label for="pConfigFrom" class="form-label">Copy Settings From</label>
                                 <select name="config_from" id="pConfigFrom" class="form-control">
-                                    <option value="">Nada</option>
+                                    <option value="">None</option>
                                 </select>
-                                <p class="text-muted small">Se você gostaria de definir as configurações padrão a partir de outro Egg, selecione-o a partir do menu suspenso acima.</p>
+                                <p class="text-muted small">If you would like to default to settings from another Egg select it from the dropdown above.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigStop" class="form-label">Comando de Parar</label>
+                                <label for="pConfigStop" class="form-label">Stop Command</label>
                                 <input type="text" id="pConfigStop" name="config_stop" class="form-control" value="{{ old('config_stop') }}" />
-                                <p class="text-muted small">O comando que deve ser enviado aos processos do servidor para interrompê-los normalmente. Se você precisar enviar um <code>SIGINT</code> você deve digitar <code>^C</code> aqui.</p>
+                                <p class="text-muted small">The command that should be sent to server processes to stop them gracefully. If you need to send a <code>SIGINT</code> you should enter <code>^C</code> here.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigLogs" class="form-label">Configuração de log</label>
+                                <label for="pConfigLogs" class="form-label">Log Configuration</label>
                                 <textarea data-action="handle-tabs" id="pConfigLogs" name="config_logs" class="form-control" rows="6">{{ old('config_logs') }}</textarea>
-                                <p class="text-muted small">Essa deve ser uma representação JSON de onde os arquivos de log são armazenados e se o daemon deve ou não estar criando logs personalizados.</p>
+                                <p class="text-muted small">This should be a JSON representation of where log files are stored, and whether or not the daemon should be creating custom logs.</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pConfigFiles" class="form-label">Arquivos de configuração</label>
+                                <label for="pConfigFiles" class="form-label">Configuration Files</label>
                                 <textarea data-action="handle-tabs" id="pConfigFiles" name="config_files" class="form-control" rows="6">{{ old('config_files') }}</textarea>
-                                <p class="text-muted small">Esta deve ser uma representação JSON dos arquivos de configuração a serem modificados e que partes devem ser alteradas.</p>
+                                <p class="text-muted small">This should be a JSON representation of configuration files to modify and what parts should be changed.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigStartup" class="form-label">Configuração do Iniciar</label>
+                                <label for="pConfigStartup" class="form-label">Start Configuration</label>
                                 <textarea data-action="handle-tabs" id="pConfigStartup" name="config_startup" class="form-control" rows="6">{{ old('config_startup') }}</textarea>
-                                <p class="text-muted small">Esta deve ser uma representação JSON dos valores que o daemon deve estar procurando ao iniciar um servidor para determinar a conclusão.</p>
+                                <p class="text-muted small">This should be a JSON representation of what values the daemon should be looking for when booting a server to determine completion.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-success btn-sm pull-right">Criar</button>
+                    <button type="submit" class="btn btn-success btn-sm pull-right">Create</button>
                 </div>
             </div>
         </div>
@@ -160,6 +168,11 @@
 
             $(this).val(prepend + '    ' + append);
         }
+    });
+    $('#pConfigFeatures').select2({
+        tags: true,
+        selectOnClose: false,
+        tokenSeparators: [',', ' '],
     });
     </script>
 @endsection

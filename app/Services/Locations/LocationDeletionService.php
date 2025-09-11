@@ -15,20 +15,20 @@ class LocationDeletionService
      */
     public function __construct(
         protected LocationRepositoryInterface $repository,
-        protected NodeRepositoryInterface $nodeRepository
+        protected NodeRepositoryInterface $nodeRepository,
     ) {
     }
 
     /**
      * Delete an existing location.
      *
-     * @throws \Pterodactyl\Exceptions\Service\Location\HasActiveNodesException
+     * @throws HasActiveNodesException
      */
     public function handle(Location|int $location): ?int
     {
         $location = ($location instanceof Location) ? $location->id : $location;
 
-        Assert::integerish($location, 'O primeiro argumento passado para o identificador deve ser numérico ou uma instância de ' . Location::class . ', recebeu %s.');
+        Assert::integerish($location, 'First argument passed to handle must be numeric or an instance of ' . Location::class . ', received %s.');
 
         $count = $this->nodeRepository->findCountWhere([['location_id', '=', $location]]);
         if ($count > 0) {

@@ -54,7 +54,7 @@ export default () => {
                 updateToken(uuid, socket);
             } else {
                 setError(
-                    'Houve um erro na validação das credenciais fornecidas para o websocket. Por favor, atualize a página.',
+                    'There was an error validating the credentials provided for the websocket. Please refresh the page.'
                 );
             }
         });
@@ -112,7 +112,7 @@ export default () => {
                         <>
                             <Spinner size={'small'} />
                             <p css={tw`ml-2 text-sm text-red-100`}>
-                                Estamos tendo alguns problemas de conexão com seu servidor, por favor, espere...
+                                We&apos;re having some trouble connecting to your server, please wait...
                             </p>
                         </>
                     ) : (

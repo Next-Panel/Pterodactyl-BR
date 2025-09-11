@@ -48,18 +48,18 @@ export default () => {
                 {({ isSubmitting }) => (
                     <Form>
                         <SpinnerOverlay visible={isSubmitting} />
-                        <FormikFieldWrapper label={'Nome da chave SSH'} name={'name'} css={tw`mb-6`}>
+                        <FormikFieldWrapper label={'SSH Key Name'} name={'name'} css={tw`mb-6`}>
                             <Field name={'name'} as={Input} />
                         </FormikFieldWrapper>
                         <FormikFieldWrapper
-                            label={'Chave Pública'}
+                            label={'Public Key'}
                             name={'publicKey'}
-                            description={'Insira sua chave SSH pública.'}
+                            description={'Enter your public SSH key.'}
                         >
                             <Field name={'publicKey'} as={CustomTextarea} />
                         </FormikFieldWrapper>
                         <div css={tw`flex justify-end mt-6`}>
-                            <Button>Salvar</Button>
+                            <Button>Save</Button>
                         </div>
                     </Form>
                 )}

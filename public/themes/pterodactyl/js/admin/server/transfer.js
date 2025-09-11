@@ -1,14 +1,14 @@
 $(document).ready(function () {
     $('#pNodeId').select2({
-        placeholder: 'Selecione um Node',
+        placeholder: 'Select a Node',
     }).change();
 
     $('#pAllocation').select2({
-        placeholder: 'Selecione uma Alocação Padrão',
+        placeholder: 'Select a Default Allocation',
     });
 
     $('#pAllocationAdditional').select2({
-        placeholder: 'Selecione Alocações Adicionais',
+        placeholder: 'Select Additional Allocations',
     });
 });
 
@@ -19,7 +19,7 @@ $('#pNodeId').on('change', function () {
         if (v.id == currentNode) {
             $('#pAllocation').html('').select2({
                 data: v.allocations,
-                placeholder: 'Selecione uma Alocação Padrão',
+                placeholder: 'Select a Default Allocation',
             });
 
             updateAdditionalAllocations();
@@ -49,7 +49,7 @@ function updateAdditionalAllocations() {
 
             $('#pAllocationAdditional').html('').select2({
                 data: allocations,
-                placeholder: 'Selecione Alocações Adicionais',
+                placeholder: 'Select Additional Allocations',
             });
         }
     });

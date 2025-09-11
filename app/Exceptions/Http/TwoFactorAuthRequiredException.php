@@ -11,8 +11,8 @@ class TwoFactorAuthRequiredException extends HttpException implements HttpExcept
     /**
      * TwoFactorAuthRequiredException constructor.
      */
-    public function __construct(\Throwable $previous = null)
+    public function __construct(?\Throwable $previous = null)
     {
-        parent::__construct(Response::HTTP_BAD_REQUEST, 'A autenticação de dois fatores é necessária nessa conta para acessar esse endpoint.', $previous);
+        parent::__construct(Response::HTTP_BAD_REQUEST, 'Two-factor authentication is required on this account in order to access this endpoint.', $previous);
     }
 }

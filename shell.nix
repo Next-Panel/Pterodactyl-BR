@@ -1,6 +1,6 @@
 {
   composer ? null,
-  php81WithExtensions ? null,
+  phpWithExtensions ? null,
   pkgs ? import <nixpkgs> {},
 }:
 with pkgs;
@@ -8,8 +8,12 @@ with pkgs;
     buildInputs = [
       alejandra
       composer
-      nodejs-18_x
+      nodejs_18
       nodePackages.yarn
-      php81WithExtensions
+      phpWithExtensions
     ];
+
+    shellHook = ''
+      PATH="$PATH:${pkgs.docker-compose}/libexec/docker/cli-plugins"
+    '';
   }

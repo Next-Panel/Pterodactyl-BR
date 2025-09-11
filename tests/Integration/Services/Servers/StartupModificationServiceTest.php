@@ -37,13 +37,13 @@ class StartupModificationServiceTest extends IntegrationTestCase
         } catch (\Exception $exception) {
             $this->assertInstanceOf(ValidationException::class, $exception);
 
-            /** @var \Illuminate\Validation\ValidationException $exception */
+            /** @var ValidationException $exception */
             $errors = $exception->validator->errors()->toArray();
 
             $this->assertCount(1, $errors);
             $this->assertArrayHasKey('environment.BUNGEE_VERSION', $errors);
             $this->assertCount(1, $errors['environment.BUNGEE_VERSION']);
-            $this->assertSame('O Bungeecord Versão variável pode conter apenas letras e números.', $errors['environment.BUNGEE_VERSION'][0]);
+            $this->assertSame('The Bungeecord Version variable may only contain letters and numbers.', $errors['environment.BUNGEE_VERSION'][0]);
         }
 
         ServerVariable::query()->where('variable_id', $server->variables[1]->id)->delete();

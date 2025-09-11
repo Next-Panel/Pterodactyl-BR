@@ -46,23 +46,23 @@ export default {
     account: [
         {
             path: '/',
-            name: 'Conta',
+            name: 'Account',
             component: AccountOverviewContainer,
             exact: true,
         },
         {
             path: '/api',
-            name: 'Credenciais API',
+            name: 'API Credentials',
             component: AccountApiContainer,
         },
         {
             path: '/ssh',
-            name: 'Chaves SSH',
+            name: 'SSH Keys',
             component: AccountSSHContainer,
         },
         {
             path: '/activity',
-            name: 'Atividade',
+            name: 'Activity',
             component: ActivityLogContainer,
         },
     ],
@@ -77,7 +77,7 @@ export default {
         {
             path: '/files',
             permission: 'file.*',
-            name: 'Arquivos',
+            name: 'Files',
             component: FileManagerContainer,
         },
         {
@@ -95,7 +95,7 @@ export default {
         {
             path: '/schedules',
             permission: 'schedule.*',
-            name: 'Cronogramas',
+            name: 'Schedules',
             component: ScheduleContainer,
         },
         {
@@ -107,7 +107,7 @@ export default {
         {
             path: '/users',
             permission: 'user.*',
-            name: 'Usuários',
+            name: 'Users',
             component: UsersContainer,
         },
         {
@@ -119,25 +119,25 @@ export default {
         {
             path: '/network',
             permission: 'allocation.*',
-            name: 'Rede',
+            name: 'Network',
             component: NetworkContainer,
         },
         {
             path: '/startup',
             permission: 'startup.*',
-            name: 'Inicialização',
+            name: 'Startup',
             component: StartupContainer,
         },
         {
             path: '/settings',
             permission: ['settings.*', 'file.sftp'],
-            name: 'Configurações',
+            name: 'Settings',
             component: SettingsContainer,
         },
         {
             path: '/activity',
             permission: 'activity.*',
-            name: 'Atividades',
+            name: 'Activity',
             component: ServerActivityLogContainer,
         },
     ],

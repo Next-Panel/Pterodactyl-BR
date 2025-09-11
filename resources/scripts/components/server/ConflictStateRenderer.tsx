@@ -9,35 +9,35 @@ export default () => {
     const status = ServerContext.useStoreState((state) => state.server.data?.status || null);
     const isTransferring = ServerContext.useStoreState((state) => state.server.data?.isTransferring || false);
     const isNodeUnderMaintenance = ServerContext.useStoreState(
-        (state) => state.server.data?.isNodeUnderMaintenance || false,
+        (state) => state.server.data?.isNodeUnderMaintenance || false
     );
 
     return status === 'installing' || status === 'install_failed' || status === 'reinstall_failed' ? (
         <ScreenBlock
-            title={'Instalador em funcionamento'}
+            title={'Running Installer'}
             image={ServerInstallSvg}
-            message={'Seu servidor deve estar pronto em breve, por favor tente novamente em alguns minutos.'}
+            message={'Your server should be ready soon, please try again in a few minutes.'}
         />
     ) : status === 'suspended' ? (
         <ScreenBlock
-            title={'Servidor Suspenso'}
+            title={'Server Suspended'}
             image={ServerErrorSvg}
-            message={'Este servidor está suspenso e não pode ser acessado.'}
+            message={'This server is suspended and cannot be accessed.'}
         />
     ) : isNodeUnderMaintenance ? (
         <ScreenBlock
-            title={'O Node esta em manutenção'}
+            title={'Node under Maintenance'}
             image={ServerErrorSvg}
-            message={'O node deste servidor está atualmente em manutenção.'}
+            message={'The node of this server is currently under maintenance.'}
         />
     ) : (
         <ScreenBlock
-            title={isTransferring ? 'Transferindo' : 'Restaurando a partir de um Backup'}
+            title={isTransferring ? 'Transferring' : 'Restoring from Backup'}
             image={ServerRestoreSvg}
             message={
                 isTransferring
-                    ? 'Seu servidor está sendo transferido para um novo node, por favor, verifique mais tarde.'
-                    : 'Seu servidor está sendo restaurado a partir de um backup, por favor verifique de volta em alguns minutos.'
+                    ? 'Your server is being transferred to a new node, please check back later.'
+                    : 'Your server is currently being restored from a backup, please check back in a few minutes.'
             }
         />
     );

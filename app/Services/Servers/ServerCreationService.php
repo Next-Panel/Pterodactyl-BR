@@ -32,7 +32,7 @@ class ServerCreationService
         private ServerRepository $repository,
         private ServerDeletionService $serverDeletionService,
         private ServerVariableRepository $serverVariableRepository,
-        private VariableValidatorService $validatorService
+        private VariableValidatorService $validatorService,
     ) {
     }
 
@@ -49,7 +49,7 @@ class ServerCreationService
      * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableNodeException
      * @throws \Pterodactyl\Exceptions\Service\Deployment\NoViableAllocationException
      */
-    public function handle(array $data, DeploymentObject $deployment = null): Server
+    public function handle(array $data, ?DeploymentObject $deployment = null): Server
     {
         // If a deployment object has been passed we need to get the allocation
         // that the server should use, and assign the node from that allocation.
@@ -62,13 +62,13 @@ class ServerCreationService
         // Auto-configure the node based on the selected allocation
         // if no node was defined.
         if (empty($data['node_id'])) {
-            Assert::false(empty($data['allocation_id']), 'Esperava-se uma allocation_id não vazia nos dados de criação do servidor.');
+            Assert::false(empty($data['allocation_id']), 'Expected a non-empty allocation_id in server creation data.');
 
             $data['node_id'] = Allocation::query()->findOrFail($data['allocation_id'])->node_id;
         }
 
         if (empty($data['nest_id'])) {
-            Assert::false(empty($data['egg_id']), 'Esperava-se um egg_id não vazio nos dados de criação do servidor.');
+            Assert::false(empty($data['egg_id']), 'Expected a non-empty egg_id in server creation data.');
 
             $data['nest_id'] = Egg::query()->findOrFail($data['egg_id'])->nest_id;
         }
@@ -82,7 +82,7 @@ class ServerCreationService
         //
         // If that connection fails out we will attempt to perform a cleanup by just
         // deleting the server itself from the system.
-        /** @var \Pterodactyl\Models\Server $server */
+        /** @var Server $server */
         $server = $this->connection->transaction(function () use ($data, $eggVariableData) {
             // Create the server and assign any additional allocations to it.
             $server = $this->createModel($data);
@@ -115,7 +115,7 @@ class ServerCreationService
      */
     private function configureDeployment(array $data, DeploymentObject $deployment): Allocation
     {
-        /** @var \Illuminate\Support\Collection $nodes */
+        /** @var Collection $nodes */
         $nodes = $this->findViableNodesService->setLocations($deployment->getLocations())
             ->setDisk(Arr::get($data, 'disk'))
             ->setMemory(Arr::get($data, 'memory'))
@@ -136,7 +136,7 @@ class ServerCreationService
     {
         $uuid = $this->generateUniqueUuidCombo();
 
-        /** @var \Pterodactyl\Models\Server $model */
+        /** @var Server $model */
         $model = $this->repository->create([
             'external_id' => Arr::get($data, 'external_id'),
             'uuid' => $uuid,

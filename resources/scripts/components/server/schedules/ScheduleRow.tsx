@@ -3,7 +3,6 @@ import { Schedule } from '@/api/server/schedules/getServerSchedules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
 import tw from 'twin.macro';
 import ScheduleCronRow from '@/components/server/schedules/ScheduleCronRow';
 
@@ -15,10 +14,7 @@ export default ({ schedule }: { schedule: Schedule }) => (
         <div css={tw`flex-1 md:ml-4`}>
             <p>{schedule.name}</p>
             <p css={tw`text-xs text-neutral-400`}>
-                Última execução em:{' '}
-                {schedule.lastRunAt
-                    ? format(schedule.lastRunAt, "'dia' d 'de' MMMM yyyy', ás' HH:mm", { locale: ptBR })
-                    : 'Nunca'}
+                Last run at: {schedule.lastRunAt ? format(schedule.lastRunAt, "MMM do 'at' h:mma") : 'never'}
             </p>
         </div>
         <div>
@@ -39,7 +35,7 @@ export default ({ schedule }: { schedule: Schedule }) => (
                     schedule.isActive && !schedule.isProcessing ? tw`bg-green-600` : tw`bg-neutral-400`,
                 ]}
             >
-                {schedule.isProcessing ? 'Processando' : schedule.isActive ? 'Ativo' : 'Inativo'}
+                {schedule.isProcessing ? 'Processing' : schedule.isActive ? 'Active' : 'Inactive'}
             </p>
         </div>
     </>

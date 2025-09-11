@@ -62,8 +62,8 @@ export default ({ backup }: Props) => {
                         items: data.items.filter((b) => b.uuid !== backup.uuid),
                         backupCount: data.backupCount - 1,
                     }),
-                    false,
-                ),
+                    false
+                )
             )
             .catch((error) => {
                 console.error(error);
@@ -81,7 +81,7 @@ export default ({ backup }: Props) => {
                 setServerFromState((s) => ({
                     ...s,
                     status: 'restoring_backup',
-                })),
+                }))
             )
             .catch((error) => {
                 console.error(error);
@@ -107,11 +107,11 @@ export default ({ backup }: Props) => {
                                 : {
                                       ...b,
                                       isLocked: !b.isLocked,
-                                  },
+                                  }
                         ),
                     }),
-                    false,
-                ),
+                    false
+                )
             )
             .catch((error) => alert(httpErrorToHuman(error)))
             .then(() => setModal(''));
@@ -122,21 +122,21 @@ export default ({ backup }: Props) => {
             <Dialog.Confirm
                 open={modal === 'unlock'}
                 onClose={() => setModal('')}
-                title={`Desbloquear "${backup.name}"`}
+                title={`Unlock "${backup.name}"`}
                 onConfirmed={onLockToggle}
             >
-                Esse backup não será mais protegido contra exclusões automatizadas ou acidentais.
+                This backup will no longer be protected from automated or accidental deletions.
             </Dialog.Confirm>
             <Dialog.Confirm
                 open={modal === 'restore'}
                 onClose={() => setModal('')}
-                confirm={'Restorar'}
-                title={`Restorar "${backup.name}"`}
+                confirm={'Restore'}
+                title={`Restore "${backup.name}"`}
                 onConfirmed={() => doRestorationAction()}
             >
                 <p>
-                    Seu servidor será interrompido. Você não será capaz de controlar o estado de energia, acessar o
-                    arquivo ou crie backups adicionais até que seja concluído.
+                    Your server will be stopped. You will not be able to control the power state, access the file
+                    manager, or create additional backups until completed.
                 </p>
                 <p css={tw`mt-4 -mb-2 bg-gray-700 p-3 rounded`}>
                     <label htmlFor={'restore_truncate'} css={tw`text-base flex items-center cursor-pointer`}>
@@ -148,18 +148,18 @@ export default ({ backup }: Props) => {
                             checked={truncate}
                             onChange={() => setTruncate((s) => !s)}
                         />
-                        Exclua todos os arquivos antes de restaurar o backup.
+                        Delete all files before restoring backup.
                     </label>
                 </p>
             </Dialog.Confirm>
             <Dialog.Confirm
-                title={`Deletar "${backup.name}"`}
-                confirm={'Continuar'}
+                title={`Delete "${backup.name}"`}
+                confirm={'Continue'}
                 open={modal === 'delete'}
                 onClose={() => setModal('')}
                 onConfirmed={doDeletion}
             >
-                Esta é uma operação permanente. O backup não pode ser recuperado uma vez excluído.
+                This is a permanent operation. The backup cannot be recovered once deleted.
             </Dialog.Confirm>
             <SpinnerOverlay visible={loading} fixed />
             {backup.isSuccessful ? (
@@ -183,7 +183,7 @@ export default ({ backup }: Props) => {
                         <Can action={'backup.restore'}>
                             <DropdownButtonRow onClick={() => setModal('restore')}>
                                 <FontAwesomeIcon fixedWidth icon={faBoxOpen} css={tw`text-xs`} />
-                                <span css={tw`ml-2`}>Restorar</span>
+                                <span css={tw`ml-2`}>Restore</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.delete'}>
@@ -194,12 +194,12 @@ export default ({ backup }: Props) => {
                                         icon={backup.isLocked ? faUnlock : faLock}
                                         css={tw`text-xs mr-2`}
                                     />
-                                    {backup.isLocked ? 'Desbloqueado' : 'Bloqueado'}
+                                    {backup.isLocked ? 'Unlock' : 'Lock'}
                                 </DropdownButtonRow>
                                 {!backup.isLocked && (
                                     <DropdownButtonRow danger onClick={() => setModal('delete')}>
                                         <FontAwesomeIcon fixedWidth icon={faTrashAlt} css={tw`text-xs`} />
-                                        <span css={tw`ml-2`}>Deletar</span>
+                                        <span css={tw`ml-2`}>Delete</span>
                                     </DropdownButtonRow>
                                 )}
                             </>

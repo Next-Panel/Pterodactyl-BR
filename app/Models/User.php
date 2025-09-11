@@ -14,6 +14,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Pterodactyl\Traits\Helpers\AvailableLanguages;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -89,6 +90,8 @@ class User extends Model implements
     use CanResetPassword;
     use HasAccessTokens;
     use Notifiable;
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory;
 
     public const USER_LEVEL_USER = 0;
     public const USER_LEVEL_ADMIN = 1;
@@ -202,7 +205,7 @@ class User extends Model implements
         Activity::event('auth:reset-password')
             ->withRequestMetadata()
             ->subject($this)
-            ->log('enviando e-mail de redefinição de senha');
+            ->log('sending password reset email');
 
         $this->notify(new ResetPasswordNotification($token));
     }

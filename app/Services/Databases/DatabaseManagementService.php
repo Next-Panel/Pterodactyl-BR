@@ -36,7 +36,7 @@ class DatabaseManagementService
         protected ConnectionInterface $connection,
         protected DynamicDatabaseConnection $dynamic,
         protected Encrypter $encrypter,
-        protected DatabaseRepository $repository
+        protected DatabaseRepository $repository,
     ) {
     }
 
@@ -66,8 +66,8 @@ class DatabaseManagementService
      * Create a new database that is linked to a specific host.
      *
      * @throws \Throwable
-     * @throws \Pterodactyl\Exceptions\Service\Database\TooManyDatabasesException
-     * @throws \Pterodactyl\Exceptions\Service\Database\DatabaseClientFeatureNotEnabledException
+     * @throws TooManyDatabasesException
+     * @throws DatabaseClientFeatureNotEnabledException
      */
     public function create(Server $server, array $data): Database
     {
@@ -85,7 +85,7 @@ class DatabaseManagementService
 
         // Protect against developer mistakes...
         if (empty($data['database']) || !preg_match(self::MATCH_NAME_REGEX, $data['database'])) {
-            throw new \InvalidArgumentException('O nome do Database passado para DatabaseManagementService::handle DEVE ser prefixado com "s{server_id}_".');
+            throw new \InvalidArgumentException('The database name passed to DatabaseManagementService::handle MUST be prefixed with "s{server_id}_".');
         }
 
         $data = array_merge($data, [
@@ -153,7 +153,7 @@ class DatabaseManagementService
      * have the same name across multiple hosts, for the sake of keeping this logic easy to understand
      * and avoiding user confusion we will ignore the specific host and just look across all hosts.
      *
-     * @throws \Pterodactyl\Exceptions\Repository\DuplicateDatabaseNameException
+     * @throws DuplicateDatabaseNameException
      * @throws \Throwable
      */
     protected function createModel(array $data): Database
@@ -163,7 +163,7 @@ class DatabaseManagementService
             ->exists();
 
         if ($exists) {
-            throw new DuplicateDatabaseNameException('Já existe um Database com esse nome para este servidor.');
+            throw new DuplicateDatabaseNameException('A database with that name already exists for this server.');
         }
 
         $database = (new Database())->forceFill($data);

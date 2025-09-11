@@ -21,7 +21,7 @@ export default () => {
                 addFlash({
                     key: 'settings',
                     type: 'success',
-                    message: 'Seu servidor começou o processo de reinstalação.',
+                    message: 'Your server has begun the reinstallation process.',
                 });
             })
             .catch((error) => {
@@ -37,28 +37,28 @@ export default () => {
     }, []);
 
     return (
-        <TitledGreyBox title={'Reinstalar servidor'} css={tw`relative`}>
+        <TitledGreyBox title={'Reinstall Server'} css={tw`relative`}>
             <Dialog.Confirm
                 open={modalVisible}
-                title={'Confirmar a reinstalação do servidor'}
-                confirm={'Sim, reinstalar o servidor'}
+                title={'Confirm server reinstallation'}
+                confirm={'Yes, reinstall server'}
                 onClose={() => setModalVisible(false)}
                 onConfirmed={reinstall}
             >
-                Seu servidor será interrompido e alguns arquivos poderão ser excluídos ou modificados durante este
-                processo, você tem certeza você deseja continuar?
+                Your server will be stopped and some files may be deleted or modified during this process, are you sure
+                you wish to continue?
             </Dialog.Confirm>
             <p css={tw`text-sm`}>
-                A reinstalação de seu servidor irá pará-lo e, em seguida, executar novamente o script de instalação que
-                inicialmente o definiu up.&nbsp;
+                Reinstalling your server will stop it, and then re-run the installation script that initially set it
+                up.&nbsp;
                 <strong css={tw`font-medium`}>
-                    Alguns arquivos podem ser excluídos ou modificados durante este processo, por favor fazer backup de
-                    seus dados antes continuar.
+                    Some files may be deleted or modified during this process, please back up your data before
+                    continuing.
                 </strong>
             </p>
             <div css={tw`mt-6 text-right`}>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => setModalVisible(true)}>
-                    Reinstalar o servidor
+                    Reinstall Server
                 </Button.Danger>
             </div>
         </TitledGreyBox>

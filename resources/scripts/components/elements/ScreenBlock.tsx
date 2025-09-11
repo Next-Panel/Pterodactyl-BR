@@ -76,7 +76,7 @@ const NotFound = ({ title, message, onBack }: Partial<Pick<ScreenBlockProps, 'ti
     <ScreenBlock
         title={title || '404'}
         image={NotFoundSvg}
-        message={message || 'O recurso solicitado não foi encontrado.'}
+        message={message || 'The requested resource was not found.'}
         onBack={onBack}
     />
 );

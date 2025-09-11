@@ -68,7 +68,7 @@ class SSHKeyControllerTest extends ClientApiIntegrationTestCase
             'public_key' => $key->public_key,
         ])
             ->assertUnprocessable()
-            ->assertJsonPath('errors.0.detail', 'Chaves DSA não são suportadas.');
+            ->assertJsonPath('errors.0.detail', 'DSA keys are not supported.');
 
         $this->assertEquals(0, $user->sshKeys()->count());
     }
@@ -83,7 +83,7 @@ class SSHKeyControllerTest extends ClientApiIntegrationTestCase
             'public_key' => $key->public_key,
         ])
             ->assertUnprocessable()
-            ->assertJsonPath('errors.0.detail', 'As chaves RSA devem ter pelo menos 2048 bytes de comprimento.');
+            ->assertJsonPath('errors.0.detail', 'RSA keys must be at least 2048 bytes in length.');
 
         $this->assertEquals(0, $user->sshKeys()->count());
     }
@@ -97,7 +97,7 @@ class SSHKeyControllerTest extends ClientApiIntegrationTestCase
             'public_key' => 'invalid',
         ])
             ->assertUnprocessable()
-            ->assertJsonPath('errors.0.detail', 'A chave pública fornecida não é válida.');
+            ->assertJsonPath('errors.0.detail', 'The public key provided is not valid.');
 
         $this->assertEquals(0, $user->sshKeys()->count());
 
@@ -107,7 +107,7 @@ class SSHKeyControllerTest extends ClientApiIntegrationTestCase
             'public_key' => $key->toString('PKCS8'),
         ])
             ->assertUnprocessable()
-            ->assertJsonPath('errors.0.detail', 'A chave pública fornecida não é válida.');
+            ->assertJsonPath('errors.0.detail', 'The public key provided is not valid.');
     }
 
     public function testPublicKeyCanBeStored()
@@ -137,7 +137,7 @@ class SSHKeyControllerTest extends ClientApiIntegrationTestCase
             'public_key' => $key->public_key,
         ])
             ->assertUnprocessable()
-            ->assertJsonPath('errors.0.detail', 'A chave pública fornecida já existe em sua conta.');
+            ->assertJsonPath('errors.0.detail', 'The public key provided already exists on your account.');
 
         $this->assertEquals(1, $user->sshKeys()->count());
     }

@@ -14,7 +14,7 @@ use Pterodactyl\Exceptions\Service\Allocation\TooManyPortsInRangeException;
 
 class AssignmentService
 {
-    public const CIDR_MAX_BITS = 27;
+    public const CIDR_MAX_BITS = 25;
     public const CIDR_MIN_BITS = 32;
     public const PORT_FLOOR = 1024;
     public const PORT_CEIL = 65535;
@@ -31,11 +31,11 @@ class AssignmentService
     /**
      * Insert allocations into the database and link them to a specific node.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\CidrOutOfRangeException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\InvalidPortMappingException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\PortOutOfRangeException
-     * @throws \Pterodactyl\Exceptions\Service\Allocation\TooManyPortsInRangeException
+     * @throws DisplayException
+     * @throws CidrOutOfRangeException
+     * @throws InvalidPortMappingException
+     * @throws PortOutOfRangeException
+     * @throws TooManyPortsInRangeException
      */
     public function handle(Node $node, array $data): void
     {
@@ -55,7 +55,7 @@ class AssignmentService
             $parsed = Network::parse($underlying);
         } catch (\Exception $exception) {
             /* @noinspection PhpUndefinedVariableInspection */
-            throw new DisplayException("Não foi possível analisar o endereço IP de alocação fornecido ({$underlying}): {$exception->getMessage()}", $exception);
+            throw new DisplayException("Could not parse provided allocation IP address ({$underlying}): {$exception->getMessage()}", $exception);
         }
 
         $this->connection->beginTransaction();

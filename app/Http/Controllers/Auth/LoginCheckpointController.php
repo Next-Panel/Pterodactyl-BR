@@ -16,7 +16,7 @@ use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginCheckpointController extends AbstractLoginController
 {
-    private const TOKEN_EXPIRED_MESSAGE = 'O token de autenticação fornecido expirou, atualize a página e tente novamente.';
+    private const TOKEN_EXPIRED_MESSAGE = 'The authentication token provided has expired, please refresh the page and try again.';
 
     /**
      * LoginCheckpointController constructor.
@@ -24,7 +24,7 @@ class LoginCheckpointController extends AbstractLoginController
     public function __construct(
         private Encrypter $encrypter,
         private Google2FA $google2FA,
-        private ValidationFactory $validation
+        private ValidationFactory $validation,
     ) {
         parent::__construct();
     }
@@ -56,7 +56,7 @@ class LoginCheckpointController extends AbstractLoginController
         }
 
         try {
-            /** @var \Pterodactyl\Models\User $user */
+            /** @var User $user */
             $user = User::query()->findOrFail($details['user_id']);
         } catch (ModelNotFoundException) {
             $this->sendFailedLoginResponse($request, null, self::TOKEN_EXPIRED_MESSAGE);
@@ -79,7 +79,7 @@ class LoginCheckpointController extends AbstractLoginController
             }
         }
 
-        $this->sendFailedLoginResponse($request, $user, !empty($recoveryToken) ? 'O token de recuperação fornecido não é válido.' : null);
+        $this->sendFailedLoginResponse($request, $user, !empty($recoveryToken) ? 'The recovery token provided is not valid.' : null);
     }
 
     /**

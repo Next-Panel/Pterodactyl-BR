@@ -19,27 +19,27 @@
 // SOFTWARE.
 $(document).ready(function() {
     $('#pNestId').select2({
-        placeholder: 'Selecione um Nest',
+        placeholder: 'Select a Nest',
     }).change();
 
     $('#pEggId').select2({
-        placeholder: 'Selecione um Egg do Nest',
+        placeholder: 'Select a Nest Egg',
     });
 
     $('#pPackId').select2({
-        placeholder: 'Selecione um Pacote de Serviços',
+        placeholder: 'Select a Service Pack',
     });
 
     $('#pNodeId').select2({
-        placeholder: 'Selecione um Node',
+        placeholder: 'Select a Node',
     }).change();
 
     $('#pAllocation').select2({
-        placeholder: 'Selecione uma Alocação Padrão',
+        placeholder: 'Select a Default Allocation',
     });
 
     $('#pAllocationAdditional').select2({
-        placeholder: 'Selecione Alocações Adicionais',
+        placeholder: 'Select Additional Allocations',
     });
 });
 
@@ -59,7 +59,7 @@ $('#pNodeId').on('change', function () {
         if (v.id == currentNode) {
             $('#pAllocation').html('').select2({
                 data: v.allocations,
-                placeholder: 'Selecione uma Alocação Padrão',
+                placeholder: 'Select a Default Allocation',
             });
 
             updateAdditionalAllocations();
@@ -88,12 +88,12 @@ $('#pEggId').on('change', function (event) {
     for (let i = 0; i < keys.length; i++) {
         let opt = document.createElement('option');
         opt.value = images[keys[i]];
-        opt.innerHTML = keys[i] + " (" + images[keys[i]] + ")";
+        opt.innerText = keys[i] + " (" + images[keys[i]] + ")";
         $('#pDefaultContainer').append(opt);
     }
 
     if (!_.get(objectChain, 'startup', false)) {
-        $('#pStartup').val(_.get(parentChain, 'startup', 'ERROR: Inicializador Não Definido!'));
+        $('#pStartup').val(_.get(parentChain, 'startup', 'ERROR: Startup Not Defined!'));
     } else {
         $('#pStartup').val(_.get(objectChain, 'startup'));
     }
@@ -109,19 +109,25 @@ $('#pEggId').on('change', function (event) {
         ),
     });
 
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
     const variableIds = {};
     $('#appendVariablesTo').html('');
     $.each(_.get(objectChain, 'variables', []), function (i, item) {
         variableIds[item.env_variable] = 'var_ref_' + item.id;
 
-        let isRequired = (item.required === 1) ? '<span class="label label-danger">Requerido</span> ' : '';
+        let isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
         let dataAppend = ' \
             <div class="form-group col-sm-6"> \
-                <label for="var_ref_' + item.id + '" class="control-label">' + isRequired + item.name + '</label> \
-                <input type="text" id="var_ref_' + item.id + '" autocomplete="off" name="environment[' + item.env_variable + ']" class="form-control" value="' + item.default_value + '" /> \
-                <p class="text-muted small">' + item.description + '<br /> \
-                <strong>Access in Startup:</strong> <code>{{' + item.env_variable + '}}</code><br /> \
-                <strong>Validation Rules:</strong> <code>' + item.rules + '</code></small></p> \
+                <label for="var_ref_' + escapeHtml(item.id) + '" class="control-label">' + isRequired + escapeHtml(item.name) + '</label> \
+                <input type="text" id="var_ref_' + escapeHtml(item.id) + '" autocomplete="off" name="environment[' + escapeHtml(item.env_variable) + ']" class="form-control" value="' + escapeHtml(item.default_value) + '" /> \
+                <p class="text-muted small">' + escapeHtml(item.description) + '<br /> \
+                <strong>Access in Startup:</strong> <code>{{' + escapeHtml(item.env_variable) + '}}</code><br /> \
+                <strong>Validation Rules:</strong> <code>' + escapeHtml(item.rules) + '</code></small></p> \
             </div> \
         ';
         $('#appendVariablesTo').append(dataAppend);
@@ -154,7 +160,7 @@ function updateAdditionalAllocations() {
 
             $('#pAllocationAdditional').html('').select2({
                 data: allocations,
-                placeholder: 'Selecione Alocações Adicionais',
+                placeholder: 'Select Additional Allocations',
             });
         }
     });

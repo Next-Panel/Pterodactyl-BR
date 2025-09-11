@@ -28,12 +28,12 @@ export default ({ name, fingerprint }: { name: string; fingerprint: string }) =>
         <>
             <Dialog.Confirm
                 open={visible}
-                title={'Deletar Chave SSH'}
-                confirm={'Deletar Chave'}
+                title={'Delete SSH Key'}
+                confirm={'Delete Key'}
                 onConfirmed={onClick}
                 onClose={() => setVisible(false)}
             >
-                Remover a chave SSH <Code>{name}</Code> invalidará seu uso no Painel.
+                Removing the <Code>{name}</Code> SSH key will invalidate its usage across the Panel.
             </Dialog.Confirm>
             <button css={tw`ml-4 p-2 text-sm`} onClick={() => setVisible(true)}>
                 <FontAwesomeIcon

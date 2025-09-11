@@ -18,7 +18,6 @@ class Username implements Rule
      * Allowed characters: a-z0-9_-.
      *
      * @param string $attribute
-     * @param mixed $value
      */
     public function passes($attribute, $value): bool
     {
@@ -30,8 +29,8 @@ class Username implements Rule
      */
     public function message(): string
     {
-        return 'O :attribute deve começar e terminar com caracteres alfanuméricos e
-                conter apenas letras, números, hífens, sublinhados e pontos.';
+        return 'The :attribute must start and end with alpha-numeric characters and
+                contain only letters, numbers, dashes, underscores, and periods.';
     }
 
     /**

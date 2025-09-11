@@ -19,7 +19,7 @@ class NodeAutoDeployController extends Controller
     public function __construct(
         private ApiKeyRepository $repository,
         private Encrypter $encrypter,
-        private KeyCreationService $keyCreationService
+        private KeyCreationService $keyCreationService,
     ) {
     }
 
@@ -31,7 +31,7 @@ class NodeAutoDeployController extends Controller
      */
     public function __invoke(Request $request, Node $node): JsonResponse
     {
-        /** @var \Pterodactyl\Models\ApiKey|null $key */
+        /** @var ApiKey|null $key */
         $key = $this->repository->getApplicationKeys($request->user())
             ->filter(function (ApiKey $key) {
                 foreach ($key->getAttributes() as $permission => $value) {
@@ -49,7 +49,7 @@ class NodeAutoDeployController extends Controller
         if (!$key) {
             $key = $this->keyCreationService->setKeyType(ApiKey::TYPE_APPLICATION)->handle([
                 'user_id' => $request->user()->id,
-                'memo' => 'Chave de implantação de node gerada automaticamente.',
+                'memo' => 'Automatically generated node deployment key.',
                 'allowed_ips' => [],
             ], ['r_nodes' => 1]);
         }

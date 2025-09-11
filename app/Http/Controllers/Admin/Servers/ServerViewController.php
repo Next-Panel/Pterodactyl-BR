@@ -33,7 +33,7 @@ class ServerViewController extends Controller
         private NodeRepository $nodeRepository,
         private ServerRepository $repository,
         private EnvironmentService $environmentService,
-        private ViewFactory $view
+        private ViewFactory $view,
     ) {
     }
 
@@ -118,12 +118,12 @@ class ServerViewController extends Controller
      * Returns the base server management page, or an exception if the server
      * is in a state that cannot be recovered from.
      *
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws DisplayException
      */
     public function manage(Request $request, Server $server): View
     {
         if ($server->status === Server::STATUS_INSTALL_FAILED) {
-            throw new DisplayException('Este servidor está em um estado de instalação com falha e não pode ser recuperado. Exclua e recrie o servidor.');
+            throw new DisplayException('This server is in a failed install state and cannot be recovered. Please delete and re-create the server.');
         }
 
         // Check if the panel doesn't have at least 2 nodes configured.

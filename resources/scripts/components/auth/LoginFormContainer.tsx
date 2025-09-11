@@ -50,15 +50,6 @@ export default forwardRef<HTMLFormElement, Props>(({ title, ...props }, ref) => 
             >
                 Pterodactyl Software
             </a>
-            Traduzido por
-            <a
-                rel={'noopener nofollow noreferrer'}
-                href={'https://nextpanel.com.br'}
-                target={'_blank'}
-                css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
-            >
-                Nextpanel.
-            </a>
         </p>
     </Container>
 ));

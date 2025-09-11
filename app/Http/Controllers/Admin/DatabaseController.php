@@ -30,7 +30,7 @@ class DatabaseController extends Controller
         private HostDeletionService $deletionService,
         private HostUpdateService $updateService,
         private LocationRepositoryInterface $locationRepository,
-        private ViewFactory $view
+        private ViewFactory $view,
     ) {
     }
 
@@ -71,7 +71,7 @@ class DatabaseController extends Controller
         } catch (\Exception $exception) {
             if ($exception instanceof \PDOException || $exception->getPrevious() instanceof \PDOException) {
                 $this->alert->danger(
-                    sprintf('Ocorreu um erro ao tentar conectar-se ao host ou ao executar uma consulta(query): "%s"', $exception->getMessage())
+                    sprintf('There was an error while trying to connect to the host or while executing a query: "%s"', $exception->getMessage())
                 )->flash();
 
                 return redirect()->route('admin.databases')->withInput($request->validated());
@@ -80,7 +80,7 @@ class DatabaseController extends Controller
             }
         }
 
-        $this->alert->success('Criou com sucesso um novo host de Database no sistema.')->flash();
+        $this->alert->success('Successfully created a new database host on the system.')->flash();
 
         return redirect()->route('admin.databases.view', $host->id);
     }
@@ -96,13 +96,13 @@ class DatabaseController extends Controller
 
         try {
             $this->updateService->handle($host->id, $request->normalize());
-            $this->alert->success('O host do Database foi atualizado com sucesso.')->flash();
+            $this->alert->success('Database host was updated successfully.')->flash();
         } catch (\Exception $exception) {
             // Catch any SQL related exceptions and display them back to the user, otherwise just
             // throw the exception like normal and move on with it.
             if ($exception instanceof \PDOException || $exception->getPrevious() instanceof \PDOException) {
                 $this->alert->danger(
-                    sprintf('Ocorreu um erro ao tentar conectar-se ao host ou ao executar uma consulta(query): "%s"', $exception->getMessage())
+                    sprintf('There was an error while trying to connect to the host or while executing a query: "%s"', $exception->getMessage())
                 )->flash();
 
                 return $redirect->withInput($request->normalize());
@@ -122,7 +122,7 @@ class DatabaseController extends Controller
     public function delete(int $host): RedirectResponse
     {
         $this->deletionService->handle($host);
-        $this->alert->success('O host do Database solicitado foi excluído do sistema.')->flash();
+        $this->alert->success('The requested database host has been deleted from the system.')->flash();
 
         return redirect()->route('admin.databases');
     }

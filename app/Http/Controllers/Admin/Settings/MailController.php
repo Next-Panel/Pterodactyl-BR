@@ -27,7 +27,7 @@ class MailController extends Controller
         private Encrypter $encrypter,
         private Kernel $kernel,
         private SettingsRepositoryInterface $settings,
-        private ViewFactory $view
+        private ViewFactory $view,
     ) {
     }
 
@@ -52,7 +52,7 @@ class MailController extends Controller
     public function update(MailSettingsFormRequest $request): Response
     {
         if ($this->config->get('mail.default') !== 'smtp') {
-            throw new DisplayException('Este recurso só está disponível se SMTP for o driver de e-mail selecionado para o painel.');
+            throw new DisplayException('This feature is only available if SMTP is the selected email driver for the Panel.');
         }
 
         $values = $request->normalize();

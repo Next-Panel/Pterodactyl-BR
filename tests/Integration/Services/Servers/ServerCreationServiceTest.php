@@ -54,13 +54,13 @@ class ServerCreationServiceTest extends IntegrationTestCase
      */
     public function testServerIsCreatedWithDeploymentObject()
     {
-        /** @var \Pterodactyl\Models\User $user */
+        /** @var User $user */
         $user = User::factory()->create();
 
-        /** @var \Pterodactyl\Models\Location $location */
+        /** @var Location $location */
         $location = Location::factory()->create();
 
-        /** @var \Pterodactyl\Models\Node $node */
+        /** @var Node $node */
         $node = Node::factory()->create([
             'location_id' => $location->id,
         ]);
@@ -117,7 +117,7 @@ class ServerCreationServiceTest extends IntegrationTestCase
         } catch (ValidationException $exception) {
             $this->assertCount(1, $exception->errors());
             $this->assertArrayHasKey('environment.BUNGEE_VERSION', $exception->errors());
-            $this->assertSame('O Bungeecord Versão variável é um campo necessário.', $exception->errors()['environment.BUNGEE_VERSION'][0]);
+            $this->assertSame('The Bungeecord Version variable field is required.', $exception->errors()['environment.BUNGEE_VERSION'][0]);
         }
 
         $response = $this->getService()->handle($data, $deployment);
@@ -156,18 +156,18 @@ class ServerCreationServiceTest extends IntegrationTestCase
      */
     public function testErrorEncounteredByWingsCausesServerToBeDeleted()
     {
-        /** @var \Pterodactyl\Models\User $user */
+        /** @var User $user */
         $user = User::factory()->create();
 
-        /** @var \Pterodactyl\Models\Location $location */
+        /** @var Location $location */
         $location = Location::factory()->create();
 
-        /** @var \Pterodactyl\Models\Node $node */
+        /** @var Node $node */
         $node = Node::factory()->create([
             'location_id' => $location->id,
         ]);
 
-        /** @var \Pterodactyl\Models\Allocation $allocation */
+        /** @var Allocation $allocation */
         $allocation = Allocation::factory()->create([
             'node_id' => $node->id,
         ]);

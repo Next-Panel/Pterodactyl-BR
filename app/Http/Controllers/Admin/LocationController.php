@@ -26,7 +26,7 @@ class LocationController extends Controller
         protected LocationDeletionService $deletionService,
         protected LocationRepositoryInterface $repository,
         protected LocationUpdateService $updateService,
-        protected ViewFactory $view
+        protected ViewFactory $view,
     ) {
     }
 
@@ -60,7 +60,7 @@ class LocationController extends Controller
     public function create(LocationFormRequest $request): RedirectResponse
     {
         $location = $this->creationService->handle($request->normalize());
-        $this->alert->success('a localização foi criada com sucesso.')->flash();
+        $this->alert->success('Location was created successfully.')->flash();
 
         return redirect()->route('admin.locations.view', $location->id);
     }
@@ -77,7 +77,7 @@ class LocationController extends Controller
         }
 
         $this->updateService->handle($location->id, $request->normalize());
-        $this->alert->success('A localização foi atualizada com sucesso.')->flash();
+        $this->alert->success('Location was updated successfully.')->flash();
 
         return redirect()->route('admin.locations.view', $location->id);
     }
@@ -86,7 +86,7 @@ class LocationController extends Controller
      * Delete a location from the system.
      *
      * @throws \Exception
-     * @throws \Pterodactyl\Exceptions\DisplayException
+     * @throws DisplayException
      */
     public function delete(Location $location): RedirectResponse
     {

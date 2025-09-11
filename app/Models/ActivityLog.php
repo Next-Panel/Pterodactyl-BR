@@ -24,11 +24,11 @@ use Illuminate\Database\Eloquent\Model as IlluminateModel;
  * @property int|null $actor_id
  * @property int|null $api_key_id
  * @property \Illuminate\Support\Collection|null $properties
- * @property \Carbon\Carbon $timestamp
+ * @property Carbon $timestamp
  * @property IlluminateModel|\Eloquent $actor
  * @property \Illuminate\Database\Eloquent\Collection|\Pterodactyl\Models\ActivityLogSubject[] $subjects
  * @property int|null $subjects_count
- * @property \Pterodactyl\Models\ApiKey|null $apiKey
+ * @property ApiKey|null $apiKey
  *
  * @method static Builder|ActivityLog forActor(\Illuminate\Database\Eloquent\Model $actor)
  * @method static Builder|ActivityLog forEvent(string $action)
@@ -123,7 +123,7 @@ class ActivityLog extends Model
     public function prunable()
     {
         if (is_null(config('activity.prune_days'))) {
-            throw new \LogicException('Não é possível remover logs de atividades: nenhum valor de configuração "prune_days" está definido.');
+            throw new \LogicException('Cannot prune activity logs: no "prune_days" configuration value is set.');
         }
 
         return static::where('timestamp', '<=', Carbon::now()->subDays(config('activity.prune_days')));

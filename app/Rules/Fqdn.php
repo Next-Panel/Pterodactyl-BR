@@ -27,7 +27,6 @@ class Fqdn implements Rule, DataAwareRule
      * specified when this rule is created additional checks will be applied.
      *
      * @param string $attribute
-     * @param mixed $value
      */
     public function passes($attribute, $value): bool
     {
@@ -38,7 +37,7 @@ class Fqdn implements Rule, DataAwareRule
             // custom SSL cert, IPs will not be able to use HTTPS.  This should prevent most
             // home users from making this mistake and wondering why their node is not working.
             if ($this->schemeField && Arr::get($this->data, $this->schemeField) === 'https') {
-                $this->message = 'O :attribute não deve ser um endereço IP quando o HTTPS está ativado.';
+                $this->message = 'The :attribute must not be an IP address when HTTPS is enabled.';
 
                 return false;
             }
@@ -58,7 +57,7 @@ class Fqdn implements Rule, DataAwareRule
             return true;
         }
 
-        $this->message = 'O :attribute não pôde ser resolvido para um endereço IP válido.';
+        $this->message = 'The :attribute could not be resolved to a valid IP address.';
 
         return false;
     }
@@ -71,7 +70,7 @@ class Fqdn implements Rule, DataAwareRule
     /**
      * Returns a new instance of the rule with a defined scheme set.
      */
-    public static function make(string $schemeField = null): self
+    public static function make(?string $schemeField = null): self
     {
         return tap(new static(), function ($fqdn) use ($schemeField) {
             $fqdn->schemeField = $schemeField;

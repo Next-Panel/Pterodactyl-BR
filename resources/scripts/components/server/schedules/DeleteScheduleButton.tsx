@@ -41,19 +41,19 @@ export default ({ scheduleId, onDeleted }: Props) => {
             <Dialog.Confirm
                 open={visible}
                 onClose={() => setVisible(false)}
-                title={'Deletar cronograma'}
-                confirm={'Deletar'}
+                title={'Delete Schedule'}
+                confirm={'Delete'}
                 onConfirmed={onDelete}
             >
                 <SpinnerOverlay visible={isLoading} />
-                Todas as tarefas serão removidas e quaisquer processos em andamento serão encerrados.
+                All tasks will be removed and any running processes will be terminated.
             </Dialog.Confirm>
             <Button.Danger
                 variant={Button.Variants.Secondary}
                 className={'flex-1 sm:flex-none mr-4 border-transparent'}
                 onClick={() => setVisible(true)}
             >
-                Deletar
+                Delete
             </Button.Danger>
         </>
     );

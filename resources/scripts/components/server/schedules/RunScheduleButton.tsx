@@ -37,7 +37,7 @@ const RunScheduleButton = ({ schedule }: { schedule: Schedule }) => {
                 disabled={schedule.isProcessing}
                 onClick={onTriggerExecute}
             >
-                Iniciar agora
+                Run Now
             </Button>
         </>
     );

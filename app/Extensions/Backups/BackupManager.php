@@ -38,7 +38,7 @@ class BackupManager
     /**
      * Returns a backup adapter instance.
      */
-    public function adapter(string $name = null): FilesystemAdapter
+    public function adapter(?string $name = null): FilesystemAdapter
     {
         return $this->get($name ?: $this->getDefaultAdapter());
     }
@@ -69,7 +69,7 @@ class BackupManager
         $config = $this->getConfig($name);
 
         if (empty($config['adapter'])) {
-            throw new \InvalidArgumentException("O disco de backup [$name] não tem um adaptador configurado.");
+            throw new \InvalidArgumentException("Backup disk [$name] does not have a configured adapter.");
         }
 
         $adapter = $config['adapter'];
@@ -87,7 +87,7 @@ class BackupManager
             return $instance;
         }
 
-        throw new \InvalidArgumentException("Adaptador [$adapter] não é suportado.");
+        throw new \InvalidArgumentException("Adapter [$adapter] is not supported.");
     }
 
     /**

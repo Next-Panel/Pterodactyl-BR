@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-Lista de servidores
+    List Servers
 @endsection
 
 @section('content-header')
-    <h1>Servidores<small>Todos os servidores disponíveis no sistema.</small></h1>
+    <h1>Servers<small>All servers available on the system.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Administração</a></li>
-        <li class="active">Servidores</li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li class="active">Servers</li>
     </ol>
 @endsection
 
@@ -17,14 +17,14 @@ Lista de servidores
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Lista de servidores</h3>
+                <h3 class="box-title">Server List</h3>
                 <div class="box-tools search01">
                     <form action="{{ route('admin.servers') }}" method="GET">
                         <div class="input-group input-group-sm">
-                            <input type="text" name="filter[*]" class="form-control pull-right" value="{{ request()->input()['filter']['*'] ?? '' }}" placeholder="Procurar Servidores">
+                            <input type="text" name="filter[*]" class="form-control pull-right" value="{{ request()->input()['filter']['*'] ?? '' }}" placeholder="Search Servers">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                <a href="{{ route('admin.servers.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Criar Novo</button></a>
+                                <a href="{{ route('admin.servers.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Create New</button></a>
                             </div>
                         </div>
                     </form>
@@ -34,11 +34,11 @@ Lista de servidores
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <th>Nome do servidor</th>
+                            <th>Server Name</th>
                             <th>UUID</th>
-                            <th>Dono</th>
+                            <th>Owner</th>
                             <th>Node</th>
-                            <th>Conexão</th>
+                            <th>Connection</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -53,11 +53,11 @@ Lista de servidores
                                 </td>
                                 <td class="text-center">
                                     @if($server->isSuspended())
-                                        <span class="label bg-maroon">Suspendido</span>
+                                        <span class="label bg-maroon">Suspended</span>
                                     @elseif(! $server->isInstalled())
-                                        <span class="label label-warning">Instalando</span>
+                                        <span class="label label-warning">Installing</span>
                                     @else
-                                        <span class="label label-success">Ativo</span>
+                                        <span class="label label-success">Active</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

@@ -23,9 +23,8 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
 
     /**
      * Tests that a new allocation can be properly assigned to a server.
-     *
-     * @dataProvider permissionDataProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('permissionDataProvider')]
     public function testNewAllocationCanBeAssignedToServer(array $permission)
     {
         /** @var \Pterodactyl\Models\Server $server */
@@ -68,7 +67,7 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
         $this->actingAs($user)->postJson($this->link($server, '/network/allocations'))
             ->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertJsonPath('errors.0.code', 'AutoAllocationNotEnabledException')
-            ->assertJsonPath('errors.0.detail', 'A alocação automática do servidor não está habilitada para esta instância.');
+            ->assertJsonPath('errors.0.detail', 'Server auto-allocation is not enabled for this instance.');
     }
 
     /**
