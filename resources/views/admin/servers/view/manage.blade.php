@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    Server — {{ $server->name }}: Manage
+    Servidor — {{ $server->name }}: Gerenciar
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>Additional actions to control this server.</small></h1>
+    <h1>{{ $server->name }}<small>Ações adicionais para controlar este servidor.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">Manage</li>
+        <li class="active">Gerenciar</li>
     </ol>
 @endsection
 
@@ -20,19 +20,19 @@
         <div class="col-sm-4">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Reinstall Server</h3>
+                    <h3 class="box-title">Reinstalar Servidor</h3>
                 </div>
                 <div class="box-body">
-                    <p>This will reinstall the server with the assigned service scripts. <strong>Danger!</strong> This could overwrite server data.</p>
+                    <p>Isso reinstalará o servidor com os scripts de serviço atribuídos. <strong>Perigo!</strong> Isso pode sobrescrever os dados do servidor.</p>
                 </div>
                 <div class="box-footer">
                     @if($server->isInstalled())
                         <form action="{{ route('admin.servers.view.manage.reinstall', $server->id) }}" method="POST">
                             {!! csrf_field() !!}
-                            <button type="submit" class="btn btn-danger">Reinstall Server</button>
+                            <button type="submit" class="btn btn-danger">Reinstalar Servidor</button>
                         </form>
                     @else
-                        <button class="btn btn-danger disabled">Server Must Install Properly to Reinstall</button>
+                        <button class="btn btn-danger disabled">O Servidor Deve Ser Instalado Corretamente para Reinstalar</button>
                     @endif
                 </div>
             </div>
@@ -40,15 +40,15 @@
         <div class="col-sm-4">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Install Status</h3>
+                    <h3 class="box-title">Status da Instalação</h3>
                 </div>
                 <div class="box-body">
-                    <p>If you need to change the install status from uninstalled to installed, or vice versa, you may do so with the button below.</p>
+                    <p>Se você precisar alterar o status da instalação de desinstalado para instalado, ou vice-versa, pode fazê-lo com o botão abaixo.</p>
                 </div>
                 <div class="box-footer">
                     <form action="{{ route('admin.servers.view.manage.toggle', $server->id) }}" method="POST">
                         {!! csrf_field() !!}
-                        <button type="submit" class="btn btn-primary">Toggle Install Status</button>
+                        <button type="submit" class="btn btn-primary">Alternar Status da Instalação</button>
                     </form>
                 </div>
             </div>
@@ -58,16 +58,16 @@
             <div class="col-sm-4">
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Suspend Server</h3>
+                        <h3 class="box-title">Suspender Servidor</h3>
                     </div>
                     <div class="box-body">
-                        <p>This will suspend the server, stop any running processes, and immediately block the user from being able to access their files or otherwise manage the server through the panel or API.</p>
+                        <p>Isso suspenderá o servidor, interromperá quaisquer processos em execução e bloqueará imediatamente o acesso do usuário aos seus arquivos ou o gerenciamento do servidor através do painel ou da API.</p>
                     </div>
                     <div class="box-footer">
                         <form action="{{ route('admin.servers.view.manage.suspension', $server->id) }}" method="POST">
                             {!! csrf_field() !!}
                             <input type="hidden" name="action" value="suspend" />
-                            <button type="submit" class="btn btn-warning @if(! is_null($server->transfer)) disabled @endif">Suspend Server</button>
+                            <button type="submit" class="btn btn-warning @if(! is_null($server->transfer)) disabled @endif">Suspender Servidor</button>
                         </form>
                     </div>
                 </div>
@@ -76,16 +76,16 @@
             <div class="col-sm-4">
                 <div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Unsuspend Server</h3>
+                        <h3 class="box-title">Reativar Servidor</h3>
                     </div>
                     <div class="box-body">
-                        <p>This will unsuspend the server and restore normal user access.</p>
+                        <p>Isso reativará o servidor e restaurará o acesso normal do usuário.</p>
                     </div>
                     <div class="box-footer">
                         <form action="{{ route('admin.servers.view.manage.suspension', $server->id) }}" method="POST">
                             {!! csrf_field() !!}
                             <input type="hidden" name="action" value="unsuspend" />
-                            <button type="submit" class="btn btn-success">Unsuspend Server</button>
+                            <button type="submit" class="btn btn-success">Reativar Servidor</button>
                         </form>
                     </div>
                 </div>
@@ -96,21 +96,21 @@
             <div class="col-sm-4">
                 <div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Transfer Server</h3>
+                        <h3 class="box-title">Transferir Servidor</h3>
                     </div>
                     <div class="box-body">
                         <p>
-                            Transfer this server to another node connected to this panel.
-                            <strong>Warning!</strong> This feature has not been fully tested and may have bugs.
+                            Transfira este servidor para outro Node conectado a este painel.
+                            <strong>Aviso!</strong> Este recurso não foi totalmente testado e pode conter bugs.
                         </p>
                     </div>
 
                     <div class="box-footer">
                         @if($canTransfer)
-                            <button class="btn btn-success" data-toggle="modal" data-target="#transferServerModal">Transfer Server</button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#transferServerModal">Transferir Servidor</button>
                         @else
-                            <button class="btn btn-success disabled">Transfer Server</button>
-                            <p style="padding-top: 1rem;">Transferring a server requires more than one node to be configured on your panel.</p>
+                            <button class="btn btn-success disabled">Transferir Servidor</button>
+                            <p style="padding-top: 1rem;">A transferência de um servidor requer mais de um Node configurado em seu painel.</p>
                         @endif
                     </div>
                 </div>
@@ -119,17 +119,17 @@
             <div class="col-sm-4">
                 <div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Transfer Server</h3>
+                        <h3 class="box-title">Transferir Servidor</h3>
                     </div>
                     <div class="box-body">
                         <p>
-                            This server is currently being transferred to another node.
-                            Transfer was initiated at <strong>{{ $server->transfer->created_at }}</strong>
+                            Este servidor está sendo transferido para outro Node.
+                            A transferência foi iniciada em <strong>{{ $server->transfer->created_at }}</strong>
                         </p>
                     </div>
 
                     <div class="box-footer">
-                        <button class="btn btn-success disabled">Transfer Server</button>
+                        <button class="btn btn-success disabled">Transferir Servidor</button>
                     </div>
                 </div>
             </div>
@@ -142,7 +142,7 @@
                 <form action="{{ route('admin.servers.view.manage.transfer', $server->id) }}" method="POST">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Transfer Server</h4>
+                        <h4 class="modal-title">Transferir Servidor</h4>
                     </div>
 
                     <div class="modal-body">
@@ -164,27 +164,27 @@
                                         </optgroup>
                                     @endforeach
                                 </select>
-                                <p class="small text-muted no-margin">The node which this server will be transferred to.</p>
+                                <p class="small text-muted no-margin">O Node para o qual este servidor será transferido.</p>
                             </div>
 
                             <div class="form-group col-md-12">
-                                <label for="pAllocation">Default Allocation</label>
+                                <label for="pAllocation">Alocação Padrão</label>
                                 <select name="allocation_id" id="pAllocation" class="form-control"></select>
-                                <p class="small text-muted no-margin">The main allocation that will be assigned to this server.</p>
+                                <p class="small text-muted no-margin">A alocação principal que será atribuída a este servidor.</p>
                             </div>
 
                             <div class="form-group col-md-12">
-                                <label for="pAllocationAdditional">Additional Allocation(s)</label>
+                                <label for="pAllocationAdditional">Alocação(ões) Adicional(is)</label>
                                 <select name="allocation_additional[]" id="pAllocationAdditional" class="form-control" multiple></select>
-                                <p class="small text-muted no-margin">Additional allocations to assign to this server on creation.</p>
+                                <p class="small text-muted no-margin">Alocações adicionais a serem atribuídas a este servidor na criação.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         {!! csrf_field() !!}
-                        <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success btn-sm">Confirm</button>
+                        <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success btn-sm">Confirmar</button>
                     </div>
                 </form>
             </div>

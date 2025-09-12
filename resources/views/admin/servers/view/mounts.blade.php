@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    Server — {{ $server->name }}: Mounts
+    Servidor — {{ $server->name }}: Montagens
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>Manage server mounts.</small></h1>
+    <h1>{{ $server->name }}<small>Gerenciar montagens do servidor.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">Mounts</li>
+        <li class="active">Montagens</li>
     </ol>
 @endsection
 
@@ -21,16 +21,16 @@
         <div class="col-sm-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Available Mounts</h3>
+                    <h3 class="box-title">Montagens Disponíveis</h3>
                 </div>
 
                 <div class="box-body table-responsible no-padding">
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Source</th>
-                            <th>Target</th>
+                            <th>Nome</th>
+                            <th>Origem</th>
+                            <th>Destino</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -44,7 +44,7 @@
 
                                 @if (! in_array($mount->id, $server->mounts->pluck('id')->toArray()))
                                     <td class="col-sm-2 middle">
-                                        <span class="label label-primary">Unmounted</span>
+                                        <span class="label label-primary">Não Montado</span>
                                     </td>
 
                                     <td class="col-sm-1 middle">
@@ -56,7 +56,7 @@
                                     </td>
                                 @else
                                     <td class="col-sm-2 middle">
-                                        <span class="label label-success">Mounted</span>
+                                        <span class="label label-success">Montado</span>
                                     </td>
 
                                     <td class="col-sm-1 middle">

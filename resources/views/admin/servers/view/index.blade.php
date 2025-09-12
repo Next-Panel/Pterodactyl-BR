@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Server — {{ $server->name }}
+    Servidor — {{ $server->name }}
 @endsection
 
 @section('content-header')
     <h1>{{ $server->name }}<small>{{ str_limit($server->description) }}</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li class="active">{{ $server->name }}</li>
     </ol>
 @endsection
@@ -21,100 +21,100 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Information</h3>
+                        <h3 class="box-title">Informações</h3>
                     </div>
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
-                                <td>Internal Identifier</td>
+                                <td>Identificador Interno</td>
                                 <td><code>{{ $server->id }}</code></td>
                             </tr>
                             <tr>
-                                <td>External Identifier</td>
+                                <td>Identificador Externo</td>
                                 @if(is_null($server->external_id))
-                                    <td><span class="label label-default">Not Set</span></td>
+                                    <td><span class="label label-default">Não Definido</span></td>
                                 @else
                                     <td><code>{{ $server->external_id }}</code></td>
                                 @endif
                             </tr>
                             <tr>
-                                <td>UUID / Docker Container ID</td>
+                                <td>UUID / ID do Contêiner Docker</td>
                                 <td><code>{{ $server->uuid }}</code></td>
                             </tr>
                             <tr>
-                                <td>Current Egg</td>
+                                <td>Egg Atual</td>
                                 <td>
                                     <a href="{{ route('admin.nests.view', $server->nest_id) }}">{{ $server->nest->name }}</a> ::
                                     <a href="{{ route('admin.nests.egg.view', $server->egg_id) }}">{{ $server->egg->name }}</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Server Name</td>
+                                <td>Nome do Servidor</td>
                                 <td>{{ $server->name }}</td>
                             </tr>
                             <tr>
-                                <td>CPU Limit</td>
+                                <td>Limite de CPU</td>
                                 <td>
                                     @if($server->cpu === 0)
-                                        <code>Unlimited</code>
+                                        <code>Ilimitado</code>
                                     @else
                                         <code>{{ $server->cpu }}%</code>
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <td>CPU Pinning</td>
+                                <td>Fixação de CPU</td>
                                 <td>
                                     @if($server->threads != null)
                                         <code>{{ $server->threads }}</code>
                                     @else
-                                        <span class="label label-default">Not Set</span>
+                                        <span class="label label-default">Não Definido</span>
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <td>Memory</td>
+                                <td>Memória</td>
                                 <td>
                                     @if($server->memory === 0)
-                                        <code>Unlimited</code>
+                                        <code>Ilimitada</code>
                                     @else
                                         <code>{{ $server->memory }}MiB</code>
                                     @endif
                                     /
                                     @if($server->swap === 0)
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space">Not Set</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Espaço de Troca">Não Definido</code>
                                     @elseif($server->swap === -1)
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space">Unlimited</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Espaço de Troca">Ilimitado</code>
                                     @else
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space"> {{ $server->swap }}MiB</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Espaço de Troca"> {{ $server->swap }}MiB</code>
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <td>Disk Space</td>
+                                <td>Espaço em Disco</td>
                                 <td>
                                     @if($server->disk === 0)
-                                        <code>Unlimited</code>
+                                        <code>Ilimitado</code>
                                     @else
                                         <code>{{ $server->disk }}MiB</code>
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <td>Block IO Weight</td>
+                                <td>Peso de E/S de Bloco</td>
                                 <td><code>{{ $server->io }}</code></td>
                             </tr>
                             <tr>
-                                <td>Default Connection</td>
+                                <td>Conexão Padrão</td>
                                 <td><code>{{ $server->allocation->ip }}:{{ $server->allocation->port }}</code></td>
                             </tr>
                             <tr>
-                                <td>Connection Alias</td>
+                                <td>Alias de Conexão</td>
                                 <td>
                                     @if($server->allocation->alias !== $server->allocation->ip)
                                         <code>{{ $server->allocation->alias }}:{{ $server->allocation->port }}</code>
                                     @else
-                                        <span class="label label-default">No Alias Assigned</span>
+                                        <span class="label label-default">Nenhum Alias Atribuído</span>
                                     @endif
                                 </td>
                             </tr>
@@ -132,7 +132,7 @@
                         <div class="col-sm-12">
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <h3 class="no-margin">Suspended</h3>
+                                    <h3 class="no-margin">Suspenso</h3>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                         <div class="col-sm-12">
                             <div class="small-box {{ (! $server->isInstalled()) ? 'bg-blue' : 'bg-maroon' }}">
                                 <div class="inner">
-                                    <h3 class="no-margin">{{ (! $server->isInstalled()) ? 'Installing' : 'Install Failed' }}</h3>
+                                    <h3 class="no-margin">{{ (! $server->isInstalled()) ? 'Instalando' : 'Falha na Instalação' }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -150,11 +150,11 @@
                         <div class="small-box bg-gray">
                             <div class="inner">
                                 <h3>{{ str_limit($server->user->username, 16) }}</h3>
-                                <p>Server Owner</p>
+                                <p>Proprietário do Servidor</p>
                             </div>
                             <div class="icon"><i class="fa fa-user"></i></div>
                             <a href="{{ route('admin.users.view', $server->user->id) }}" class="small-box-footer">
-                                More info <i class="fa fa-arrow-circle-right"></i>
+                                Mais informações <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>
@@ -162,11 +162,11 @@
                         <div class="small-box bg-gray">
                             <div class="inner">
                                 <h3>{{ str_limit($server->node->name, 16) }}</h3>
-                                <p>Server Node</p>
+                                <p>Node do Servidor</p>
                             </div>
                             <div class="icon"><i class="fa fa-codepen"></i></div>
                             <a href="{{ route('admin.nodes.view', $server->node->id) }}" class="small-box-footer">
-                                More info <i class="fa fa-arrow-circle-right"></i>
+                                Mais informações <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>

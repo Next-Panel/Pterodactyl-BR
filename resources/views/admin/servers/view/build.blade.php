@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    Server — {{ $server->name }}: Build Details
+    Servidor — {{ $server->name }}: Detalhes da Build
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>Control allocations and system resources for this server.</small></h1>
+    <h1>{{ $server->name }}<small>Controle as alocações e os recursos do sistema para este servidor.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+        <li><a href="{{ route('admin.index') }}">Administrador</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servidores</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">Build Configuration</li>
+        <li class="active">Configuração da Build</li>
     </ol>
 @endsection
 
@@ -21,68 +21,68 @@
         <div class="col-sm-5">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Resource Management</h3>
+                    <h3 class="box-title">Gerenciamento de Recursos</h3>
                 </div>
                 <div class="box-body">
                 <div class="form-group">
-                        <label for="cpu" class="control-label">CPU Limit</label>
+                        <label for="cpu" class="control-label">Limite de CPU</label>
                         <div class="input-group">
                             <input type="text" name="cpu" class="form-control" value="{{ old('cpu', $server->cpu) }}"/>
                             <span class="input-group-addon">%</span>
                         </div>
-                        <p class="text-muted small">Each <em>virtual</em> core (thread) on the system is considered to be <code>100%</code>. Setting this value to <code>0</code> will allow a server to use CPU time without restrictions.</p>
+                        <p class="text-muted small">Cada núcleo <em>virtual</em> (thread) no sistema é considerado <code>100%</code>. Definir este valor como <code>0</code> permitirá que um servidor use o tempo da CPU sem restrições.</p>
                     </div>
                     <div class="form-group">
-                        <label for="threads" class="control-label">CPU Pinning</label>
+                        <label for="threads" class="control-label">Fixação de CPU</label>
                         <div>
                             <input type="text" name="threads" class="form-control" value="{{ old('threads', $server->threads) }}"/>
                         </div>
-                        <p class="text-muted small"><strong>Advanced:</strong> Enter the specific CPU cores that this process can run on, or leave blank to allow all cores. This can be a single number, or a comma seperated list. Example: <code>0</code>, <code>0-1,3</code>, or <code>0,1,3,4</code>.</p>
+                        <p class="text-muted small"><strong>Avançado:</strong> Insira os núcleos de CPU específicos nos quais este processo pode ser executado ou deixe em branco para permitir todos os núcleos. Pode ser um único número ou uma lista separada por vírgulas. Exemplo: <code>0</code>, <code>0-1,3</code> ou <code>0,1,3,4</code>.</p>
                     </div>
                     <div class="form-group">
-                        <label for="memory" class="control-label">Allocated Memory</label>
+                        <label for="memory" class="control-label">Memória Alocada</label>
                         <div class="input-group">
                             <input type="text" name="memory" data-multiplicator="true" class="form-control" value="{{ old('memory', $server->memory) }}"/>
                             <span class="input-group-addon">MiB</span>
                         </div>
-                        <p class="text-muted small">The maximum amount of memory allowed for this container. Setting this to <code>0</code> will allow unlimited memory in a container.</p>
+                        <p class="text-muted small">A quantidade máxima de memória permitida para este contêiner. Definir como <code>0</code> permitirá memória ilimitada em um contêiner.</p>
                     </div>
                     <div class="form-group">
-                        <label for="swap" class="control-label">Allocated Swap</label>
+                        <label for="swap" class="control-label">Swap Alocado</label>
                         <div class="input-group">
                             <input type="text" name="swap" data-multiplicator="true" class="form-control" value="{{ old('swap', $server->swap) }}"/>
                             <span class="input-group-addon">MiB</span>
                         </div>
-                        <p class="text-muted small">Setting this to <code>0</code> will disable swap space on this server. Setting to <code>-1</code> will allow unlimited swap.</p>
+                        <p class="text-muted small">Definir como <code>0</code> desativará o espaço de troca neste servidor. Definir como <code>-1</code> permitirá troca ilimitada.</p>
                     </div>
                     <div class="form-group">
-                        <label for="cpu" class="control-label">Disk Space Limit</label>
+                        <label for="cpu" class="control-label">Limite de Espaço em Disco</label>
                         <div class="input-group">
                             <input type="text" name="disk" class="form-control" value="{{ old('disk', $server->disk) }}"/>
                             <span class="input-group-addon">MiB</span>
                         </div>
-                        <p class="text-muted small">This server will not be allowed to boot if it is using more than this amount of space. If a server goes over this limit while running it will be safely stopped and locked until enough space is available. Set to <code>0</code> to allow unlimited disk usage.</p>
+                        <p class="text-muted small">Este servidor não terá permissão para inicializar se estiver usando mais do que essa quantidade de espaço. Se um servidor ultrapassar esse limite durante a execução, ele será interrompido com segurança e bloqueado até que haja espaço suficiente disponível. Defina como <code>0</code> para permitir o uso ilimitado de disco.</p>
                     </div>
                     <div class="form-group">
-                        <label for="io" class="control-label">Block IO Proportion</label>
+                        <label for="io" class="control-label">Proporção de E/S de Bloco</label>
                         <div>
                             <input type="text" name="io" class="form-control" value="{{ old('io', $server->io) }}"/>
                         </div>
-                        <p class="text-muted small"><strong>Advanced</strong>: The IO performance of this server relative to other <em>running</em> containers on the system. Value should be between <code>10</code> and <code>1000</code>.</code></p>
+                        <p class="text-muted small"><strong>Avançado</strong>: O desempenho de E/S deste servidor em relação a outros contêineres <em>em execução</em> no sistema. O valor deve estar entre <code>10</code> e <code>1000</code>.</code></p>
                     </div>
                     <div class="form-group">
                         <label for="cpu" class="control-label">OOM Killer</label>
                         <div>
                             <div class="radio radio-danger radio-inline">
                                 <input type="radio" id="pOomKillerEnabled" value="0" name="oom_disabled" @if(!$server->oom_disabled)checked @endif>
-                                <label for="pOomKillerEnabled">Enabled</label>
+                                <label for="pOomKillerEnabled">Ativado</label>
                             </div>
                             <div class="radio radio-success radio-inline">
                                 <input type="radio" id="pOomKillerDisabled" value="1" name="oom_disabled" @if($server->oom_disabled)checked @endif>
-                                <label for="pOomKillerDisabled">Disabled</label>
+                                <label for="pOomKillerDisabled">Desativado</label>
                             </div>
                             <p class="text-muted small">
-                                Enabling OOM killer may cause server processes to exit unexpectedly.
+                                Ativar o OOM killer pode fazer com que os processos do servidor saiam inesperadamente.
                             </p>
                         </div>
                     </div>
@@ -94,30 +94,30 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Application Feature Limits</h3>
+                            <h3 class="box-title">Limites de Recursos do Aplicativo</h3>
                         </div>
                         <div class="box-body">
                             <div class="row">
                                 <div class="form-group col-xs-6">
-                                    <label for="database_limit" class="control-label">Database Limit</label>
+                                    <label for="database_limit" class="control-label">Limite de Banco de Dados</label>
                                     <div>
                                         <input type="text" name="database_limit" class="form-control" value="{{ old('database_limit', $server->database_limit) }}"/>
                                     </div>
-                                    <p class="text-muted small">The total number of databases a user is allowed to create for this server.</p>
+                                    <p class="text-muted small">O número total de bancos de dados que um usuário pode criar para este servidor.</p>
                                 </div>
                                 <div class="form-group col-xs-6">
-                                    <label for="allocation_limit" class="control-label">Allocation Limit</label>
+                                    <label for="allocation_limit" class="control-label">Limite de Alocação</label>
                                     <div>
                                         <input type="text" name="allocation_limit" class="form-control" value="{{ old('allocation_limit', $server->allocation_limit) }}"/>
                                     </div>
-                                    <p class="text-muted small">The total number of allocations a user is allowed to create for this server.</p>
+                                    <p class="text-muted small">O número total de alocações que um usuário pode criar para este servidor.</p>
                                 </div>
                                 <div class="form-group col-xs-6">
-                                    <label for="backup_limit" class="control-label">Backup Limit</label>
+                                    <label for="backup_limit" class="control-label">Limite de Backup</label>
                                     <div>
                                         <input type="text" name="backup_limit" class="form-control" value="{{ old('backup_limit', $server->backup_limit) }}"/>
                                     </div>
-                                    <p class="text-muted small">The total number of backups that can be created for this server.</p>
+                                    <p class="text-muted small">O número total de backups que podem ser criados para este servidor.</p>
                                 </div>
                             </div>
                         </div>
@@ -126,11 +126,11 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Allocation Management</h3>
+                            <h3 class="box-title">Gerenciamento de Alocação</h3>
                         </div>
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="pAllocation" class="control-label">Game Port</label>
+                                <label for="pAllocation" class="control-label">Porta do Jogo</label>
                                 <select id="pAllocation" name="allocation_id" class="form-control">
                                     @foreach ($assigned as $assignment)
                                         <option value="{{ $assignment->id }}"
@@ -140,10 +140,10 @@
                                         >{{ $assignment->alias }}:{{ $assignment->port }}</option>
                                     @endforeach
                                 </select>
-                                <p class="text-muted small">The default connection address that will be used for this game server.</p>
+                                <p class="text-muted small">O endereço de conexão padrão que será usado para este servidor de jogo.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pAddAllocations" class="control-label">Assign Additional Ports</label>
+                                <label for="pAddAllocations" class="control-label">Atribuir Portas Adicionais</label>
                                 <div>
                                     <select name="add_allocations[]" class="form-control" multiple id="pAddAllocations">
                                         @foreach ($unassigned as $assignment)
@@ -151,10 +151,10 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <p class="text-muted small">Please note that due to software limitations you cannot assign identical ports on different IPs to the same server.</p>
+                                <p class="text-muted small">Observe que, devido a limitações de software, você não pode atribuir portas idênticas em IPs diferentes ao mesmo servidor.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pRemoveAllocations" class="control-label">Remove Additional Ports</label>
+                                <label for="pRemoveAllocations" class="control-label">Remover Portas Adicionais</label>
                                 <div>
                                     <select name="remove_allocations[]" class="form-control" multiple id="pRemoveAllocations">
                                         @foreach ($assigned as $assignment)
@@ -162,12 +162,12 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <p class="text-muted small">Simply select which ports you would like to remove from the list above. If you want to assign a port on a different IP that is already in use you can select it from the left and delete it here.</p>
+                                <p class="text-muted small">Basta selecionar quais portas você gostaria de remover da lista acima. Se você quiser atribuir uma porta em um IP diferente que já esteja em uso, pode selecioná-la à esquerda e excluí-la aqui.</p>
                             </div>
                         </div>
                         <div class="box-footer">
                             {!! csrf_field() !!}
-                            <button type="submit" class="btn btn-primary pull-right">Update Build Configuration</button>
+                            <button type="submit" class="btn btn-primary pull-right">Atualizar Configuração da Build</button>
                         </div>
                     </div>
                 </div>
