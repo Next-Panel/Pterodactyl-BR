@@ -39,7 +39,7 @@ export default () => {
         if (value === '/') {
             return url ? match.url : match.path;
         }
-        return `${(url ? match.url : match.path).replace(/\/*$/, '')}/${value.replace(/^\/+/, '')}`;
+        return `${(url ? match.url : match.path).replace(/*$/,'')}/${value.replace(/^\/+/,'')}`;
     };
 
     useEffect(

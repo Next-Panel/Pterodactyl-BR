@@ -35,7 +35,7 @@ const spin = keyframes`
 const ActionButton = styled(Button)`
     ${tw`rounded-full w-8 h-8 flex items-center justify-center p-0`};
 
-    &.hover\\:spin:hover {
+    &.hover\:spin:hover {
         animation: ${spin} 2s linear infinite;
     }
 `;
@@ -69,14 +69,14 @@ type ServerErrorProps = (Omit<PropsWithBack, 'image' | 'title'> | Omit<PropsWith
 };
 
 const ServerError = ({ title, ...props }: ServerErrorProps) => (
-    <ScreenBlock title={title || 'Something went wrong'} image={ServerErrorSvg} {...props} />
+    <ScreenBlock title={title || 'Algo deu errado'} image={ServerErrorSvg} {...props} />
 );
 
 const NotFound = ({ title, message, onBack }: Partial<Pick<ScreenBlockProps, 'title' | 'message' | 'onBack'>>) => (
     <ScreenBlock
         title={title || '404'}
         image={NotFoundSvg}
-        message={message || 'The requested resource was not found.'}
+        message={message || 'O recurso solicitado não foi encontrado.'}
         onBack={onBack}
     />
 );

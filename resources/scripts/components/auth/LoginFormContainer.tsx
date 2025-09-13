@@ -48,7 +48,7 @@ export default forwardRef<HTMLFormElement, Props>(({ title, ...props }, ref) => 
                 target={'_blank'}
                 css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
             >
-                Pterodactyl Software
+                Software Pterodactyl
             </a>
         </p>
     </Container>
