@@ -24,7 +24,7 @@ class PruneOrphanedBackupsCommand extends Command
     {
         $since = $this->option('prune-age') ?? config('backups.prune_age', 360);
         if (!$since || !is_digit($since)) {
-            throw new \InvalidArgumentException('The "--prune-age" argument must be a value greater than 0.');
+            throw new \InvalidArgumentException('O argumento "--prune-age" deve ser um valor maior que 0.');
         }
 
         $query = $this->backupRepository->getBuilder()
@@ -33,12 +33,12 @@ class PruneOrphanedBackupsCommand extends Command
 
         $count = $query->count();
         if (!$count) {
-            $this->info('There are no orphaned backups to be marked as failed.');
+            $this->info('Não há backups órfãos para serem marcados como falhados.');
 
             return;
         }
 
-        $this->warn("Marking $count uncompleted backups that are older than $since minutes as failed.");
+        $this->warn("Marcando $count backups não concluídos com mais de $since minutos como falhados.");
 
         $query->update([
             'is_successful' => false,

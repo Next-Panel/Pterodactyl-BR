@@ -35,13 +35,13 @@ class SftpAuthenticationController extends Controller
     {
         $connection = $this->parseUsername($request->input('username'));
         if (empty($connection['server'])) {
-            throw new BadRequestHttpException('No valid server identifier was included in the request.');
+            throw new BadRequestHttpException('Nenhum identificador de servidor válido foi incluído na solicitação.');
         }
 
         if ($this->hasTooManyLoginAttempts($request)) {
             $seconds = $this->limiter()->availableIn($this->throttleKey($request));
 
-            throw new TooManyRequestsHttpException($seconds, "Too many login attempts for this account, please try again in $seconds seconds.");
+            throw new TooManyRequestsHttpException($seconds, "Muitas tentativas de login para esta conta, por favor, tente novamente em $seconds segundos.");
         }
 
         $user = $this->getUser($request, $connection['username']);

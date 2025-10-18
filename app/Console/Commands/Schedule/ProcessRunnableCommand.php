@@ -70,7 +70,7 @@ class ProcessRunnableCommand extends Command
         } catch (\Throwable|\Exception $exception) {
             Log::error($exception, ['schedule_id' => $schedule->id]);
 
-            $this->error("An error was encountered while processing Schedule #$schedule->id: " . $exception->getMessage());
+            $this->error("Foi encontrado um erro ao processar o Agendamento #$schedule->id: " . $exception->getMessage());
         }
     }
 }

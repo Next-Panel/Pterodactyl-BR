@@ -43,11 +43,11 @@ class EmailSettingsCommand extends Command
         $this->variables['MAIL_DRIVER'] = $this->option('driver') ?? $this->choice(
             trans('command/messages.environment.mail.ask_driver'),
             [
-                'smtp' => 'SMTP Server',
-                'sendmail' => 'sendmail Binary',
-                'mailgun' => 'Mailgun Transactional Email',
-                'mandrill' => 'Mandrill Transactional Email',
-                'postmark' => 'Postmark Transactional Email',
+                'smtp' => 'Servidor SMTP',
+                'sendmail' => 'Binário sendmail',
+                'mailgun' => 'E-mail Transacional Mailgun',
+                'mandrill' => 'E-mail Transacional Mandrill',
+                'postmark' => 'E-mail Transacional Postmark',
             ],
             $this->config->get('mail.default', 'smtp')
         );

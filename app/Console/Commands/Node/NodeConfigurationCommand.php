@@ -8,10 +8,10 @@ use Illuminate\Console\Command;
 class NodeConfigurationCommand extends Command
 {
     protected $signature = 'p:node:configuration
-                            {node : The ID or UUID of the node to return the configuration for.}
-                            {--format=yaml : The output format. Options are "yaml" and "json".}';
+                            {node : O ID ou UUID do Node para retornar a configuração.}
+                            {--format=yaml : O formato de saída. As opções são "yaml" e "json".}';
 
-    protected $description = 'Displays the configuration for the specified node.';
+    protected $description = 'Exibe a configuração para o Node especificado.';
 
     public function handle(): int
     {

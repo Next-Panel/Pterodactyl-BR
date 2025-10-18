@@ -4,6 +4,7 @@ namespace Pterodactyl\Http\Requests\Api\Client\Servers\Startup;
 
 use Pterodactyl\Models\Permission;
 use Pterodactyl\Http\Requests\Api\Client\ClientApiRequest;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UpdateStartupVariableRequest extends ClientApiRequest
 {

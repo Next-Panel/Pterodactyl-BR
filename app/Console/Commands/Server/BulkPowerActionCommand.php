@@ -17,7 +17,7 @@ class BulkPowerActionCommand extends Command
                             {--servers= : A comma separated list of servers.}
                             {--nodes= : A comma separated list of nodes.}';
 
-    protected $description = 'Perform bulk power management on large groupings of servers or nodes at once.';
+    protected $description = 'Executa o gerenciamento de energia em massa em grandes agrupamentos de servidores ou Nodes de uma só vez.';
 
     /**
      * BulkPowerActionCommand constructor.

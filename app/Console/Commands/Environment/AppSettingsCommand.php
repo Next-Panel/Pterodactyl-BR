@@ -152,22 +152,22 @@ class AppSettingsCommand extends Command
             return;
         }
 
-        $this->output->note('You\'ve selected the Redis driver for one or more options, please provide valid connection information below. In most cases you can use the defaults provided unless you have modified your setup.');
+        $this->output->note('Você selecionou o driver Redis para uma ou mais opções, por favor, forneça informações de conexão válidas abaixo. Na maioria dos casos, você pode usar os padrões fornecidos, a menos que tenha modificado sua configuração.');
         $this->variables['REDIS_HOST'] = $this->option('redis-host') ?? $this->ask(
-            'Redis Host',
+            'Host do Redis',
             config('database.redis.default.host')
         );
 
         $askForRedisPassword = true;
         if (!empty(config('database.redis.default.password'))) {
             $this->variables['REDIS_PASSWORD'] = config('database.redis.default.password');
-            $askForRedisPassword = $this->confirm('It seems a password is already defined for Redis, would you like to change it?');
+            $askForRedisPassword = $this->confirm('Parece que uma senha já está definida para o Redis, você gostaria de alterá-la?');
         }
 
         if ($askForRedisPassword) {
-            $this->output->comment('By default a Redis server instance has no password as it is running locally and inaccessible to the outside world. If this is the case, simply hit enter without entering a value.');
+            $this->output->comment('Por padrão, uma instância de servidor Redis não tem senha, pois está sendo executada localmente e inacessível ao mundo exterior. Se for esse o caso, basta pressionar enter sem inserir um valor.');
             $this->variables['REDIS_PASSWORD'] = $this->option('redis-pass') ?? $this->output->askHidden(
-                'Redis Password'
+                'Senha do Redis'
             );
         }
 
@@ -176,7 +176,7 @@ class AppSettingsCommand extends Command
         }
 
         $this->variables['REDIS_PORT'] = $this->option('redis-port') ?? $this->ask(
-            'Redis Port',
+            'Porta do Redis',
             config('database.redis.default.port')
         );
     }
